@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "438377665628",
+    "project_id": "lvb2013518",
+    "storage_bucket": "lvb2013518.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438377665628:android:10fccbc42e6b197e0c4299",
+        "android_client_info": {
+          "package_name": "com.example.vtpa_b2013518_lvtn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBWNv2dN7PXt2Mh49x0hh7zpTWYBs8Spc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

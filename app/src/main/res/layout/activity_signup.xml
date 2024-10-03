@@ -89,19 +89,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
 
-    <EditText
-        android:id="@+id/eTSUMatKhau"
-        android:layout_width="365dp"
-        android:layout_height="55dp"
-        android:background="@drawable/btn_bg"
-        android:ems="10"
-        android:hint="  Mật khẩu"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/imageView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etSUEmail"
-        app:layout_constraintVertical_bias="0.114" />
 
     <EditText
         android:id="@+id/eTSUCMatKhau"
@@ -116,5 +103,85 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etSUEmail"
         app:layout_constraintVertical_bias="0.56" />
+
+    <EditText
+        android:id="@+id/eTSUMatKhau"
+        android:layout_width="365dp"
+        android:layout_height="55dp"
+        android:background="@drawable/btn_bg"
+        android:ems="10"
+        android:hint="  Mật khẩu"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etSUEmail"
+        app:layout_constraintVertical_bias="0.085" />
+
+    <LinearLayout
+        android:id="@+id/goiyMatKhau"
+        android:layout_width="287dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.258"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.699"> <!-- Ẩn gợi ý ban đầu -->
+
+        <TextView
+            android:id="@+id/goiyTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="Mật khẩu phải bao gồm:"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/goiy8KyTu"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_height="wrap_content"
+            android:text="* Ít nhất 8 ký tự"
+            android:textColor="#FF0000" />
+
+        <TextView
+            android:id="@+id/goiyInHoa"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_height="wrap_content"
+            android:text="* Ít nhất một chữ cái in hoa"
+            android:textColor="#FF0000" />
+
+        <TextView
+            android:id="@+id/goiyInThuong"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_height="wrap_content"
+            android:text="* Ít nhất một chữ cái in thường"
+            android:textColor="#FF0000" />
+
+        <TextView
+            android:id="@+id/goiySo"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_height="wrap_content"
+            android:text="* Ít nhất một chữ số"
+            android:textColor="#FF0000" />
+
+        <TextView
+            android:id="@+id/goiyKyTuDacBiet"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_height="wrap_content"
+            android:text="* Ít nhất một ký tự đặc biệt"
+            android:textColor="#FF0000" />
+
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

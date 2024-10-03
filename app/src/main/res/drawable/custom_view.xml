@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Trạng thái khi ImageView bị bấm (pressed) -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#EDEDEE" /> <!-- Màu khi bấm -->
+            <corners android:radius="12dp"/> <!-- Góc bo tròn -->
+        </shape>
+    </item>
+
+    <!-- Trạng thái khi ImageView được chọn (focused) -->
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white" /> <!-- Màu khi được chọn -->
+            <corners android:radius="12dp"/>
+        </shape>
+    </item>
+
+    <!-- Trạng thái mặc định -->
+    <item>
+        <shape android:shape="rectangle">
+<!--            <solid android:color="#FFFFFF" /> &lt;!&ndash; Màu mặc định &ndash;&gt;-->
+            <corners android:radius="12dp"/>
+        </shape>
+    </item>
+
+</selector>

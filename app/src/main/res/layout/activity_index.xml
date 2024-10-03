@@ -23,6 +23,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
+            android:background="@drawable/radius_linear"
             android:layout_weight="1">
 
             <ImageView
@@ -79,13 +81,24 @@
         app:layout_constraintVertical_bias="0.39">
 
         <ImageView
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/custom_view"
             android:id="@+id/imageView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            app:backgroundTint="@null"
             app:srcCompat="@drawable/tram_rang" />
 
         <ImageView
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/custom_view"
             android:id="@+id/imageView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -105,6 +118,11 @@
         app:layout_constraintVertical_bias="0.55">
 
         <ImageView
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/custom_view"
             android:id="@+id/imageView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -112,6 +130,11 @@
             app:srcCompat="@drawable/tay_trang" />
 
         <ImageView
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/custom_view"
             android:id="@+id/imageView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -121,6 +144,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -131,6 +155,11 @@
         app:layout_constraintVertical_bias="0.71000004">
 
         <ImageView
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/custom_view"
             android:id="@+id/imageView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -138,6 +167,11 @@
             app:srcCompat="@drawable/cao_voi" />
 
         <ImageView
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/custom_view"
             android:id="@+id/imageView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -170,7 +204,7 @@
         android:background="@drawable/btn_custom1"
         android:text="Hỗ trợ đặt khám"
         android:textColor="#4F378A"
-        android:textSize="15sp"
+        android:textSize="16sp"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

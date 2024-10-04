@@ -26,7 +26,6 @@ class SignupActivity : AppCompatActivity() {
     lateinit var etPass: EditText
     lateinit var etConfPass: EditText
     private lateinit var btnSignUp: Button
-//    lateinit var tvRedirectLogin: TextView
 
     // create Firebase authentication object
     private lateinit var auth: FirebaseAuth
@@ -39,7 +38,7 @@ class SignupActivity : AppCompatActivity() {
 
         binding.btnSUDangKy.setOnClickListener {
             createAccount()
-            //startActivity(Intent(this, LoginActivity::class.java))
+            //startActivity(Intent(this, AuthActivity::class.java))
         }
 
         // View Bindings
@@ -47,7 +46,7 @@ class SignupActivity : AppCompatActivity() {
         etPass = findViewById(R.id.eTSUMatKhau)
         etConfPass = findViewById(R.id.eTSUCMatKhau)
         btnSignUp = findViewById(R.id.btnSUDangKy)
-       // tvRedirectLogin = findViewById(R.id.tvDangky)
+
         // Initialize Firebase Auth
         auth = Firebase.auth
 

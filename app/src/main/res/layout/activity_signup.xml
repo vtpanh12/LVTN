@@ -63,7 +63,7 @@
         app:layout_constraintVertical_bias="0.07" />
 
     <Button
-        android:id="@+id/btnSUDangKy"
+        android:id="@+id/btnAuthGmail"
         android:layout_width="167dp"
         android:layout_height="63dp"
         android:backgroundTint="@color/main_color"

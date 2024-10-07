@@ -6,4 +6,5 @@ Chức năng:
   + Đếm ngược 60s để gửi lại email xác thực
   + Button mở Gmail sau khi email xác thực được gửi
 - Quên mật khẩu
+    + Gửi email để đặt lại mật khẩu cho người dùng
 - Kiểm tra mật khẩu mạnh

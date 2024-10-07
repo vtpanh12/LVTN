@@ -72,4 +72,5 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Đăng nhập thất bại ", Toast.LENGTH_SHORT).show()
         }
     }
+
 }

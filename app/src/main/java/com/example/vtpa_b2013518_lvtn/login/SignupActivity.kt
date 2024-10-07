@@ -125,14 +125,14 @@ class SignupActivity : AppCompatActivity() {
 
     }
 
-    public override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            //reload()
-        }
-    }
+//    public override fun onStart() {
+//        super.onStart()
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        val currentUser = auth.currentUser
+//        if (currentUser != null) {
+//            //reload()
+//        }
+//    }
     private fun createAccount(){
 
         val email = etEmail.text.toString()
@@ -166,6 +166,7 @@ class SignupActivity : AppCompatActivity() {
 
                             // neu thanh cong -> qua AuthActivity
                             val intent = Intent(this, AuthActivity::class.java)
+                            //truyen email sang AuthActivity
                             intent.putExtra("USER_EMAIL", email)
                             startActivity(intent)
                             finish()
@@ -203,5 +204,4 @@ class SignupActivity : AppCompatActivity() {
                 hasDigit(password) &&
                 hasSpecialChar(password)
     }
-
 }

@@ -41,12 +41,20 @@ class SignupActivity : AppCompatActivity() {
             createAccount()
         }
 
+
         // View Bindings
         etEmail = findViewById(R.id.etSUEmail)
         etPass = findViewById(R.id.eTSUMatKhau)
         etConfPass = findViewById(R.id.eTSUCMatKhau)
         btnSignUp = findViewById(R.id.btnAuthGmail)
 
+
+        binding.eTSUCMatKhau.setOnClickListener{
+            var checkpass = etConfPass.text.toString()
+            if (checkpass.isEmpty()){
+                Toast.makeText(this, "Hãy điền mật khẩu", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         // Initialize Firebase Auth
         auth = Firebase.auth
@@ -151,10 +159,10 @@ class SignupActivity : AppCompatActivity() {
             return
         }
         //check empty
-        if (confirmPassword.isEmpty()){
-            Toast.makeText(this, "Hãy điền mật khẩu", Toast.LENGTH_SHORT).show()
-            return
-        }
+//        if (confirmPassword.isEmpty()){
+//            Toast.makeText(this, "Hãy điền mật khẩu", Toast.LENGTH_SHORT).show()
+//            return
+//        }
 
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->

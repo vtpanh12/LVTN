@@ -158,11 +158,6 @@ class SignupActivity : AppCompatActivity() {
                 .show()
             return
         }
-        //check empty
-//        if (confirmPassword.isEmpty()){
-//            Toast.makeText(this, "Hãy điền mật khẩu", Toast.LENGTH_SHORT).show()
-//            return
-//        }
 
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->

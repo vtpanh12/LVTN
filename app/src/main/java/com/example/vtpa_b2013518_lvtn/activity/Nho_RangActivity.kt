@@ -7,10 +7,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.vtpa_b2013518_lvtn.R
 
-class TayRangActivity : AppCompatActivity() {
+class Nho_RangActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tay_rang)
+
+        setContentView(R.layout.activity_nho_rang)
 
     }
 }

@@ -1,8 +1,27 @@
 <resources>
     <string name="app_name">vtpa_b2013518_lvtn</string>
-    <string name="tay_rang">Tẩy trắng răng là một kỹ thuật nha khoa được sử dụng để giúp
-        cải thiện màu sắc của răng. Khi thực hiện phương án này, bác sĩ sẽ sử dụng các chất
-        tạo ra phản ứng oxy hóa – khử kết hợp với năng lượng ánh sáng, để đi vào men răng và
-        cắt đứt các chuỗi phân tử màu có trong ngà răng. Lúc này, răng sẽ trở nên trắng sáng hơn
-        và cấu trúc răng hoàn toàn không bị ảnh hưởng.</string>
+    <string name="tay_rang">Tẩy trắng răng là một kỹ thuật nha khoa giúp
+        cải thiện màu sắc của răng.</string>
+    <string name="tay_rang_pp1">Bác sĩ sẽ thoa thuốc phù hợp với tình trạng răng và  kết hợp với ánh
+        sáng cường độ mạnh để thực hiện tẩy trắng
+    </string>
+    <string name="tay_rang_pp2">Bác sĩ sẽ lấy dấu răng để làm một cặp khay đeo tẩy trắng phù hợp
+        cho tình trạng răng miệng của bạn</string>
+    <string name="cao_voi"> Cạo vôi răng giúp làm sạch cao răng hay cao răng trên răng mà đánh răng
+        không thể loại bỏ được.</string>
+    <string name="chua_tuy">Điều trị tủy răng (nội nha) là quy trình lấy sạch toàn bộ phần tủy răng
+        bị tổn thương. Sau đó trám kín lại ống chứa tủy và phục hồi răng,
+        tránh tình trạng phải nhổ bỏ răng.</string>
+    <string name="nho_rang">Nhổ răng là một thủ thuật nha khoa, nha sĩ
+        sẽ lấy toàn bộ răng bị hư ra khỏi ổ răng. Trước khi nhổ răng,
+        nha sĩ sẽ tách rời nướu, dây chằng nha chu, giãn xương ổ và lấy răng ra khỏi ổ răng.</string>
+    <string name="phuc_hinh">Phục hình răng là quá trình khôi phục hình dáng của răng khi chúng bị
+        tổn thương, nhằm tái tạo lại cả vẻ đẹp thẩm mỹ và chức năng ăn nhai.</string>
+    <string name="phuc_hinh2">Những trường hợp nên cân nhắc làm phục hình răng như:
+        Phục hình răng do mất răng, răng bị sâu, răng bị mòn,... </string>
+    <string name="tram_rang">Trám răng là một kỹ thuật nha khoa dùng vật
+        liệu nhân tạo để bổ sung vào mô răng bị thiếu. Phương pháp
+        này còn giúp cho bạn cải thiện chức năng nhai.</string>
+    <string name="tram_rang_2">Các trường hợp sau cần thực hiện kỹ thuật trám răng:
+    Trám răng sâu, trám răng mẻ, trám răng thưa, hở kẽ nhẹ, răng bị mòn, khuyết cổ chân răng,...</string>
 </resources>

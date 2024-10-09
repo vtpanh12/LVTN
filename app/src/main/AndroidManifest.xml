@@ -13,6 +13,24 @@
         android:theme="@style/Theme.Vtpa_b2013518_lvtn"
         tools:targetApi="31">
         <activity
+            android:name=".activity.Tay_RangActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Phuc_HinhActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Cao_VoiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Nho_RangActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Chua_TuyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Tram_RangActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.TayRangActivity"
             android:exported="false" />
         <activity

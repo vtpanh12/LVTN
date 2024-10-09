@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.Tay_RangActivity">
+    tools:context=".activity.Cao_VoiActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:background="@color/btn_color"
-                android:text="TẨY RĂNG"
+                android:text="CẠO VÔI RĂNG"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="30sp"
@@ -38,7 +38,7 @@
                 android:id="@+id/textView7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1. Tẩy trắng răng là gì?"
+                android:text="1. Cạo vôi răng là gì?"
                 android:textStyle="bold"
                 android:textSize="25sp"
                 android:layout_marginLeft="10dp"
@@ -58,15 +58,14 @@
                 android:justificationMode="inter_word"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/tay_rang" />
+                android:text="@string/cao_voi" />
 
             <ImageView
                 android:id="@+id/imageView19"
                 android:layout_width="wrap_content"
                 android:layout_height="181dp"
-
-                android:scaleType="fitStart"
-                app:srcCompat="@drawable/tay_rang_dinhnghia" />
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/cao_voi_image" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -76,34 +75,8 @@
                 android:layout_marginTop="15dp"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:text="2. Các phương pháp tẩy trắng răng phổ biến"
-                 />
-
-            <TextView
-                android:layout_margin="10dp"
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="2.1 Tẩy trắng răng tại phòng khám nha khoa" />
-
-            <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:textSize="20sp"
-                android:justificationMode="inter_word"
-                android:id="@+id/textView9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/tay_rang_pp1" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:layout_margin="10dp"
-                android:text="2.2 Tẩy trắng răng tại nhà bằng khay đeo cá nhân" />
+                android:text="2. Khi nào cần cạo vôi răng"
+                />
 
             <TextView
                 android:id="@+id/textView11"
@@ -113,7 +86,8 @@
                 android:layout_marginRight="10dp"
                 android:textSize="20sp"
                 android:justificationMode="inter_word"
-                android:text="@string/tay_rang_pp2" />
+                android:text="Nên cạo vôi răng ít nhất 6 tháng/ lần. Bên cạnh đó, tùy mức độ vôi răng
+mà bác sĩ sẽ tư vấn thời gian lấy cao răng." />
 
             <TextView
                 android:id="@+id/textView12"
@@ -123,26 +97,10 @@
                 android:layout_marginTop="15dp"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:text="3. Tẩy trắng răng giá bao nhiêu?" />
+                android:text="3. Cạo vôi răng giá bao nhiêu?" />
 
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:textSize="20sp"
-                android:text="- Tẩy trắng về nhà
-                1,000,000(1 cặp máng + 3 ống thuốc)" />
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:textSize="20sp"
-                android:text="- Tẩy trắng tại nha khoa
-                	 1,500,000" />
+
+
             <TextView
                 android:id="@+id/textView15"
                 android:layout_width="match_parent"
@@ -150,8 +108,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textSize="20sp"
-                android:text="- Tẩy rắng kết hợp
-                	 1,800,000" />
+                android:text="Cạo vôi đánh bóng	 200,000 – 300,000" />
 
             <Button
                 android:id="@+id/button3"

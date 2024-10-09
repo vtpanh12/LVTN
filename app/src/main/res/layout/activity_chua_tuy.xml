@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.Tay_RangActivity">
+    tools:context=".activity.Chua_TuyActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:background="@color/btn_color"
-                android:text="TẨY RĂNG"
+                android:text="CHỮA TỦY"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="30sp"
@@ -38,7 +38,7 @@
                 android:id="@+id/textView7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1. Tẩy trắng răng là gì?"
+                android:text="1. Chữa tủy là gì?"
                 android:textStyle="bold"
                 android:textSize="25sp"
                 android:layout_marginLeft="10dp"
@@ -58,15 +58,13 @@
                 android:justificationMode="inter_word"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/tay_rang" />
+                android:text="@string/chua_tuy" />
 
             <ImageView
                 android:id="@+id/imageView19"
                 android:layout_width="wrap_content"
                 android:layout_height="181dp"
-
-                android:scaleType="fitStart"
-                app:srcCompat="@drawable/tay_rang_dinhnghia" />
+                app:srcCompat="@drawable/chua_tuy_image" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -76,16 +74,10 @@
                 android:layout_marginTop="15dp"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:text="2. Các phương pháp tẩy trắng răng phổ biến"
-                 />
+                android:text="2. Dấu hiệu răng cần điều trị tủy răng"
+                />
 
-            <TextView
-                android:layout_margin="10dp"
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="2.1 Tẩy trắng răng tại phòng khám nha khoa" />
+
 
             <TextView
                 android:layout_marginLeft="10dp"
@@ -95,15 +87,9 @@
                 android:id="@+id/textView9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/tay_rang_pp1" />
+                android:text="- Đau răng thành từng cơn, có thể đau ở mức độ nhẹ tại chỗ hoặc đau dữ dội lan ra các răng xung quanh và lên đầu" />
 
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:layout_margin="10dp"
-                android:text="2.2 Tẩy trắng răng tại nhà bằng khay đeo cá nhân" />
+
 
             <TextView
                 android:id="@+id/textView11"
@@ -113,7 +99,16 @@
                 android:layout_marginRight="10dp"
                 android:textSize="20sp"
                 android:justificationMode="inter_word"
-                android:text="@string/tay_rang_pp2" />
+                android:text="- Lợi ở vùng có răng bị sâu hoặc chấn thương bị sưng, có hoặc không có sưng mặt kèm theo." />
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="20sp"
+                android:justificationMode="inter_word"
+                android:text="- vùng lợi ở răng bị sâu hoặc chấn thương có nốt nổi lên như mụn, ấn vào thấy có dịch hoặc mủ vàng chảy ra." />
 
             <TextView
                 android:id="@+id/textView12"
@@ -123,7 +118,7 @@
                 android:layout_marginTop="15dp"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:text="3. Tẩy trắng răng giá bao nhiêu?" />
+                android:text="3. Chữa tủy răng giá bao nhiêu?" />
 
             <TextView
                 android:id="@+id/textView13"
@@ -132,8 +127,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textSize="20sp"
-                android:text="- Tẩy trắng về nhà
-                1,000,000(1 cặp máng + 3 ống thuốc)" />
+                android:text="- Chữa tủy bằng tay            500,000- 800,000" />
             <TextView
                 android:id="@+id/textView14"
                 android:layout_width="match_parent"
@@ -141,17 +135,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textSize="20sp"
-                android:text="- Tẩy trắng tại nha khoa
-                	 1,500,000" />
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:textSize="20sp"
-                android:text="- Tẩy rắng kết hợp
-                	 1,800,000" />
+                android:text="- Chữa tủy bằng máy
+                	  1,000,000" />
 
             <Button
                 android:id="@+id/button3"

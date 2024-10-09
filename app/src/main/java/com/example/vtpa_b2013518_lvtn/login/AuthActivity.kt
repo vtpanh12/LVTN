@@ -45,33 +45,7 @@ class AuthActivity : AppCompatActivity() {
         resendButton.setOnClickListener {
             resendVerificationEmail()
         }
-        binding.btnAuthGmail.setOnClickListener {
-//            val intentG = Intent(Intent.ACTION_SENDTO).apply {
-//                data = Uri.parse("mailto:")  // Điều này giới hạn Intent chỉ dành cho các ứng dụng email
-//            }
-//
-//            if (intentG.resolveActivity(packageManager) != null) {
-//                // Nếu có ứng dụng email trên thiết bị, hãy mở nó
-//                startActivity(intentG)
-//            } else {
-//                // Nếu không có ứng dụng email nào, hiển thị thông báo cho người dùng
-//                Toast.makeText(this, "Không có ứng dụng email nào được cài đặt", Toast.LENGTH_SHORT).show()
-//            }
-//            val intentGmail = Intent(Intent.ACTION_VIEW)
-//
-//            // Đặt tên gói của Gmail
-//            intentGmail.setPackage("com.google.android.gm")
-//
-//            // Kiểm tra xem Gmail có tồn tại trên thiết bị hay không
-//            val packageManager = packageManager
-//            if (intentGmail.resolveActivity(packageManager) != null) {
-//                // Nếu Gmail tồn tại, mở ứng dụng
-//                startActivity(intentGmail)
-//            } else {
-//                // Nếu Gmail không tồn tại, hiển thị thông báo lỗi
-//                Toast.makeText(this, "Gmail không được cài đặt trên thiết bị", Toast.LENGTH_SHORT).show()
-//            }
-        }
+
         startCheckingEmailVerification()
     }
 

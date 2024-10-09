@@ -85,11 +85,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/logo" />
 
+
     <TextView
         android:id="@+id/tvCountTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="192dp"
+        android:layout_marginBottom="248dp"
         android:text="Email sẽ được gửi trong  60s"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -97,24 +98,11 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnAuthGmail"
-        android:layout_width="167dp"
-        android:layout_height="63dp"
-        android:backgroundTint="@color/main_color"
-        android:text="Mở Gmail"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.591" />
-
-    <Button
         android:id="@+id/btnResendAuth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="144dp"
+        android:layout_width="140dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="180dp"
+        android:backgroundTint="@color/main_color"
         android:text="Gửi lại"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

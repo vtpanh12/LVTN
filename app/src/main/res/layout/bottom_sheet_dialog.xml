@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="417dp"
+        android:layout_height="88dp"
+        android:orientation="horizontal"
+        android:background="@color/btn_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:textColor="@color/white"
+            android:id="@+id/textView16"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:paddingTop="30dp"
+            android:paddingLeft="80dp"
+            android:layout_weight="0.9"
+            android:text="Hỗ trợ đặt khám"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_margin="20dp"
+            android:id="@+id/imageView8"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="start|top"
+            android:layout_weight="0.1"
+            app:srcCompat="@drawable/dong_image" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.110000014">
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.2"
+                app:srcCompat="@drawable/phone" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="278dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.75"
+                android:gravity="center"
+                android:text="Tổng đài đặt khám: (028) 32343638"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView90"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.2"
+                app:srcCompat="@drawable/phone" />
+
+            <TextView
+                android:id="@+id/textView171"
+                android:layout_width="278dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.75"
+                android:gravity="center"
+                android:text="Hỗ trợ đặt khám qua zalo: 0782906602"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

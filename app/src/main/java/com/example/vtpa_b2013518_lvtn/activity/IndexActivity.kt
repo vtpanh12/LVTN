@@ -35,5 +35,8 @@ class IndexActivity : AppCompatActivity() {
         binding.ivCaoVoi.setOnClickListener {
             startActivity(Intent(this, Cao_VoiActivity::class.java))
         }
+        binding.btnDatKham.setOnClickListener {
+            startActivity(Intent(this, Cao_VoiActivity::class.java))
+        }
     }
 }

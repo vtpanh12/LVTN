@@ -54,7 +54,9 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, SignupActivity::class.java))
             finish()
         }
-
+        binding.tVLIQuenMatKhau.setOnClickListener {
+            startActivity(Intent(this, FPassWordActivity::class.java))
+        }
     }
 
     private fun login() {

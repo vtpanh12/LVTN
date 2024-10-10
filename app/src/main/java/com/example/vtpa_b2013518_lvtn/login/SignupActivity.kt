@@ -44,9 +44,9 @@ class SignupActivity : AppCompatActivity() {
 
         // View Bindings
         etEmail = findViewById(R.id.etSUEmail)
-        etPass = findViewById(R.id.eTSUMatKhau)
-        etConfPass = findViewById(R.id.eTSUCMatKhau)
-        btnSignUp = findViewById(R.id.btnAuthGmail)
+        etPass = findViewById(R.id.eTRSMatKhau)
+        etConfPass = findViewById(R.id.eTRSMatKhau)
+        btnSignUp = findViewById(R.id.btnAuthPW)
 
 
         binding.eTSUCMatKhau.setOnClickListener{

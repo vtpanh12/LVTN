@@ -31,9 +31,6 @@
             android:name=".activity.Tram_RangActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.TayRangActivity"
-            android:exported="false" />
-        <activity
             android:name=".login.ResetPWActivity"
             android:exported="false" />
         <activity

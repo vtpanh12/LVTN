@@ -5,6 +5,168 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.ResetPWActivity">
+    tools:context=".login.SignupActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="411dp"
+        android:layout_height="239dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/top1" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="407dp"
+        android:layout_height="68dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.243"
+        app:srcCompat="@drawable/vector" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="416dp"
+        android:layout_height="214dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/top2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="355dp"
+        android:layout_height="51dp"
+        android:text="CẬP NHẬT MẬT KHẨU"
+        android:textAlignment="center"
+        android:textColor="#0E6289"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.049" />
+
+    <Button
+        android:id="@+id/btnAuthPW"
+        android:layout_width="201dp"
+        android:layout_height="67dp"
+        android:backgroundTint="@color/main_color"
+        android:text="Cập nhật mật khẩu"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.635" />
+
+
+    <EditText
+        android:id="@+id/eTRSCMatKhau"
+        android:layout_width="365dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="280dp"
+        android:background="@drawable/btn_bg"
+        android:ems="10"
+        android:hint="  Mật khẩu"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/goiyMatKhau"
+        android:layout_width="287dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.258"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.56"> <!-- Ẩn gợi ý ban đầu -->
+
+        <TextView
+            android:id="@+id/goiyTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="Mật khẩu phải bao gồm:"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/goiy8KyTu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="* Ít nhất 8 ký tự"
+            android:textColor="#FF0000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/goiyInHoa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="* Ít nhất một chữ cái in hoa"
+            android:textColor="#FF0000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/goiyInThuong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="* Ít nhất một chữ cái in thường"
+            android:textColor="#FF0000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/goiySo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="* Ít nhất một chữ số"
+            android:textColor="#FF0000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/goiyKyTuDacBiet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="* Ít nhất một ký tự đặc biệt"
+            android:textColor="#FF0000"
+            android:textSize="18sp" />
+
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/eTRSMatKhau"
+        android:layout_width="365dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="176dp"
+        android:background="@drawable/btn_bg"
+        android:ems="10"
+        android:hint="  Nhập lại mật khẩu"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

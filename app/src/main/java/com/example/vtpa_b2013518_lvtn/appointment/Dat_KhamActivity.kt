@@ -1,4 +1,4 @@
-package appointment
+package com.example.vtpa_b2013518_lvtn.appointment
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

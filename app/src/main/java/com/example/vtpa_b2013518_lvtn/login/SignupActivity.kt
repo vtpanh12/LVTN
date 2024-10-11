@@ -15,10 +15,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.vtpa_b2013518_lvtn.R
+import com.example.vtpa_b2013518_lvtn.adapter.User
 import com.example.vtpa_b2013518_lvtn.databinding.ActivitySignupBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
 
 class SignupActivity : AppCompatActivity() {
 
@@ -29,7 +32,7 @@ class SignupActivity : AppCompatActivity() {
 
     // create Firebase authentication object
     private lateinit var auth: FirebaseAuth
-
+    private var db = Firebase.firestore
     private lateinit var binding: ActivitySignupBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,63 +136,97 @@ class SignupActivity : AppCompatActivity() {
 
     }
 
-//    public override fun onStart() {
-//        super.onStart()
-//        // Check if user is signed in (non-null) and update UI accordingly.
-//        val currentUser = auth.currentUser
-//        if (currentUser != null) {
-//            //reload()
-//        }
-//    }
-    private fun createAccount(){
-
-        val email = etEmail.text.toString()
-        val password = etPass.text.toString()
-        val confirmPassword = etConfPass.text.toString()
-
-        // check
-        if (email.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
-            Toast.makeText(this, "Hãy điền vào email và mật khẩu", Toast.LENGTH_SHORT).show()
-            return
+    public override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            //reload()
         }
-        //check Passw va confPassw
-        if (password != confirmPassword) {
-            Toast.makeText(this, "Mật khẩu không đồng bộ", Toast.LENGTH_SHORT)
-                .show()
-            return
-        }
+    }
+    private fun createAccount() {
 
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    user?.sendEmailVerification()?.addOnCompleteListener { verifyTask ->
-                        if (verifyTask.isSuccessful) {
-                            Toast.makeText(this, "Email xác thực đã được gửi.", Toast.LENGTH_SHORT).show()
+    val email = etEmail.text.toString()
+    val password = etPass.text.toString()
+    val confirmPassword = etConfPass.text.toString()
 
-                            // neu thanh cong -> qua AuthActivity
+    // check
+    if (email.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
+        Toast.makeText(this, "Hãy điền vào email và mật khẩu", Toast.LENGTH_SHORT).show()
+        return
+    }
+    //check Passw va confPassw
+    if (password != confirmPassword) {
+        Toast.makeText(this, "Mật khẩu không đồng bộ", Toast.LENGTH_SHORT)
+            .show()
+        return
+    }
+
+    auth.createUserWithEmailAndPassword(email, password)
+        .addOnCompleteListener(this) { task ->
+            if (task.isSuccessful) {
+                val user = auth.currentUser
+                user?.sendEmailVerification()?.addOnCompleteListener { verifyTask ->
+                    if (verifyTask.isSuccessful) {
+                        Toast.makeText(this, "Email xác thực đã được gửi.", Toast.LENGTH_SHORT)
+                            .show()
+
+                        // neu thanh cong -> qua AuthActivity
+                        val userId = FirebaseAuth.getInstance().currentUser?.uid
+                        if (userId != null) {
+                            // Lưu thông tin người dùng vào Firestore
+                            saveUserToFirestore(userId, email, "user") // "user" là role mặc định
                             val intent = Intent(this, AuthActivity::class.java)
                             //truyen email sang AuthActivity
                             intent.putExtra("USER_EMAIL", email)
                             startActivity(intent)
                             finish()
-                        // Đóng SignUpActivity để người dùng không quay lại duoc
+                            // Đóng SignUpActivity để người dùng không quay lại duoc
                         } else {
-                            Log.e("SignUpActivity", "Gửi email xác thực thất bại: ${verifyTask.exception?.message}")
-                            Toast.makeText(this, "Lỗi khi gửi email xác thực.", Toast.LENGTH_SHORT).show()
+                            Log.e(
+                                "SignUpActivity",
+                                "Gửi email xác thực thất bại: ${verifyTask.exception?.message}"
+                            )
+                            Toast.makeText(this, "Lỗi khi gửi email xác thực.", Toast.LENGTH_SHORT)
+                                .show()
                         }
+
+                        Log.d(TAG, "createUserWithEmail:success")
+
+                        //updateUI(user)
+                    } else {
+                        //Neu ko thanh cong, hien thong bao
+                        Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                        Toast.makeText(baseContext, "Đăng ký không thành công", Toast.LENGTH_SHORT,)
+                            .show()
                     }
-
-                    Log.d(TAG, "createUserWithEmail:success")
-
-                    //updateUI(user)
-                } else {
-                    //Neu ko thanh cong, hien thong bao
-                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Đăng ký không thành công", Toast.LENGTH_SHORT,).show()
                 }
             }
         }
+    }
+
+    private fun saveUserToFirestore(userId: String, email: String, role: String) {
+        val db = FirebaseFirestore.getInstance()
+
+        // Tạo đối tượng User
+        val user = User(
+            username = "",
+            address = "",
+            phoneNumber = "",
+            email = email,
+            role = role
+        )
+
+        // Lưu thông tin vào Firestore
+        db.collection("users").document(userId).set(user)
+            .addOnSuccessListener {
+                Log.d("Firestore", "User information successfully saved.")
+            }
+            .addOnFailureListener { e ->
+                Log.w("Firestore", "Error saving user information", e)
+            }
+
+    }
 
     // Hàm kiểm tra có ít nhất một ký tự in hoa
     private fun hasUpperCase(password: String) = password.any { it.isUpperCase() }
@@ -207,4 +244,6 @@ class SignupActivity : AppCompatActivity() {
                 hasDigit(password) &&
                 hasSpecialChar(password)
     }
+
 }
+

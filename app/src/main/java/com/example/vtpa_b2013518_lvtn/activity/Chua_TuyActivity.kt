@@ -1,6 +1,7 @@
 package com.example.vtpa_b2013518_lvtn.activity
 
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -12,6 +13,9 @@ class Chua_TuyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_chua_tuy)
-
+        val ivBackCT = findViewById<ImageView>(R.id.iVBackCT)
+        ivBackCT.setOnClickListener {
+            finish()
+        }
     }
 }

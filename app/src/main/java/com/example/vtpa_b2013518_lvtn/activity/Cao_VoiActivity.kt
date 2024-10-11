@@ -1,6 +1,7 @@
 package com.example.vtpa_b2013518_lvtn.activity
 
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -10,8 +11,10 @@ import com.example.vtpa_b2013518_lvtn.R
 class Cao_VoiActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_cao_voi)
-
+        val ivBackCVR = findViewById<ImageView>(R.id.iVBackCVR)
+        ivBackCVR.setOnClickListener {
+            finish()
+        }
     }
 }

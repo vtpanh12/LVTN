@@ -33,7 +33,7 @@
                     app:srcCompat="@drawable/back" />
                 <TextView
                     android:layout_gravity="center"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginRight="45dp"
                     android:id="@+id/textView6"
                     android:layout_width="0dp"
                     android:layout_weight="0.9"

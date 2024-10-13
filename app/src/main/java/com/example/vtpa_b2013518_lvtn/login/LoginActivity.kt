@@ -3,9 +3,11 @@ package com.example.vtpa_b2013518_lvtn.login
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -29,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
 
     lateinit var etEmail: EditText
     lateinit var etPass: EditText
+    lateinit var iVLIPW : ImageView
     private lateinit var btnSignIn: Button
 
 
@@ -47,6 +50,25 @@ class LoginActivity : AppCompatActivity() {
         etEmail = findViewById(R.id.eTLIEmail)
         etPass = findViewById(R.id.eTLIMatKhau)
         btnSignIn = findViewById(R.id.btnLIDangNhap)
+        iVLIPW = findViewById<ImageView>(R.id.iVLIPW)
+        var isPasswordVisible = false
+        iVLIPW.setOnClickListener {
+            if (isPasswordVisible) {
+                // Ẩn mật khẩu
+                etPass.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                iVLIPW.setImageResource(R.drawable.hide_pw) // Đổi icon về "ẩn"
+            } else {
+                // Hiển thị mật khẩu
+                etPass.inputType = InputType.TYPE_CLASS_TEXT
+                iVLIPW.setImageResource(R.drawable.show_pw) // Đổi icon về "hiện"
+            }
+
+            // Di chuyển con trỏ về cuối đoạn văn bản
+            etPass.setSelection(etPass.text.length)
+
+            // Đổi trạng thái cờ
+            isPasswordVisible = !isPasswordVisible
+        }
 
         // Initialize Firebase Auth
         auth = Firebase.auth

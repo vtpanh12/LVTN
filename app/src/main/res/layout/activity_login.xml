@@ -103,6 +103,18 @@
         app:layout_constraintTop_toBottomOf="@+id/eTLIEmail"
         app:layout_constraintVertical_bias="0.114" />
 
+    <ImageView
+        android:alpha="0.3"
+        android:id="@+id/iVLIPW"
+        android:layout_width="50dp"
+        android:layout_height="39dp"
+        app:layout_constraintBottom_toBottomOf="@+id/eTLIMatKhau"
+        app:layout_constraintEnd_toEndOf="@+id/eTLIMatKhau"
+        app:layout_constraintHorizontal_bias="0.973"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/eTLIMatKhau"
+        app:srcCompat="@drawable/hide_pw" />
+
     <TextView
         android:id="@+id/tVLIDangky"
         android:layout_width="wrap_content"

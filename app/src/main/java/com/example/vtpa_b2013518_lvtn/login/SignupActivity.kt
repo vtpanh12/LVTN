@@ -4,11 +4,13 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -29,6 +31,8 @@ class SignupActivity : AppCompatActivity() {
     lateinit var etPass: EditText
     lateinit var etConfPass: EditText
     private lateinit var btnSignUp: Button
+    lateinit var iVSUPW : ImageView
+    lateinit var iVSUCPW : ImageView
 
     // create Firebase authentication object
     private lateinit var auth: FirebaseAuth
@@ -50,13 +54,50 @@ class SignupActivity : AppCompatActivity() {
         etPass = findViewById(R.id.eTSUMatKhau)
         etConfPass = findViewById(R.id.eTSUCMatKhau)
         btnSignUp = findViewById(R.id.btnAuthGmail)
-
+        iVSUPW = findViewById(R.id.iVSUPW)
+        iVSUCPW = findViewById(R.id.iVSUCPW)
 
         binding.eTSUCMatKhau.setOnClickListener{
             var checkpass = etConfPass.text.toString()
             if (checkpass.isEmpty()){
                 Toast.makeText(this, "Hãy điền mật khẩu", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        var isPasswordVisible = false
+        iVSUPW.setOnClickListener {
+            if (isPasswordVisible) {
+                // Ẩn mật khẩu
+                etPass.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                iVSUPW.setImageResource(R.drawable.hide_pw) // Đổi icon về "ẩn"
+            } else {
+                // Hiển thị mật khẩu
+                etPass.inputType = InputType.TYPE_CLASS_TEXT
+                iVSUPW.setImageResource(R.drawable.show_pw) // Đổi icon về "hiện"
+            }
+
+            // Di chuyển con trỏ về cuối đoạn văn bản
+            etPass.setSelection(etPass.text.length)
+
+            // Đổi trạng thái cờ
+            isPasswordVisible = !isPasswordVisible
+        }
+        iVSUCPW.setOnClickListener {
+            if (isPasswordVisible) {
+                // Ẩn mật khẩu
+                etConfPass.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                iVSUCPW.setImageResource(R.drawable.hide_pw) // Đổi icon về "ẩn"
+            } else {
+                // Hiển thị mật khẩu
+                etConfPass.inputType = InputType.TYPE_CLASS_TEXT
+                iVSUCPW.setImageResource(R.drawable.show_pw) // Đổi icon về "hiện"
+            }
+
+            // Di chuyển con trỏ về cuối đoạn văn bản
+            etConfPass.setSelection(etConfPass.text.length)
+
+            // Đổi trạng thái cờ
+            isPasswordVisible = !isPasswordVisible
         }
 
         // Initialize Firebase Auth
@@ -75,6 +116,7 @@ class SignupActivity : AppCompatActivity() {
                 checkMatKhau.visibility = View.VISIBLE
                 etConfPass.visibility = View.GONE
                 btnSignUp.visibility = View.GONE
+                iVSUCPW.visibility = View.GONE
             } else {
                 // Khi EditText mất focus, ẩn các gợi ý
                 checkMatKhau.visibility = View.GONE
@@ -125,6 +167,7 @@ class SignupActivity : AppCompatActivity() {
                     checkMatKhau.visibility = View.GONE
                     etConfPass.visibility = View.VISIBLE
                     btnSignUp.visibility = View.VISIBLE
+                    iVSUCPW.visibility = View.VISIBLE
                 } else {
                     // Hiển thị lại gợi ý nếu mật khẩu chưa hợp lệ
                     checkMatKhau.visibility = View.VISIBLE

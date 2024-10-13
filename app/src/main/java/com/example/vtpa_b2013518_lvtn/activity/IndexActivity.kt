@@ -5,13 +5,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.vtpa_b2013518_lvtn.R
+import com.example.vtpa_b2013518_lvtn.appointment.Dat_KhamActivity
 import com.example.vtpa_b2013518_lvtn.databinding.ActivityIndexBinding
 import com.example.vtpa_b2013518_lvtn.login.SignupActivity
+import com.example.vtpa_b2013518_lvtn.news.NewsActivity
+import com.example.vtpa_b2013518_lvtn.users.UsersActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class IndexActivity : AppCompatActivity() {
@@ -45,6 +49,22 @@ class IndexActivity : AppCompatActivity() {
         val btnSupport = findViewById<Button>(R.id.btnHoTroDatKham)
         btnSupport.setOnClickListener {
             showBottomSheet()
+        }
+        val btnAppointment= findViewById<LinearLayout>(R.id.linearLichKham)
+        btnAppointment.setOnClickListener {
+            startActivity(Intent(this, Dat_KhamActivity::class.java))
+        }
+        val btnTrangChu= findViewById<LinearLayout>(R.id.linearTrangchu)
+        btnTrangChu.setOnClickListener {
+            startActivity(Intent(this, IndexActivity::class.java))
+        }
+        val btnNews= findViewById<LinearLayout>(R.id.linearNews)
+        btnNews.setOnClickListener {
+            startActivity(Intent(this, NewsActivity::class.java))
+        }
+        val btnUsers= findViewById<LinearLayout>(R.id.linearUsers)
+        btnUsers.setOnClickListener {
+            startActivity(Intent(this, UsersActivity::class.java))
         }
     }
     private fun showBottomSheet() {

@@ -13,10 +13,7 @@
         android:theme="@style/Theme.Vtpa_b2013518_lvtn"
         tools:targetApi="31">
         <activity
-            android:name=".users.UsersActivity"
-            android:exported="false" />
-        <activity
-            android:name=".news.NewsActivity"
+            android:name=".dentist.DentistActivity"
             android:exported="false" />
         <activity
             android:name=".appointment.Dat_KhamActivity"
@@ -56,9 +53,6 @@
             android:exported="false" />
         <activity
             android:name=".login.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".admin.AdminIndexActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

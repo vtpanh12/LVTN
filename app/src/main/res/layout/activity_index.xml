@@ -220,6 +220,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
+            android:id="@+id/linearTrangchu"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
@@ -241,6 +242,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLichKham"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
@@ -262,6 +264,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearNews"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
@@ -283,8 +286,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearUsers"
             android:layout_width="0dp"
-
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="1"

@@ -1,5 +1,6 @@
 package com.example.vtpa_b2013518_lvtn.login
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -13,12 +14,14 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.vtpa_b2013518_lvtn.R
 import com.example.vtpa_b2013518_lvtn.activity.IndexActivity
+import com.example.vtpa_b2013518_lvtn.adapter.User
 import com.example.vtpa_b2013518_lvtn.admin.AdminIndexActivity
 import com.example.vtpa_b2013518_lvtn.databinding.ActivityLoginBinding
 import com.example.vtpa_b2013518_lvtn.databinding.ActivityMainBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 
 class LoginActivity : AppCompatActivity() {
@@ -76,12 +79,32 @@ class LoginActivity : AppCompatActivity() {
                 if (userId != null) {
                     // Lấy thông tin vai trò từ Firestore
                     getUserRole(userId)
+                    saveUserToFirestore(userId, email)
                 }
-                val intent = Intent(this, IndexActivity::class.java)
-                startActivity(intent)
+//                val intent = Intent(this, IndexActivity::class.java)
+//                startActivity(intent)
             } else
                 Toast.makeText(this, "Đăng nhập thất bại ", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun saveUserToFirestore(userId: String, email: String) {
+        val db = FirebaseFirestore.getInstance()
+
+        // Tạo một đối tượng User
+        val user = hashMapOf(
+            "email" to email,
+            "role" to "user" // Bạn có thể thêm các trường khác như họ tên, địa chỉ, v.v.
+        )
+
+        // Lưu thông tin vào Firestore
+        db.collection("users").document(userId).set(user)
+            .addOnSuccessListener {
+                Log.d("Firestore", "User information successfully saved.")
+            }
+            .addOnFailureListener { e ->
+                Log.w("Firestore", "Error saving user information", e)
+            }
     }
 
     fun getUserRole(userId: String) {
@@ -101,7 +124,7 @@ class LoginActivity : AppCompatActivity() {
                         }
                         "user" -> {
                             // Chuyển hướng người dùng đến User Activity
-                            val intent = Intent(this, AdminIndexActivity::class.java)
+                            val intent = Intent(this, IndexActivity::class.java)
                             startActivity(intent)
                             finish() // Kết thúc Activity hiện tại
 
@@ -118,6 +141,26 @@ class LoginActivity : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 Log.d("Firestore", "get failed with ", exception)
             }
+    }
+
+//        // Create a new user with a first and last name
+        val user = hashMapOf(
+            "first" to "Ada",
+            "last" to "Lovelace",
+            "born" to 1815
+        )
+
+// Add a new document with a generated ID
+    private fun creatUser(user: User){
+    db.collection("users")
+        .add(user)
+        .addOnSuccessListener { documentReference ->
+            Toast.makeText(this, "save", Toast.LENGTH_SHORT).show()
+            Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+        }
+        .addOnFailureListener { e ->
+            Log.w(TAG, "Error adding document", e)
+        }
     }
 
 

@@ -47,9 +47,9 @@ class SignupActivity : AppCompatActivity() {
 
         // View Bindings
         etEmail = findViewById(R.id.etSUEmail)
-        etPass = findViewById(R.id.eTRSMatKhau)
-        etConfPass = findViewById(R.id.eTRSMatKhau)
-        btnSignUp = findViewById(R.id.btnAuthPW)
+        etPass = findViewById(R.id.eTSUMatKhau)
+        etConfPass = findViewById(R.id.eTSUCMatKhau)
+        btnSignUp = findViewById(R.id.btnAuthGmail)
 
 
         binding.eTSUCMatKhau.setOnClickListener{
@@ -174,8 +174,7 @@ class SignupActivity : AppCompatActivity() {
                         // neu thanh cong -> qua AuthActivity
                         val userId = FirebaseAuth.getInstance().currentUser?.uid
                         if (userId != null) {
-                            // Lưu thông tin người dùng vào Firestore
-                            saveUserToFirestore(userId, email, "user") // "user" là role mặc định
+                            // Lưu thông tin người dùng vào Firestore saveUserToFirestore(userId, email, "user") // "user" là role mặc định
                             val intent = Intent(this, AuthActivity::class.java)
                             //truyen email sang AuthActivity
                             intent.putExtra("USER_EMAIL", email)

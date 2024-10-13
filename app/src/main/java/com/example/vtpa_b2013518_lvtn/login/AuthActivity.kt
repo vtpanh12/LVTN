@@ -13,7 +13,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.vtpa_b2013518_lvtn.R
 import com.example.vtpa_b2013518_lvtn.activity.IndexActivity
 import com.example.vtpa_b2013518_lvtn.databinding.ActivityAuthBinding
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
 class AuthActivity : AppCompatActivity() {
 
@@ -21,7 +23,7 @@ class AuthActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var resendButton: Button
     private lateinit var timerTextView: TextView
-    private lateinit var btnGmail : Button
+
     //tạo 1 handler de xu ly tac vu tren luong chinh (MainLooper)
     private val handler = Handler(Looper.getMainLooper())  // Sử dụng để kiểm tra xem email da duoc xac thuc hay chua
 
@@ -30,6 +32,7 @@ class AuthActivity : AppCompatActivity() {
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        auth = Firebase.auth
         val userEmail = intent.getStringExtra("USER_EMAIL")
         val noidung = binding.tvEmail
         noidung.text= "Chúng tôi đã gửi đến địa chỉ email của bạn “$userEmail” đường liên kết để xác thực tài khoản của bạn"

@@ -16,6 +16,9 @@
             android:name=".dentist.DentistActivity"
             android:exported="false" />
         <activity
+            android:name=".users.UsersActivity"
+            android:exported="false" />
+        <activity
             android:name=".appointment.Dat_KhamActivity"
             android:exported="false" />
         <activity

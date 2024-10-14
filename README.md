@@ -7,5 +7,6 @@ Chức năng:
 - Quên mật khẩu
     + Gửi email để đặt lại mật khẩu cho người dùng
 - Kiểm tra mật khẩu mạnh
+- Hiện và ẩn mật khẩu
 - Hoàn thành giao diện app (các dịch vụ)
 - Phân quyền người dùng

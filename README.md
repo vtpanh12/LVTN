@@ -10,3 +10,4 @@ Chức năng:
 - Hiện và ẩn mật khẩu
 - Hoàn thành giao diện app (các dịch vụ)
 - Phân quyền người dùng
+- Cập nhật thông tin người dùng

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Vtpa_b2013518_lvtn"
         tools:targetApi="31">
         <activity
+            android:name=".users.IndexUserActivity"
+            android:exported="false" />
+        <activity
             android:name=".dentist.DentistActivity"
             android:exported="false" />
         <activity

@@ -15,6 +15,7 @@ import com.example.vtpa_b2013518_lvtn.appointment.Dat_KhamActivity
 import com.example.vtpa_b2013518_lvtn.databinding.ActivityIndexBinding
 import com.example.vtpa_b2013518_lvtn.login.SignupActivity
 import com.example.vtpa_b2013518_lvtn.news.NewsActivity
+import com.example.vtpa_b2013518_lvtn.users.IndexUserActivity
 import com.example.vtpa_b2013518_lvtn.users.UsersActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
@@ -64,7 +65,7 @@ class IndexActivity : AppCompatActivity() {
         }
         val btnUsers= findViewById<LinearLayout>(R.id.linearUsers)
         btnUsers.setOnClickListener {
-            startActivity(Intent(this, UsersActivity::class.java))
+            startActivity(Intent(this, IndexUserActivity::class.java))
         }
     }
     private fun showBottomSheet() {

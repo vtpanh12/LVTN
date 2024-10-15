@@ -2,6 +2,7 @@ package com.example.vtpa_b2013518_lvtn.users
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,11 @@ class UsersActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_users)
         val tVNgaySinh = findViewById<TextView>(R.id.tVDatePicker)
+        val iVBack = findViewById<ImageView>(R.id.iVBackUser)
+        iVBack.setOnClickListener {
+            finish()
+        }
+
         tVNgaySinh.setOnClickListener {
             // Lấy ngày hiện tại để làm mặc định
             val calendar = Calendar.getInstance()

@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.vtpa_b2013518_lvtn.MainActivity
 import com.example.vtpa_b2013518_lvtn.R
 import com.example.vtpa_b2013518_lvtn.activity.IndexActivity
 import com.google.firebase.Firebase
@@ -30,7 +31,10 @@ class IndexUserActivity : AppCompatActivity() {
         }
         val linearSignOut = findViewById<LinearLayout>(R.id.linearSignOut)
         linearSignOut.setOnClickListener {
-            Firebase.auth.signOut()
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // Xóa hết các activity trước đó
+            startActivity(intent)
         }
     }
 }

@@ -217,6 +217,7 @@ class SignupActivity : AppCompatActivity() {
                         // neu thanh cong -> qua AuthActivity
                         val userId = FirebaseAuth.getInstance().currentUser?.uid
                         if (userId != null) {
+                            saveUserToFirestore(userId, email,"user")
                             // Lưu thông tin người dùng vào Firestore saveUserToFirestore(userId, email, "user") // "user" là role mặc định
                             val intent = Intent(this, AuthActivity::class.java)
                             //truyen email sang AuthActivity

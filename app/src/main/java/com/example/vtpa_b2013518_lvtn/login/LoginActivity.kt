@@ -102,22 +102,23 @@ class LoginActivity : AppCompatActivity() {
                 if (userId != null) {
                     // Lấy thông tin vai trò từ Firestore
                     getUserRole(userId)
-                    saveUserToFirestore(userId, email)
+                    saveUserToFirestore(userId, email, "user")
                 }
-//                val intent = Intent(this, IndexActivity::class.java)
-//                startActivity(intent)
             } else
                 Toast.makeText(this, "Đăng nhập thất bại ", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun saveUserToFirestore(userId: String, email: String) {
+    private fun saveUserToFirestore(userId: String, email: String, role: String) {
         val db = FirebaseFirestore.getInstance()
 
-        // Tạo một đối tượng User
-        val user = hashMapOf(
-            "email" to email,
-            "role" to "user" // Bạn có thể thêm các trường khác như họ tên, địa chỉ, v.v.
+        // Tạo đối tượng User
+        val user = User(
+            username = "",
+            address = "",
+            phoneNumber = "",
+            email = email,
+            role = role
         )
 
         // Lưu thông tin vào Firestore
@@ -128,6 +129,7 @@ class LoginActivity : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Log.w("Firestore", "Error saving user information", e)
             }
+
     }
 
     fun getUserRole(userId: String) {
@@ -172,24 +174,24 @@ class LoginActivity : AppCompatActivity() {
     }
 
 //        // Create a new user with a first and last name
-        val user = hashMapOf(
-            "first" to "Ada",
-            "last" to "Lovelace",
-            "born" to 1815
-        )
+//        val user = hashMapOf(
+//            "first" to "Ada",
+//            "last" to "Lovelace",
+//            "born" to 1815
+//        )
 
 // Add a new document with a generated ID
-    private fun creatUser(user: User){
-    db.collection("users")
-        .add(user)
-        .addOnSuccessListener { documentReference ->
-            Toast.makeText(this, "save", Toast.LENGTH_SHORT).show()
-            Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-        }
-        .addOnFailureListener { e ->
-            Log.w(TAG, "Error adding document", e)
-        }
-    }
+//    private fun creatUser(user: User){
+//    db.collection("users")
+//        .add(user)
+//        .addOnSuccessListener { documentReference ->
+//            Toast.makeText(this, "save", Toast.LENGTH_SHORT).show()
+//            Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+//        }
+//        .addOnFailureListener { e ->
+//            Log.w(TAG, "Error adding document", e)
+//        }
+//    }
 
 
 }

@@ -274,15 +274,16 @@
             <ImageView
                 android:id="@+id/imageView15"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="33dp"
                 app:srcCompat="@drawable/tin_tuc" />
 
             <TextView
+
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tin tức"
-                android:textAlignment="center" />
+                android:text="Lịch sử"
+                android:gravity="center"  />
         </LinearLayout>
 
         <LinearLayout

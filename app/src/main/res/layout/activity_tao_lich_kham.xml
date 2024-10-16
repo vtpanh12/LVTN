@@ -20,7 +20,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/iVBackIndexUser"
+                android:id="@+id/iVBackCreateApp"
                 android:layout_width="13dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
@@ -50,6 +50,8 @@
         </LinearLayout>
 
         <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
             android:id="@+id/textView21"
             android:layout_width="209dp"
             android:layout_height="42dp"
@@ -57,9 +59,81 @@
             android:text="Chọn dịch vụ" />
 
         <Spinner
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edittext_user_bg"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:id="@+id/spinner_DichVu"
             android:layout_width="match_parent"
             android:layout_height="52dp" />
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="42dp"
+            android:textSize="25sp"
+            android:id="@+id/textView23"
+            android:layout_width="match_parent"
+            android:text="Chọn ngày" />
+
+        <TextView
+            android:padding="10dp"
+            android:id="@+id/tVDate"
+            android:textSize="20sp"
+            android:gravity=""
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/edittext_user_bg"
+            android:text="" />
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="42dp"
+            android:textSize="25sp"
+            android:id="@+id/textView234"
+            android:layout_width="match_parent"
+            android:text="Chọn giờ" />
+        <TextView
+            android:padding="10dp"
+            android:id="@+id/tVHour"
+            android:textSize="20sp"
+            android:gravity=""
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/edittext_user_bg"
+            android:text="" />
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="42dp"
+            android:textSize="25sp"
+            android:id="@+id/textView244"
+            android:layout_width="match_parent"
+            android:text="Ghi chú" />
+        <EditText
+            android:id="@+id/eTNote"
+            android:background="@drawable/edittext_user_bg"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"/>
+
+        <Button
+            android:id="@+id/btnCreateApp"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_margin="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/btn_custom"
+            android:text="Tạo lịch khám"
+            app:backgroundTint="@null" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

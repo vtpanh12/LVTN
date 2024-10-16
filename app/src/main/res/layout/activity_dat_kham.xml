@@ -20,7 +20,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/iVBackUser"
+                android:id="@+id/iVBackApp"
                 android:layout_width="13dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"

@@ -112,17 +112,14 @@ class LoginActivity : AppCompatActivity() {
     private fun saveUserToFirestore(userId: String, email: String, role: String) {
         val db = FirebaseFirestore.getInstance()
 
-        // Tạo đối tượng User
-        val user = User(
-            username = "",
-            address = "",
-            phoneNumber = "",
-            email = email,
-            role = role
+        val updates = hashMapOf<String, Any>(
+            "id_user" to userId,
+            "email" to email,
+            "role" to "user"
         )
 
         // Lưu thông tin vào Firestore
-        db.collection("users").document(userId).set(user)
+        db.collection("users").document(userId).update(updates)
             .addOnSuccessListener {
                 Log.d("Firestore", "User information successfully saved.")
             }

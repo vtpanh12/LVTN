@@ -113,7 +113,6 @@ class LoginActivity : AppCompatActivity() {
         val db = FirebaseFirestore.getInstance()
 
         val updates = hashMapOf<String, Any>(
-            "id_user" to userId,
             "email" to email,
             "role" to "user"
         )

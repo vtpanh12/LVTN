@@ -91,41 +91,6 @@ class UsersActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Không có người dùng nào đang đăng nhập", Toast.LENGTH_SHORT).show()
         }
-
-        val userId = FirebaseAuth.getInstance().currentUser?.uid
-        if (userId != null) {
-            db.collection("users").document(userId).get()
-                .addOnSuccessListener { document ->
-                    if (document != null) {
-                        // Hiển thị thông tin lên các view
-                        eTHoTen.setText(document.getString("username"))
-                        eTSDT.setText(document.getString("phoneNumber"))
-                        eTDiaChi.setText(document.getString("address"))
-                        tVNgaySinh.text = document.getString("date") // Hiển thị ngày sinh
-
-
-                        // Cập nhật giới tính
-                        val gender = document.getString("gender")
-                        if (gender != null) {
-                            val rbNam = findViewById<RadioButton>(R.id.rBNam)
-                            val rbNu = findViewById<RadioButton>(R.id.rBNu)
-
-                            when (gender) {
-                                "Nam" -> rbNam.isChecked = true
-                                "Nữ" -> rbNu.isChecked = true
-                            }
-                        }
-                } else {
-                    Log.d("TAG", "No such document")
-
-                    }
-                }
-                .addOnFailureListener { e ->
-                    Toast.makeText(this, "Lỗi khi tải thông tin: ${e.message}", Toast.LENGTH_SHORT).show()
-                }
-        }
-
-
         btnUpdateUser.setOnClickListener {
             val username = eTHoTen.text.toString()
             val phoneNumber = eTSDT.text.toString()
@@ -140,6 +105,11 @@ class UsersActivity : AppCompatActivity() {
             }
             if (username.isNotEmpty() && phoneNumber.isNotEmpty() && address.isNotEmpty() && gender.isNotEmpty() && date.isNotEmpty()) {
                 // Tạo đối tượng User
+                //val user = User(username, date, phoneNumber, gender, address, getEmail(), "user")
+
+                // Lưu vào Firestore, ví dụ sử dụng UID người dùng làm khóa
+                val userId = FirebaseAuth.getInstance().currentUser?.uid
+                // Bạn sẽ thay bằng user ID thực từ Firebase Auth
                 val user = User(
                     id_user = userId,
                     username = username,
@@ -149,9 +119,6 @@ class UsersActivity : AppCompatActivity() {
                     address = address,
                     email = getEmail(),
                     role = "user")
-
-                // Lưu vào Firestore, ví dụ sử dụng UID người dùng làm khóa
-                val userId = FirebaseAuth.getInstance().currentUser?.uid // Bạn sẽ thay bằng user ID thực từ Firebase Auth
                 if (userId != null){
                     db.collection("users").document(userId)
                         .set(user)

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="30dp">
+    <TextView
+        android:id="@+id/tVIFUserId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="User ID:" />
+    <TextView
+        android:id="@+id/tVIFAppId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="Appointment ID:" />
+
+    <TextView
+        android:textSize="18sp"
+        android:id="@+id/tVIFUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Họ và tên:" />
+
+    <TextView
+        android:textSize="18sp"
+        android:id="@+id/tVIFService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dịch vụ:" />
+
+    <TextView
+        android:textSize="18sp"
+        android:id="@+id/tVIFDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ngày hẹn:" />
+
+    <TextView
+        android:textSize="18sp"
+        android:id="@+id/tVIFHour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Giờ hẹn:" />
+
+    <TextView
+        android:textSize="18sp"
+        android:id="@+id/tVIFPhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Số điện thoại:" />
+    <TextView
+        android:textSize="18sp"
+        android:id="@+id/tVIFNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ghi chú:" />
+    <TextView
+        android:textSize="18sp"
+        android:id="@+id/tVIFStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trạng thái" />
+<!--    <Button-->
+<!--        android:layout_gravity="center"-->
+<!--        android:textColor="@color/btn_color"-->
+<!--        android:id="@+id/btnClose"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="42dp"-->
+<!--        android:layout_margin="20dp"-->
+<!--        android:layout_marginRight="20dp"-->
+<!--        android:background="@drawable/btn_custom1"-->
+<!--        android:text="Đóng"-->
+<!--        app:backgroundTint="@null" />-->
+</LinearLayout>

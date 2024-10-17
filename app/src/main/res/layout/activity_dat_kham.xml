@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,72 +7,88 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".appointment.Dat_KhamActivity">
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
+        android:layout_height="match_parent">
         <LinearLayout
-            android:id="@+id/linearLayout5"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/btn_color"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/btn_color"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iVBackApp"
+                    android:layout_width="13dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:layout_weight="0.1"
+                    app:srcCompat="@drawable/back" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="0dp"
+                    android:layout_height="75dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="45dp"
+                    android:layout_weight="0.9"
+                    android:gravity="center"
+                    android:text="Đặt lịch khám"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+            </LinearLayout>
 
             <ImageView
-                android:id="@+id/iVBackApp"
-                android:layout_width="13dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:layout_weight="0.1"
-                app:srcCompat="@drawable/back" />
+                android:id="@+id/imageView10"
+                android:layout_width="281dp"
+                android:layout_height="283dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="90dp"
+                android:alpha="0.3"
+                app:srcCompat="@drawable/calender" />
 
             <TextView
-                android:id="@+id/textView6"
-                android:layout_width="0dp"
-                android:layout_height="75dp"
-                android:layout_gravity="center"
-                android:layout_marginRight="45dp"
-                android:layout_weight="0.9"
-                android:gravity="center"
-                android:text="Đặt lịch khám"
                 android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="28sp"
+                android:textSize="20sp"
+                android:id="@+id/textView24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chưa có lịch khám, đặt lịch ngay!" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btnDatKham"
+                android:layout_width="355dp"
+                android:layout_height="77dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="160dp"
+                android:background="@drawable/btn_custom"
+                android:text="Đặt khám"
+                android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                app:backgroundTint="@null" />
 
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/imageView10"
-            android:layout_width="281dp"
-            android:layout_height="283dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="90dp"
-            android:alpha="0.3"
-            app:srcCompat="@drawable/calender" />
-
-        <Button
-            android:id="@+id/btnDatKham"
-            android:layout_width="355dp"
-            android:layout_height="77dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="160dp"
-            android:background="@drawable/btn_custom"
-            android:text="Đặt khám"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:backgroundTint="@null" />
-
-    </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

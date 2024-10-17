@@ -87,7 +87,7 @@
                 app:srcCompat="@drawable/bao_mat" />
 
             <TextView
-                android:id="@+id/textView223"
+                android:id="@+id/tVPassVSSer"
                 android:layout_width="330dp"
                 android:layout_height="44dp"
                 android:layout_weight="1"

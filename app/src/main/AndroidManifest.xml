@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Vtpa_b2013518_lvtn"
         tools:targetApi="31">
         <activity
+            android:name=".users.UpdatePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".appointment.Tao_Lich_KhamActivity"
             android:exported="false" />
         <activity

@@ -31,15 +31,15 @@ class AppointmentAdapter(private val appointments: List<Appointment>) :
 
     override fun onBindViewHolder(holder: AppointmentViewHolder, position: Int) {
         val appointment = appointments[position]
-        holder.id_user.text = appointment.id_user
-        holder.id_app.text = appointment.id_app
-        holder.username.text = appointment.username
-        holder.service.text = appointment.service
-        holder.date.text = appointment.date
-        holder.hour.text = appointment.hour
-        holder.note.text = appointment.note
-        holder.phoneNumber.text = appointment.phoneNumber
-        holder.status.text = appointment.status
+        holder.id_user.text = "User ID: ${appointment.id_user}"
+        holder.id_app.text = "Appointment ID: ${appointment.id_app}"
+        holder.username.text = "Họ và tên: ${appointment.username}"
+        holder.service.text = "Dịch vụ: ${appointment.service}"
+        holder.date.text = "Ngày hẹn: ${appointment.date}"
+        holder.hour.text = "Giờ hẹn: ${appointment.hour}"
+        holder.note.text = "Ghi chú: ${appointment.note}"
+        holder.phoneNumber.text = "Số điện thoại: ${appointment.phoneNumber}"
+        holder.status.text = "Trạng thái: ${appointment.status}"
     }
 
     override fun getItemCount() = appointments.size

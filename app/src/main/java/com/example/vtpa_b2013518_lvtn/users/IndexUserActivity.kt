@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -24,6 +25,10 @@ class IndexUserActivity : AppCompatActivity() {
         val iVBack = findViewById<ImageView>(R.id.iVBackIndexUser)
         iVBack.setOnClickListener {
             finish()
+        }
+        val tVPVSS = findViewById<TextView>(R.id.tVPassVSSer)
+        tVPVSS.setOnClickListener {
+            startActivity(Intent(this, UpdatePasswordActivity::class.java))
         }
         val linearUser = findViewById<LinearLayout>(R.id.linearIndexUser)
         linearUser.setOnClickListener {

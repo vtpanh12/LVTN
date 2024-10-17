@@ -7,4 +7,16 @@
     android:layout_height="match_parent"
     tools:context=".dentist.DentistActivity">
 
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="373dp"
+        android:layout_height="124dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="219dp"
+        android:layout_marginBottom="571dp"
+        android:text="DAY LA TRANG CUA BAC SI"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat
 import com.example.vtpa_b2013518_lvtn.R
 import com.example.vtpa_b2013518_lvtn.adapter.User
 import com.example.vtpa_b2013518_lvtn.databinding.ActivitySignupBinding
+import com.example.vtpa_b2013518_lvtn.users.UsersActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -46,6 +47,9 @@ class SignupActivity : AppCompatActivity() {
 
         binding.btnAuthGmail.setOnClickListener {
             createAccount()
+        }
+        binding.tVSUDangNhap.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
         }
 
 

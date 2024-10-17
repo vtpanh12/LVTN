@@ -3,6 +3,7 @@ package com.example.vtpa_b2013518_lvtn.appointment
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -252,7 +253,7 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
                         if (!service.isNullOrEmpty() && !date.isNullOrEmpty() && !hour.isNullOrEmpty() && !username.isNullOrEmpty() && !phoneNumber.isNullOrEmpty()) {
                             showConfirmDialog(service, date, hour, note, username!!, phoneNumber!!)
                         } else {
-                            Toast.makeText(this, "Thông tin không hợp lệ", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Hãy cập nhật đầy đủ thông tin trong hồ sơ cá nhân của bạn!", Toast.LENGTH_SHORT).show()
                         }
                     } else {
                         Toast.makeText(this, "Không tìm thấy người dùng", Toast.LENGTH_SHORT).show()
@@ -270,7 +271,7 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
         val dialogBuilder = AlertDialog.Builder(this).setView(dialogView)
 
         // Gán dữ liệu vào các TextView trong dialog
-        dialogView.findViewById<TextView>(R.id.tVCUser).text = "Tên bệnh nhân: $username"
+        dialogView.findViewById<TextView>(R.id.tVCUser).text = "Họ và tên: $username"
         dialogView.findViewById<TextView>(R.id.tVCUserId).text = "User ID: $userId"
         dialogView.findViewById<TextView>(R.id.tVCService).text = "Dịch vụ: $service"
         dialogView.findViewById<TextView>(R.id.tVCDate).text = "Ngày hẹn: $date"
@@ -309,6 +310,7 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
             .addOnSuccessListener { documentReference ->
                 val appointmentId = documentReference.id
                 updateAppointmentId(appointmentId)
+
             }
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Lỗi: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -338,7 +340,7 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
         // Lấy dữ liệu từ Firestore và gán vào TextView
         dialogView.findViewById<TextView>(R.id.tVIUserId).text = "User ID: ${document.getString("id_user")}"
         dialogView.findViewById<TextView>(R.id.tVIAppId).text = "Appointment ID: ${document.getString("id_app")}"
-        dialogView.findViewById<TextView>(R.id.tVIUser).text = "Tên bệnh nhân: ${document.getString("username")}"
+        dialogView.findViewById<TextView>(R.id.tVIUser).text = "Họ và tên: ${document.getString("username")}"
         dialogView.findViewById<TextView>(R.id.tVIService).text = "Dịch vụ: ${document.getString("service")}"
         dialogView.findViewById<TextView>(R.id.tVIDate).text = "Ngày hẹn: ${document.getString("date")}"
         dialogView.findViewById<TextView>(R.id.tVIHour).text = "Giờ hẹn: ${document.getString("hour")}"
@@ -352,7 +354,10 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
         // Xử lý khi người dùng nhấn "Đóng"
         dialogView.findViewById<Button>(R.id.btnClose).setOnClickListener {
             alertDialog.dismiss()
+            val intent = Intent(this, Dat_KhamActivity::class.java)
+            startActivity(intent)
         }
+
     }
 
 }

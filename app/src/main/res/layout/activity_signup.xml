@@ -38,13 +38,13 @@
         android:layout_width="416dp"
         android:layout_height="214dp"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/top2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/top2" />
 
     <TextView
         android:id="@+id/tvLogin"
@@ -119,13 +119,19 @@
         app:layout_constraintVertical_bias="0.085" />
 
     <TextView
-        android:id="@+id/textView20"
+        android:id="@+id/tVSUDangNhap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Nếu bạn đã có tài khoản?  Đăng nhập!"
+        android:textColor="#2A4F0B"
+        android:textSize="15sp"
+        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eTSUCMatKhau"
+        app:layout_constraintVertical_bias="0.382" />
 
     <ImageView
         android:alpha="0.3"
@@ -212,6 +218,12 @@
             android:layout_height="wrap_content"
             android:text="* Ít nhất một ký tự đặc biệt"
             android:textColor="#FF0000" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
 
     </LinearLayout>

@@ -25,6 +25,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.firestore
 
 class LoginActivity : AppCompatActivity() {
@@ -111,21 +112,23 @@ class LoginActivity : AppCompatActivity() {
 
     private fun saveUserToFirestore(userId: String, email: String, role: String) {
         val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
 
-        val updates = hashMapOf<String, Any>(
-            "email" to email,
-            "role" to "user"
-        )
+        if (uid != null) {
+            val userData = hashMapOf(
+                "email" to FirebaseAuth.getInstance().currentUser?.email,
+                "role" to "role"
+            )
 
-        // Lưu thông tin vào Firestore
-        db.collection("users").document(userId).update(updates)
-            .addOnSuccessListener {
-                Log.d("Firestore", "User information successfully saved.")
-            }
-            .addOnFailureListener { e ->
-                Log.w("Firestore", "Error saving user information", e)
-            }
-
+            db.collection("users").document(uid)
+                .set(userData, SetOptions.merge()) // Dùng merge để không ghi đè toàn bộ tài liệu
+                .addOnSuccessListener {
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Lỗi khi dang nhap: ${e.message}", Toast.LENGTH_SHORT)
+                        .show()
+                }
+        }
     }
 
     fun getUserRole(userId: String) {
@@ -143,21 +146,16 @@ class LoginActivity : AppCompatActivity() {
                             finish() // Kết thúc Activity hiện tại
 
                         }
-                        "user" -> {
-                            // Chuyển hướng người dùng đến User Activity
-                            val intent = Intent(this, IndexActivity::class.java)
-                            startActivity(intent)
-                            finish() // Kết thúc Activity hiện tại
-
-                        }
                         "dentist" -> {
                             val intent = Intent(this, DentistActivity::class.java)
                             startActivity(intent)
                             finish()
                         }
                         else -> {
-                            // Vai trò không xác định, có thể thông báo lỗi
-                            Log.w("RoleCheck", "Unknown role")
+                            val intent = Intent(this, IndexActivity::class.java)
+                            startActivity(intent)
+                            finish()
+
                         }
                     }
                 } else {

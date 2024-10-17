@@ -11,3 +11,4 @@ Chức năng:
 - Hoàn thành giao diện app (các dịch vụ)
 - Phân quyền người dùng
 - Cập nhật thông tin người dùng
+- Đặt lịch khám

@@ -17,7 +17,7 @@
         android:id="@+id/tVCUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tên bệnh nhân:" />
+        android:text="Họ và tên:" />
 
     <TextView
         android:textSize="18sp"

@@ -162,13 +162,13 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
                                                 }
                                             db.collection("appointments").document(appointmentId)
                                                 .get()
-                                                .addOnSuccessListener {
+                                                .addOnSuccessListener { document ->
                                                     if (document != null) {
 
                                                         var id_app = document.getString("id_app")
                                                         val id_user = document.getString("id_user")
                                                         val username = document.getString("username")
-                                                        val service = document.getString("servuce")
+                                                        val service = document.getString("service")
                                                         val date = document.getString("date")
                                                         val hour = document.getString("hour")
                                                         val phoneNumber = document.getString("phoneNumber")
@@ -229,8 +229,5 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
                 Toast.makeText(this, "Chưa đăng nhập", Toast.LENGTH_SHORT).show()
             }
         }
-
-
-
     }
 }

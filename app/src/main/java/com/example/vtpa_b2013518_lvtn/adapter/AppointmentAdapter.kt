@@ -20,7 +20,6 @@ class AppointmentAdapter(private val appointments: List<Appointment>) :
         val phoneNumber: TextView = view.findViewById(R.id.tVIFPhoneNumber)
         val note: TextView = view.findViewById(R.id.tVIFNote)
         val status: TextView = view.findViewById(R.id.tVIFStatus)
-        // Thêm các TextView khác nếu cần
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppointmentViewHolder {

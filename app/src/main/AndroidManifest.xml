@@ -22,7 +22,7 @@
             android:name=".admin.AdminActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.IndexAdminActivity"
+            android:name=".admin.AdminIndexActivity"
             android:exported="false" />
         <activity
             android:name=".users.UpdatePasswordActivity"

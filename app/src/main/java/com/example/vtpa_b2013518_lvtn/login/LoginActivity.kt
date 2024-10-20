@@ -117,7 +117,7 @@ class LoginActivity : AppCompatActivity() {
         if (uid != null) {
             val userData = hashMapOf(
                 "email" to FirebaseAuth.getInstance().currentUser?.email,
-                "role" to "role"
+
             )
 
             db.collection("users").document(uid)

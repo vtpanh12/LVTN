@@ -24,6 +24,7 @@ import com.google.firebase.firestore.firestore
 import java.util.Calendar
 
 class Admin_Update_InfoActivity : AppCompatActivity() {
+
     lateinit var eTHoTenAdmin: EditText
     lateinit var tVNgaySinhAdmin: TextView
     lateinit var eTSDTAdmin: EditText
@@ -47,10 +48,9 @@ class Admin_Update_InfoActivity : AppCompatActivity() {
         rGGioiTinhAdmin = findViewById(R.id.rGGioiTinhAdmin)
         eTDiaChiAdmin = findViewById(R.id.eTDiaChiAdmin)
         eTEmailAdmin = findViewById(R.id.eTEmailAdmin)
+        val iVBackAdmin = findViewById<ImageView>(R.id.iVBackUpdateAdmin)
 
-        setContentView(R.layout.activity_admin_update_info)
-        val iVBackUpdateAdmin = findViewById<ImageView>(R.id.iVBackUpdateAdmin)
-        iVBackUpdateAdmin.setOnClickListener {
+        iVBackAdmin.setOnClickListener {
             finish()
         }
 
@@ -81,6 +81,8 @@ class Admin_Update_InfoActivity : AppCompatActivity() {
         }
 
         val email = getEmail()
+
+        // Hiển thị email nếu tồn tại, nếu không thì báo lỗi
         if (email != null) {
             //eTEmail.setT = "Email: $email"
             eTEmailAdmin.setText(Editable.Factory.getInstance().newEditable(email))
@@ -89,6 +91,7 @@ class Admin_Update_InfoActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Không có người dùng nào đang đăng nhập", Toast.LENGTH_SHORT).show()
         }
+
         val userId = FirebaseAuth.getInstance().currentUser?.uid
         if (userId != null) {
             db.collection("admins").document(userId).get()
@@ -121,6 +124,8 @@ class Admin_Update_InfoActivity : AppCompatActivity() {
                     Toast.makeText(this, "Lỗi khi tải thông tin: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
         }
+
+
         btnUpdateAdmin.setOnClickListener {
             val username = eTHoTenAdmin.text.toString()
             val phoneNumber = eTSDTAdmin.text.toString()
@@ -143,12 +148,12 @@ class Admin_Update_InfoActivity : AppCompatActivity() {
                     gender = gender,
                     address = address,
                     email = getEmail(),
-                    role = "admin")
+                    role = "user")
 
                 // Lưu vào Firestore, ví dụ sử dụng UID người dùng làm khóa
                 val userId = FirebaseAuth.getInstance().currentUser?.uid // Bạn sẽ thay bằng user ID thực từ Firebase Auth
                 if (userId != null){
-                    db.collection("users").document(userId)
+                    db.collection("admins").document(userId)
                         .set(admin)
                         .addOnSuccessListener {
                             Toast.makeText(this, "Cập nhật thông tin thành công!", Toast.LENGTH_SHORT).show()
@@ -165,6 +170,7 @@ class Admin_Update_InfoActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun getEmail(): String? {
         // Lấy người dùng hiện tại từ FirebaseAuth
         val user = FirebaseAuth.getInstance().currentUser

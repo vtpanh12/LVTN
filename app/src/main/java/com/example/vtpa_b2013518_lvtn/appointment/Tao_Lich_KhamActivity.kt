@@ -93,7 +93,7 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
 
             timePickerDialog.show()
         }
-        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        //val userId = FirebaseAuth.getInstance().currentUser?.uid
 
 //        btnCreateApp.setOnClickListener {
 //            val service = selectedService

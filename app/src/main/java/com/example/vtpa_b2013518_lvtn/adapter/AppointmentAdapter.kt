@@ -12,7 +12,6 @@ class AppointmentAdapter(private val appointments: List<Appointment>) :
 
     class AppointmentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val id_app: TextView = view.findViewById(R.id.tVIFAppId)
-        val id_user: TextView = view.findViewById(R.id.tVIFUserId)
         val username: TextView = view.findViewById(R.id.tVIFUser)
         val service: TextView = view.findViewById(R.id.tVIFService)
         val date: TextView = view.findViewById(R.id.tVIFDate)
@@ -30,7 +29,6 @@ class AppointmentAdapter(private val appointments: List<Appointment>) :
 
     override fun onBindViewHolder(holder: AppointmentViewHolder, position: Int) {
         val appointment = appointments[position]
-        holder.id_user.text = "User ID: ${appointment.id_user}"
         holder.id_app.text = "Appointment ID: ${appointment.id_app}"
         holder.username.text = "Họ và tên: ${appointment.username}"
         holder.service.text = "Dịch vụ: ${appointment.service}"

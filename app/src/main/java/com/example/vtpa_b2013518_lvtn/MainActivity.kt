@@ -9,10 +9,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.vtpa_b2013518_lvtn.activity.IndexActivity
 import com.example.vtpa_b2013518_lvtn.databinding.ActivityMainBinding
 import com.example.vtpa_b2013518_lvtn.login.LoginActivity
 import com.example.vtpa_b2013518_lvtn.login.SignupActivity
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.firestore
 
 class MainActivity : AppCompatActivity() {

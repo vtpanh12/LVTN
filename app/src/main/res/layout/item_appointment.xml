@@ -7,17 +7,11 @@
     android:background="@drawable/btn_custom1"
     android:padding="30dp">
     <TextView
-        android:id="@+id/tVIFUserId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:text="User ID:" />
-    <TextView
         android:id="@+id/tVIFAppId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:text="Appointment ID:" />
+        android:text="ID Lịch khám:" />
 
     <TextView
         android:textSize="18sp"

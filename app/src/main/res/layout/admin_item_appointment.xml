@@ -1,6 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="30dp">
+    <TextView
+        android:id="@+id/tVCUserId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="User ID:" />
+    <TextView
+        android:id="@+id/tVCAppId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="App ID:" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:textSize="18sp"
+        android:id="@+id/tVCUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Họ và tên:" />
+
+    <TextView
+        android:textSize="18sp"
+        android:id="@+id/tVCService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dịch vụ:" />
+
+    <TextView
+        android:textSize="18sp"
+        android:id="@+id/tVCDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ngày hẹn:" />
+
+    <TextView
+        android:textSize="18sp"
+        android:id="@+id/tVCHour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Giờ hẹn:" />
+
+    <TextView
+        android:textSize="18sp"
+        android:id="@+id/tVCPhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Số điện thoại:" />
+    <TextView
+        android:textSize="18sp"
+        android:id="@+id/tVIFNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ghi chú:" />
+    <TextView
+        android:textSize="18sp"
+        android:id="@+id/tVIFStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trạng thái" />
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:textColor="@color/btn_color"
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:layout_margin="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/btn_custom1"
+            android:text="Hủy"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:textColor="@color/btn_color"
+            android:id="@+id/btnConf"
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:layout_margin="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/btn_custom1"
+            android:text="Xác nhận"
+            app:backgroundTint="@null" />
+
+    </LinearLayout>
+
+</LinearLayout>

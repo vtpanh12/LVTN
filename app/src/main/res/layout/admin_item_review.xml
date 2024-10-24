@@ -20,14 +20,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:background=""
             android:text="VO THI PHUONG ANH"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="18sp" />
 
         <ImageView
-            android:id="@+id/imageView12"
+            android:id="@+id/iVRVNo"
             android:layout_width="44dp"
             android:layout_height="31dp"
             android:layout_marginTop="10dp"
@@ -35,7 +34,7 @@
             app:srcCompat="@drawable/no" />
 
         <ImageView
-            android:id="@+id/imageView10"
+            android:id="@+id/iVIRYes"
             android:layout_width="43dp"
             android:layout_height="31dp"
             android:layout_margin="10dp"
@@ -44,12 +43,27 @@
 
     </LinearLayout>
 
-
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/tVIRUserId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="ID Khách hàng:" />
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/tVIRAppId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="ID Lịch khám:" />
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:textSize="18sp"
-        android:id="@+id/tVIFService"
+        android:id="@+id/tVIRService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dịch vụ:" />
@@ -58,7 +72,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="5dp"
         android:textSize="18sp"
-        android:id="@+id/tVIFDate"
+        android:id="@+id/tVIRDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ngày hẹn:" />
@@ -67,7 +81,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="5dp"
         android:textSize="18sp"
-        android:id="@+id/tVIFHour"
+        android:id="@+id/tVIRHour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Giờ hẹn:" />
@@ -76,7 +90,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="5dp"
         android:textSize="18sp"
-        android:id="@+id/tVIFPhoneNumber"
+        android:id="@+id/tVIRPhoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Số điện thoại:" />
@@ -84,7 +98,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="5dp"
         android:textSize="18sp"
-        android:id="@+id/tVIFNote"
+        android:id="@+id/tVIRNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ghi chú:" />
@@ -93,7 +107,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginTop="5dp"
         android:textSize="18sp"
-        android:id="@+id/tVIFStatus"
+        android:id="@+id/tVIRStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Trạng thái" />

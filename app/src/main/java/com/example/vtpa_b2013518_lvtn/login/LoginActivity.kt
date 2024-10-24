@@ -98,14 +98,28 @@ class LoginActivity : AppCompatActivity() {
 
         // function using Firebase auth object
         // On successful response Display a Toast
+
         auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(this) {
             if (it.isSuccessful) {
                 Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show()
+                val currentUser = auth.currentUser
                 val userId = FirebaseAuth.getInstance().currentUser?.uid
-                if (userId != null) {
-                    // Lấy thông tin vai trò từ Firestore
-                    getUserRole(userId)
-                    saveUserToFirestore(userId, email, "user")
+                if (userId != null && currentUser != null)  {
+                    // Kiểm tra người dùng đã tồn tại trong Firestore chưa
+                    val userRef = FirebaseFirestore.getInstance().collection("users").document(userId)
+                    userRef.get().addOnSuccessListener{ document ->
+
+                        if (document.exists()) {
+                            // Người dùng đã tồn tại, chỉ lấy role và phân quyền
+                            getUserRole(userId)
+                        } else {
+                            // Người dùng mới, lưu vào Firestore với role mặc định là "user"
+                            saveUserToFirestore(userId, email, "user")
+                            getUserRole(userId)
+                        }
+                    }.addOnFailureListener{
+                        e->Log.w("Firestore", "Error getting document", e)
+                    }
                 }
             } else
                 Toast.makeText(this, "Đăng nhập thất bại ", Toast.LENGTH_SHORT).show()
@@ -119,6 +133,7 @@ class LoginActivity : AppCompatActivity() {
         if (uid != null) {
             val userData = hashMapOf(
                 "email" to FirebaseAuth.getInstance().currentUser?.email,
+                "role" to role
 
             )
 

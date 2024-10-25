@@ -63,20 +63,9 @@ class AdminIndexActivity : AppCompatActivity() {
                         val appointment = doc.toObject(Appointment::class.java)
                         appointmentList.add(appointment)
                     }
-//                    updateRecyclerView() // Cập nhật lại RecyclerView
                     adapter.notifyDataSetChanged()
 
                 }
             }
-    }
-
-    private fun updateRecyclerView() {
-        if (appointmentList.isEmpty()) {
-            // Hiển thị thông báo khi không có lịch hẹn
-        } else {
-            // Khởi tạo adapter nếu chưa có hoặc cập nhật dữ liệu
-            adapter = AppointmentAdmin(appointmentList)
-            recyclerView.adapter = adapter
-        }
     }
 }

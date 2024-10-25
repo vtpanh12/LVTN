@@ -19,6 +19,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Họ và tên:" />
+    <TextView
+        android:textSize="18sp"
+        android:id="@+id/tVIFEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email:" />
 
     <TextView
         android:textSize="18sp"

@@ -15,18 +15,18 @@
         android:layout_height="50dp">
 
         <TextView
-            android:id="@+id/tVIFUser"
+            android:id="@+id/tVIREmail"
             android:layout_width="231dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="VO THI PHUONG ANH"
-            android:textAlignment="center"
+            android:text="Email:"
+            android:paddingLeft="20dp"
             android:textColor="@color/white"
             android:textSize="18sp" />
 
         <ImageView
-            android:id="@+id/iVRVNo"
+            android:id="@+id/iVIRNo"
             android:layout_width="44dp"
             android:layout_height="31dp"
             android:layout_marginTop="10dp"
@@ -59,6 +59,14 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:text="ID Lịch khám:" />
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/tVIRUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="Họ và tên::" />
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"

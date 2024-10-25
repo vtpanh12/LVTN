@@ -87,7 +87,7 @@ class UsersActivity : AppCompatActivity() {
             //eTEmail.setT = "Email: $email"
             eTEmail.setText(Editable.Factory.getInstance().newEditable(email))
 
-            Toast.makeText(this, "Email của người dùng: $email", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, "Email của người dùng: $email", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "Không có người dùng nào đang đăng nhập", Toast.LENGTH_SHORT).show()
         }

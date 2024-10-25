@@ -292,10 +292,19 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
             alertDialog.dismiss()
         }
     }
+    private fun getEmail(): String? {
+        // Lấy người dùng hiện tại từ FirebaseAuth
+        val user = FirebaseAuth.getInstance().currentUser
+
+        // Kiểm tra xem người dùng có tồn tại không và trả về email
+        return user?.email
+    }
     private fun saveAppointment(service: String, date: String, hour: String, note: String, username: String, phoneNumber: String) {
+        val email = getEmail()
         val appointment = Appointment(
             id_app = "",
             id_user = userId,
+            email = email,
             username = username,
             service = service,
             date = date,

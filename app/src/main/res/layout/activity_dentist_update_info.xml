@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".dentist.Dentist_Update_InfoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="749dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/btn_color"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iVBackUpdateAdmin"
+                android:layout_width="13dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:layout_weight="0.1"
+                app:srcCompat="@drawable/back" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="0dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="45dp"
+                android:layout_weight="0.9"
+                android:gravity="center"
+                android:text="Hồ sơ cá nhân"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="780dp"
+                android:paddingLeft="20dp"
+                android:text="Họ và tên"
+                android:textSize="20sp"
+                android:textStyle="normal" />
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="23dp"
+                android:layout_height="15dp"
+                app:srcCompat="@drawable/bat_buoc" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/eTHoVaTenAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/edittext_user_bg"
+            android:ems="10"
+            android:inputType="text"
+            android:text="" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView191"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="780dp"
+                android:paddingLeft="20dp"
+                android:text="Ngày sinh"
+                android:textSize="20sp"
+                android:textStyle="normal" />
+
+            <ImageView
+                android:id="@+id/imageView111"
+                android:layout_width="23dp"
+                android:layout_height="15dp"
+                app:srcCompat="@drawable/bat_buoc" />
+
+        </LinearLayout>
+
+        <TextView
+            android:padding="10dp"
+            android:id="@+id/tVNgaySinhAdmin"
+            android:textSize="20sp"
+            android:gravity=""
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/edittext_user_bg"
+            android:text="" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView1912"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="780dp"
+                android:paddingLeft="20dp"
+                android:text="Số điện thoại"
+                android:textSize="20sp"
+                android:textStyle="normal" />
+
+            <ImageView
+                android:id="@+id/imageView1113"
+                android:layout_width="23dp"
+                android:layout_height="15dp"
+                app:srcCompat="@drawable/bat_buoc" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/eTSDTAdmin"
+            android:layout_width="match_parent"
+            android:ems="10"
+            android:layout_height="46dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/edittext_user_bg"
+            android:inputType="phone" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView112"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="780dp"
+                android:paddingLeft="20dp"
+                android:text="Giới tính"
+                android:textSize="20sp"
+                android:textStyle="normal" />
+
+            <ImageView
+                android:id="@+id/imageView173"
+                android:layout_width="23dp"
+                android:layout_height="15dp"
+                app:srcCompat="@drawable/bat_buoc" />
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/rGGioiTinhAdmin"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/rBNamAdmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nam" />
+
+            <RadioButton
+                android:layout_marginLeft="20dp"
+                android:id="@+id/rBNuAdmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nữ" />
+        </RadioGroup>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView19122"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="780dp"
+                android:paddingLeft="20dp"
+                android:text="Địa chỉ"
+                android:textSize="20sp"
+                android:textStyle="normal" />
+
+            <ImageView
+                android:id="@+id/imageView1673"
+                android:layout_width="23dp"
+                android:layout_height="15dp"
+                app:srcCompat="@drawable/bat_buoc" />
+
+        </LinearLayout>
+        <EditText
+            android:id="@+id/eTDiaChiAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/edittext_user_bg"
+            android:ems="10"
+            android:inputType="text"
+            android:text="" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView9122"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="780dp"
+                android:paddingLeft="20dp"
+                android:text="Email"
+                android:textSize="20sp"
+                android:textStyle="normal" />
+
+            <ImageView
+                android:id="@+id/imageView6673"
+                android:layout_width="23dp"
+                android:layout_height="15dp"
+                app:srcCompat="@drawable/bat_buoc" />
+
+        </LinearLayout>
+        <EditText
+            android:id="@+id/eTEmailAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/edittext_user_bg"
+            android:ems="10"
+            android:inputType="text"
+            android:enabled="false"
+            android:text="" />
+
+        <Button
+            android:id="@+id/btnCapNhatAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_margin="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/btn_custom"
+            android:text="Cập nhật hồ sơ cá nhân"
+            app:backgroundTint="@null" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,6 +22,7 @@ import com.example.vtpa_b2013518_lvtn.admin.AdminIndexActivity
 import com.example.vtpa_b2013518_lvtn.databinding.ActivityLoginBinding
 import com.example.vtpa_b2013518_lvtn.databinding.ActivityMainBinding
 import com.example.vtpa_b2013518_lvtn.dentist.DentistActivity
+import com.example.vtpa_b2013518_lvtn.dentist.DentistIndexActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -164,7 +165,7 @@ class LoginActivity : AppCompatActivity() {
 
                         }
                         "dentist" -> {
-                            val intent = Intent(this, DentistActivity::class.java)
+                            val intent = Intent(this, DentistIndexActivity::class.java)
                             startActivity(intent)
                             finish()
                         }

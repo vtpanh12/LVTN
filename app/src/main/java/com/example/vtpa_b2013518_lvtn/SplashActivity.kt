@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.vtpa_b2013518_lvtn.activity.IndexActivity
 import com.example.vtpa_b2013518_lvtn.admin.AdminIndexActivity
 import com.example.vtpa_b2013518_lvtn.dentist.DentistActivity
+import com.example.vtpa_b2013518_lvtn.dentist.DentistIndexActivity
 import com.example.vtpa_b2013518_lvtn.login.LoginActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -59,7 +60,7 @@ class SplashActivity : AppCompatActivity() {
 
                         }
                         "dentist" -> {
-                            val intent = Intent(this, DentistActivity::class.java)
+                            val intent = Intent(this, DentistIndexActivity::class.java)
                             startActivity(intent)
                             finish()
                         }

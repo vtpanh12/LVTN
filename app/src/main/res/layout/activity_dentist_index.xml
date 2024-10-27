@@ -93,7 +93,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/linearAdmin"
+                    android:id="@+id/linearDentist"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"

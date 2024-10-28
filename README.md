@@ -18,10 +18,14 @@ Chức năng:
   + Đăng xuất
 - Admin:
   + Cập nhật thông tin người dùng
+  + Đổi mật khẩu
+  + Đăng xuất
   + Xem thông tin của các lịch khám
   + Hủy lịch khám
   + Xác nhận lịch khám
   + Phân quyền của người dùng (role: user, admin, dentist)
 - Dentist:
   + Cập nhật thông tin người dùng
+  + Đổi mật khẩu
+  + Đăng xuất
   + Xem lịch làm việc *  

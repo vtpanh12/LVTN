@@ -9,33 +9,43 @@
     android:layout_height="match_parent"
     tools:context=".admin.AdminCancelAppointmentActivity">
     <LinearLayout
+        android:layout_margin="10dp"
+        android:background="@drawable/btn_custom1"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="330dp">
         <LinearLayout
-
+            android:layout_marginBottom="10dp"
             android:background="@drawable/item_bg"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="60dp">
 
+            <ImageView
+                android:id="@+id/iVBackAdminApp"
+                android:layout_width="40dp"
+                android:layout_height="36dp"
+                android:layout_margin="15dp"
+                android:layout_weight="0.1"
+                app:srcCompat="@drawable/back" />
             <TextView
-                android:id="@+id/tVIFUser"
+                android:paddingRight="30dp"
+                android:id="@+id/tVACAppEmail"
                 android:layout_width="231dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1"
+                android:layout_weight="0.9"
                 android:text="VO THI PHUONG ANH"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="25sp" />
 
         </LinearLayout>
 
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:id="@+id/tVIRUserId"
+            android:id="@+id/tVACAppUserId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
@@ -43,7 +53,7 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:id="@+id/tVIRAppId"
+            android:id="@+id/tVACAppAppId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
@@ -51,8 +61,16 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
+            android:id="@+id/tVACAppUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:id="@+id/tVIRService"
+            android:text="Họ và tên:" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:id="@+id/tVACAppService"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dịch vụ:" />
@@ -61,7 +79,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:textSize="18sp"
-            android:id="@+id/tVIRDate"
+            android:id="@+id/tVACAppDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ngày hẹn:" />
@@ -70,7 +88,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:textSize="18sp"
-            android:id="@+id/tVIRHour"
+            android:id="@+id/tVACAppHour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Giờ hẹn:" />
@@ -79,7 +97,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:textSize="18sp"
-            android:id="@+id/tVIRPhoneNumber"
+            android:id="@+id/tVACAppPhoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Số điện thoại:" />
@@ -87,7 +105,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:textSize="18sp"
-            android:id="@+id/tVIRNote"
+            android:id="@+id/tVACAppNote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ghi chú:" />
@@ -96,31 +114,15 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
             android:textSize="18sp"
-            android:id="@+id/tVIRStatus"
+            android:id="@+id/tVACAppStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Trạng thái" />
     </LinearLayout>
 
 
-    <TextView
-        android:layout_marginLeft="20dp"
-        android:layout_height="42dp"
-        android:textSize="25sp"
-        android:id="@+id/textView244"
-        android:layout_width="match_parent"
-        android:text="Lý do hủy lịch khám:" />
-    <EditText
-        android:id="@+id/eTNote"
-        android:background="@drawable/edittext_user_bg"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"/>
-
     <Button
-        android:id="@+id/btnCreateApp"
+        android:id="@+id/btnCancelApp"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:layout_margin="20dp"

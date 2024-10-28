@@ -56,43 +56,12 @@
 
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/iVDatKham"
-                android:layout_width="281dp"
-                android:layout_height="283dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="90dp"
-                android:alpha="0.3"
-                app:srcCompat="@drawable/calender" />
-
-            <TextView
-                android:id="@+id/tVDatKham"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Hôm na chưa có lịch khám nào!"
-                android:textAlignment="center"
-                android:textSize="20sp" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerAdminAppointment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />
 
-<!--            <Button-->
-<!--                android:id="@+id/btnDatKham"-->
-<!--                android:layout_width="355dp"-->
-<!--                android:layout_height="77dp"-->
-<!--                android:layout_gravity="center_horizontal"-->
-<!--                android:layout_marginLeft="20dp"-->
-<!--                android:layout_marginTop="60dp"-->
-<!--                android:layout_marginRight="20dp"-->
-<!--                android:layout_marginBottom="160dp"-->
-<!--                android:background="@drawable/btn_custom"-->
-<!--                android:text="Đặt khám"-->
-<!--                android:textSize="20sp"-->
-<!--                android:textStyle="bold"-->
-<!--                app:backgroundTint="@null" />-->
 
         </LinearLayout>
     </ScrollView>

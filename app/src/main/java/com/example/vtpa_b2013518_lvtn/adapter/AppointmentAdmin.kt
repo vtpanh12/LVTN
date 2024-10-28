@@ -39,7 +39,7 @@ RecyclerView.Adapter<AppointmentAdmin.AppointmentAdminViewHolder>(){
         val appointment = appointments[position]
         holder.email.text = "Email: ${appointment.email}"
         holder.id_app.text = "Appointment ID: ${appointment.id_app}"
-        holder.id_user.text = "Appointment ID: ${appointment.id_user}"
+        holder.id_user.text = "User ID: ${appointment.id_user}"
         holder.username.text = "Họ và tên: ${appointment.username}"
         holder.service.text = "Dịch vụ: ${appointment.service}"
         holder.date.text = "Ngày hẹn: ${appointment.date}"
@@ -57,7 +57,16 @@ RecyclerView.Adapter<AppointmentAdmin.AppointmentAdminViewHolder>(){
         holder.iVIRNo.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, AdminCancelAppointmentActivity::class.java)
-            intent.putExtra("appointmentId", appointment.id_app) // Truyền ID của Appointment
+            intent.putExtra("email", appointment.email) // Truyền ID của Appointment
+            intent.putExtra("appointmentId", appointment.id_app)
+            intent.putExtra("userId", appointment.id_user)
+            intent.putExtra("username", appointment.username)
+            intent.putExtra("service", appointment.service)
+            intent.putExtra("date", appointment.date)
+            intent.putExtra("hour", appointment.hour)
+            intent.putExtra("note", appointment.note)
+            intent.putExtra("status", appointment.status)
+            intent.putExtra("phoneNumber", appointment.phoneNumber)
             context.startActivity(intent)
         }
     }

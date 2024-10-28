@@ -20,10 +20,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class AdminIndexActivity : AppCompatActivity() {
-    val userId = FirebaseAuth.getInstance().currentUser?.uid
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: AppointmentAdmin
-    private lateinit var appointmentList: MutableList<Appointment>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -32,40 +29,9 @@ class AdminIndexActivity : AppCompatActivity() {
         linearAdmin.setOnClickListener {
             startActivity(Intent(this, AdminActivity::class.java))
         }
-        recyclerView = findViewById(R.id.recyclerAppointmentAdmin)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        appointmentList = mutableListOf()
-        adapter = AppointmentAdmin(appointmentList)
-        recyclerView.adapter = adapter
-//        updateRecyclerView()
-        // Gọi hàm lấy dữ liệu từ Firestore và hiển thị trên RecyclerView
-        loadAppointments()
-    }
-    private fun loadAppointments() {
-        val db = FirebaseFirestore.getInstance()
-
-        // Lắng nghe các thay đổi trong collection "appointments"
-        db.collection("appointments")
-            .addSnapshotListener { snapshots, e ->
-                if (e != null) {
-                    Toast.makeText(this, "Lỗi khi tải dữ liệu: ${e.message}", Toast.LENGTH_SHORT).show()
-                    return@addSnapshotListener
-                }
-
-                // Kiểm tra nếu không có lịch hẹn
-                if (snapshots != null && snapshots.isEmpty) {
-                    Toast.makeText(this, "Chưa có lịch khám.", Toast.LENGTH_SHORT).show()
-                    recyclerView.visibility = View.GONE
-                } else {
-
-                    appointmentList.clear() // Làm sạch danh sách cũ
-                    for (doc in snapshots!!) {
-                        val appointment = doc.toObject(Appointment::class.java)
-                        appointmentList.add(appointment)
-                    }
-                    adapter.notifyDataSetChanged()
-
-                }
-            }
+        val linearLichKham= findViewById<LinearLayout>(R.id.linearLichKham)
+        linearLichKham.setOnClickListener {
+            startActivity(Intent(this, AdminAppointmentActivity::class.java))
+        }
     }
 }

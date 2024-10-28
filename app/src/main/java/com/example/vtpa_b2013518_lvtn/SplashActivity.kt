@@ -14,69 +14,55 @@ import com.example.vtpa_b2013518_lvtn.admin.AdminIndexActivity
 import com.example.vtpa_b2013518_lvtn.dentist.DentistActivity
 import com.example.vtpa_b2013518_lvtn.dentist.DentistIndexActivity
 import com.example.vtpa_b2013518_lvtn.login.LoginActivity
+import com.example.vtpa_b2013518_lvtn.users.IndexUserActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
+
 
 class SplashActivity : AppCompatActivity() {
 
-    val db = Firebase.firestore
+    private val db = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Set giao diện cho SplashActivity
         setContentView(R.layout.activity_splash)
 
-        // Thực hiện các công việc tải dữ liệu hoặc kiểm tra trạng thái đăng nhập
+        // Sử dụng Handler để tạo độ trễ trước khi điều hướng
         Handler(Looper.getMainLooper()).postDelayed({
-            // Kiểm tra trạng thái đăng nhập
-            val auth = FirebaseAuth.getInstance()
-            val currentUser = auth.currentUser
-            val userId = FirebaseAuth.getInstance().currentUser?.uid
-
-            if (currentUser != null && userId != null) {
-                getUserRole(userId)
-            } else {
-                startActivity(Intent(this, MainActivity::class.java))
-            }
-
-            finish()
-        }, 2000) // Chờ 2 giây trước khi chuyển tiếp
+            checkUserRole()
+        }, 2000) // Độ trễ 2 giây
     }
-    fun getUserRole(userId: String) {
 
-        db.collection("users").document(userId).get()
-            .addOnSuccessListener { document ->
+    private fun checkUserRole() {
+        val currentUser = auth.currentUser
+
+        if (currentUser != null) {
+            val userId = currentUser.uid
+
+            db.collection("users").document(userId).get().addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
-                    // Lấy thông tin người dùng và vai trò từ Firestore
                     val role = document.getString("role")
                     when (role) {
-                        "admin" -> {
-                            // Chuyển hướng người dùng đến Admin Activity
-                            val intent = Intent(this, AdminIndexActivity::class.java)
-                            startActivity(intent)
-                            finish() // Kết thúc Activity hiện tại
-
-                        }
-                        "dentist" -> {
-                            val intent = Intent(this, DentistIndexActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        }
-                        else -> {
-                            val intent = Intent(this, IndexActivity::class.java)
-                            startActivity(intent)
-                            finish()
-
-                        }
+                        "admin" -> startActivity(Intent(this, AdminIndexActivity::class.java))
+                        "dentist" -> startActivity(Intent(this, DentistActivity::class.java))
+                        "user" -> startActivity(Intent(this, IndexUserActivity::class.java))
+                        else -> startActivity(Intent(this, MainActivity::class.java))
                     }
                 } else {
-                    Log.d("Firestore", "No such document")
+                    startActivity(Intent(this, MainActivity::class.java))
                 }
+                finish() // Đảm bảo Activity hiện tại kết thúc sau khi điều hướng
+            }.addOnFailureListener {
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
             }
-            .addOnFailureListener { e ->
-                Log.d("Firestore", "get failed with ", e)
-            }
+        } else {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
     }
 }
+

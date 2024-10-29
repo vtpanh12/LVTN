@@ -13,33 +13,36 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vtpa_b2013518_lvtn.R
 import com.example.vtpa_b2013518_lvtn.adapter.Appointment
 import com.example.vtpa_b2013518_lvtn.adapter.AppointmentAdmin
+import com.example.vtpa_b2013518_lvtn.adapter.Dentist
+import com.example.vtpa_b2013518_lvtn.adapter.DentistAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 
-class AdminAppointmentActivity : AppCompatActivity() {
+class AdminDentistActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: AppointmentAdmin
-    private lateinit var appointmentList: MutableList<Appointment>
+    private lateinit var adapter: DentistAdapter
+    private lateinit var dentistList: MutableList<Dentist>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_admin_appointment)
-        val iVBackAdminApp = findViewById<ImageView>(R.id.iVBackAdminApp)
-        iVBackAdminApp.setOnClickListener {
+
+        setContentView(R.layout.activity_admin_dentist)
+        val iVBackDentist = findViewById<ImageView>(R.id.iVBackAdminDentist)
+        iVBackDentist.setOnClickListener {
             finish()
         }
-        recyclerView = findViewById(R.id.recyclerAdminAppointment)
+        recyclerView = findViewById(R.id.recyclerAdminDentist)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        appointmentList = mutableListOf()
-        adapter = AppointmentAdmin(appointmentList)
+        dentistList = mutableListOf()
+        adapter = DentistAdapter(dentistList)
         recyclerView.adapter = adapter
         //updateRecyclerView()
-         //Gọi hàm lấy dữ liệu từ Firestore và hiển thị trên RecyclerView
+        //Gọi hàm lấy dữ liệu từ Firestore và hiển thị trên RecyclerView
         loadAppointments()
     }
     private fun loadAppointments() {
         val db = FirebaseFirestore.getInstance()
 
         // Lắng nghe các thay đổi trong collection "appointments"
-        db.collection("appointments")
+        db.collection("dentists")
             .addSnapshotListener { snapshots, e ->
                 if (e != null) {
                     Toast.makeText(this, "Lỗi khi tải dữ liệu: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -52,10 +55,10 @@ class AdminAppointmentActivity : AppCompatActivity() {
                     recyclerView.visibility = View.GONE
                 } else {
 
-                    appointmentList.clear() // Làm sạch danh sách cũ
+                    dentistList.clear() // Làm sạch danh sách cũ
                     for (doc in snapshots!!) {
-                        val appointment = doc.toObject(Appointment::class.java)
-                        appointmentList.add(appointment)
+                        val dentist = doc.toObject(Dentist::class.java)
+                        dentistList.add(dentist)
                     }
                     adapter.notifyDataSetChanged()
 

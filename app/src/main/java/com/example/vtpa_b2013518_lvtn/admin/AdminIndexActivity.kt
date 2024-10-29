@@ -33,5 +33,13 @@ class AdminIndexActivity : AppCompatActivity() {
         linearLichKham.setOnClickListener {
             startActivity(Intent(this, AdminAppointmentActivity::class.java))
         }
+        val linearDentist= findViewById<LinearLayout>(R.id.linearDentist)
+        linearDentist.setOnClickListener {
+            startActivity(Intent(this, AdminDentistActivity::class.java))
+        }
+        val linearAuth= findViewById<LinearLayout>(R.id.linearAuth)
+        linearAuth.setOnClickListener {
+            startActivity(Intent(this, AdminAuthActivity::class.java))
+        }
     }
 }

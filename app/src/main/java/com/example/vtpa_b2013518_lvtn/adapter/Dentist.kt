@@ -9,5 +9,5 @@ data class Dentist(
     val gender : String="",
     val address : String ="",
     val email: String ?= null,
-    val role: String ="admin"
+    val role: String ="dentist"
 )

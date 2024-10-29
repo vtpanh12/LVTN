@@ -48,7 +48,7 @@ class SplashActivity : AppCompatActivity() {
                     when (role) {
                         "admin" -> startActivity(Intent(this, AdminIndexActivity::class.java))
                         "dentist" -> startActivity(Intent(this, DentistActivity::class.java))
-                        "user" -> startActivity(Intent(this, IndexUserActivity::class.java))
+                        "user" -> startActivity(Intent(this, IndexActivity::class.java))
                         else -> startActivity(Intent(this, MainActivity::class.java))
                     }
                 } else {

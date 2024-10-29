@@ -78,6 +78,12 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
                 val formattedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
                 tVDate.text = formattedDate
             }, year, month, day)
+            // Thiết lập ngày tối thiểu là hôm nay
+            datePickerDialog.datePicker.minDate = calendar.timeInMillis
+
+            // Thiết lập ngày tối đa là 7 ngày sau hôm nay
+            calendar.add(Calendar.DAY_OF_MONTH, 7)
+            datePickerDialog.datePicker.maxDate = calendar.timeInMillis
 
             datePickerDialog.show()
         }

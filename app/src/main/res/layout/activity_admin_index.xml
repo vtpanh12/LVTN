@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.IndexActivity">
+    tools:context=".admin.AdminIndexActivity">
 
     <LinearLayout
 
@@ -81,7 +81,7 @@
         app:layout_constraintVertical_bias="0.39">
 
         <LinearLayout
-            android:id="@+id/linearTrangchu"
+            android:id="@+id/linearTrangchu1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
@@ -90,19 +90,19 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/ivTram_rang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:id="@+id/ivTram_rang"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 app:backgroundTint="@null"
                 app:srcCompat="@drawable/auth" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textView3t"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Phân quyền"
@@ -111,7 +111,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearTrangchu"
+            android:id="@+id/linearTrangchu55"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
@@ -121,7 +121,7 @@
 
             <ImageView
                 android:layout_marginTop="10dp"
-                android:id="@+id/ivTram_rang"
+                android:id="@+id/ivTDentist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -135,7 +135,7 @@
             <TextView
                 android:paddingTop="5dp"
                 android:textSize="25sp"
-                android:id="@+id/textView"
+                android:id="@+id/textView67"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nha sĩ"
@@ -226,7 +226,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearUsers"
+            android:id="@+id/linearAdmin"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="10dp"

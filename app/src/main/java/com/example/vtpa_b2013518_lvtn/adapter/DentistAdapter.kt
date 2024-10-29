@@ -40,10 +40,10 @@ class DentistAdapter (private val dentists: List<Dentist>):
         holder.username.text = "Họ và tên: ${dentist.username}"
         holder.phoneNumber.text = "Dịch vụ: ${dentist.phoneNumber}"
         holder.date.text = "Ngày sinh: ${dentist.date}"
-        holder.specialty.text = "Chuyên khoa:: ${dentist.specialty}"
-        holder.gender.text = "Giới tính:: ${dentist.gender}"
-        holder.address.text = "Địa chỉ:: ${dentist.address}"
-        holder.role.text = "Chức vụ:: ${dentist.role}"
+        holder.specialty.text = "Chuyên khoa: ${dentist.specialty}"
+        holder.gender.text = "Giới tính: ${dentist.gender}"
+        holder.address.text = "Địa chỉ: ${dentist.address}"
+        holder.role.text = "Chức vụ: ${dentist.role}"
         holder.iVIDEdit.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, AdminDentistEditActivity::class.java)

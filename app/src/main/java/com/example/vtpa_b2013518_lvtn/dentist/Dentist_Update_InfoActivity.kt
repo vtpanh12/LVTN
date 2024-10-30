@@ -94,7 +94,7 @@ class Dentist_Update_InfoActivity : AppCompatActivity() {
 
         val userId = FirebaseAuth.getInstance().currentUser?.uid
         if (userId != null) {
-            db.collection("admins").document(userId).get()
+            db.collection("dentists").document(userId).get()
                 .addOnSuccessListener { document ->
                     if (document != null) {
                         // Hiển thị thông tin lên các view
@@ -139,7 +139,7 @@ class Dentist_Update_InfoActivity : AppCompatActivity() {
                 ""
             }
             if (username.isNotEmpty() && phoneNumber.isNotEmpty() && address.isNotEmpty() && gender.isNotEmpty() && date.isNotEmpty()) {
-                // Tạo đối tượng User
+
                 val dentist = Dentist(
                     id_dentist = userId,
                     username = username,

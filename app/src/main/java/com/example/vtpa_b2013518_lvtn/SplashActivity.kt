@@ -47,7 +47,7 @@ class SplashActivity : AppCompatActivity() {
                     val role = document.getString("role")
                     when (role) {
                         "admin" -> startActivity(Intent(this, AdminIndexActivity::class.java))
-                        "dentist" -> startActivity(Intent(this, DentistActivity::class.java))
+                        "dentist" -> startActivity(Intent(this, DentistIndexActivity::class.java))
                         "user" -> startActivity(Intent(this, IndexActivity::class.java))
                         else -> startActivity(Intent(this, MainActivity::class.java))
                     }

@@ -23,7 +23,6 @@ class AdminDentistActivity : AppCompatActivity() {
     private lateinit var dentistList: MutableList<Dentist>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_admin_dentist)
         val iVBackDentist = findViewById<ImageView>(R.id.iVBackAdminDentist)
         iVBackDentist.setOnClickListener {

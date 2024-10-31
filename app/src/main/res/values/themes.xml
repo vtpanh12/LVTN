@@ -6,4 +6,17 @@
     </style>
 
     <style name="Theme.Vtpa_b2013518_lvtn" parent="Base.Theme.Vtpa_b2013518_lvtn" />
+    <style name="CalendarDateText" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/main_color</item> <!-- Màu chữ ngày -->
+
+    </style>
+
+    <!-- Kiểu văn bản thứ -->
+    <style name="CalendarWeekText" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#232844</item> <!-- Màu chữ ngày trong tuần -->
+
+    </style>
 </resources>

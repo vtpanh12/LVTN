@@ -86,10 +86,43 @@
                 android:layout_below="@id/calendarView"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp" />
+            <TextView
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/btn_custom"
+                android:id="@+id/tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Buổi sáng"
+                android:textSize="25sp"
+                android:textColor="@color/white"
+                android:layout_below="@id/calendarView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:visibility="gone"
+                android:visibility="visible"
                 android:id="@+id/recyclerAdminDentist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/btn_custom"
+                android:id="@+id/tvbc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Buổi chiều"
+                android:textSize="25sp"
+                android:textColor="@color/white"
+                android:layout_below="@id/calendarView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:visibility="visible"
+                android:id="@+id/recyclerAdmin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />

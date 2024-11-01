@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.vtpa_b2013518_lvtn.R
 import com.example.vtpa_b2013518_lvtn.adapter.Shift
+import com.example.vtpa_b2013518_lvtn.adapter.Slot
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.firestore
@@ -124,13 +125,25 @@ class AdminDentistEditActivity : AppCompatActivity() {
             }
     }
     private fun addEmptyShiftsForDentist(dentistId: String, date: String) {
+        val morningslots = mapOf(
+            "08:00" to Slot(),
+            "09:00" to Slot(),
+            "10:00" to Slot(),
+            "11:00" to Slot()
+        )
         val morningShift = Shift(
             id_dentist = dentistId,
             date = date,
             shiftId = "1",
             startTime = "08:00",
             endTime = "12:00",
-            schedules = emptyMap()
+            slots = morningslots
+        )
+        val afternoonSlots = mapOf(
+            "13:00" to Slot(),
+            "14:00" to Slot(),
+            "15:00" to Slot(),
+            "16:00" to Slot()
         )
 
         val afternoonShift = Shift(
@@ -139,7 +152,7 @@ class AdminDentistEditActivity : AppCompatActivity() {
             shiftId = "2",
             startTime = "13:00",
             endTime = "17:00",
-            schedules = emptyMap()
+            slots =afternoonSlots
         )
 
         // Thêm ca sáng

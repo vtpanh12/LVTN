@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.vtpa_b2013518_lvtn.R
 import com.example.vtpa_b2013518_lvtn.adapter.Shift
+import com.example.vtpa_b2013518_lvtn.adapter.Slot
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -46,70 +47,9 @@ class DentistAppointmentActivity : AppCompatActivity() {
         val addShiftButton = findViewById<Button>(R.id.btnaddShiftButton)
         addShiftButton.setOnClickListener {
 
-            val calendar = Calendar.getInstance()
-            val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-
-            for (i in 0 until 7) {
-                val date = dateFormat.format(calendar.time)
-                // Kiểm tra nếu có dentistId và selectedDate đã được chọn
-                if (dentistId != null) {
-                    addEmptyShiftsForDentist(dentistId, date)
-                } else {
-                    Toast.makeText(
-                        this,
-                        "Vui lòng chọn ngày và đảm bảo đăng nhập.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                calendar.add(Calendar.DAY_OF_YEAR, 1)
-            }
         }
     }
 
     // Hàm thêm ca trực rỗng cho bác sĩ vào ngày đã chọn
-    private fun addEmptyShiftsForDentist(dentistId: String, date: String) {
-        val morningShift = Shift(
-            id_dentist = dentistId,
-            date = date,
-            shiftId = "1",
-            startTime = "08:00",
-            endTime = "12:00",
-            schedules = emptyMap()
-        )
 
-        val afternoonShift = Shift(
-            id_dentist = dentistId,
-            date = date,
-            shiftId = "2",
-            startTime = "13:00",
-            endTime = "17:00",
-            schedules = emptyMap()
-        )
-
-        // Thêm ca sáng
-        db.collection("dentists")
-            .document(dentistId)
-            .collection("shifts")  // Đảm bảo tên collection là "shifts"
-            .document("${date}_1")
-            .set(morningShift)
-            .addOnSuccessListener {
-                Log.d("Firestore", "Ca sáng đã được thêm cho bác sĩ $dentistId vào ngày $date.")
-            }
-            .addOnFailureListener { e ->
-                Log.w("Firestore", "Lỗi khi thêm ca sáng: ", e)
-            }
-
-        // Thêm ca chiều
-        db.collection("dentists")
-            .document(dentistId)
-            .collection("shifts")
-            .document("${date}_2")
-            .set(afternoonShift)
-            .addOnSuccessListener {
-                Log.d("Firestore", "Ca chiều đã được thêm cho bác sĩ $dentistId vào ngày $date.")
-            }
-            .addOnFailureListener { e ->
-                Log.w("Firestore", "Lỗi khi thêm ca chiều: ", e)
-            }
-    }
 }

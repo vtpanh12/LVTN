@@ -1,6 +1,7 @@
 package com.example.vtpa_b2013518_lvtn.admin
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -8,8 +9,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.vtpa_b2013518_lvtn.R
+import com.example.vtpa_b2013518_lvtn.adapter.Shift
+import com.example.vtpa_b2013518_lvtn.adapter.Slot
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
 
 class AdminConfAppointmentActivity : AppCompatActivity() {
+    private lateinit var btnConfApp: Button
+    // create Firebase authentication object
+    private lateinit var auth: FirebaseAuth
+    // Access a Cloud Firestore instance from your Activity
+    val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -18,7 +30,7 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
         iVBackAdminApp.setOnClickListener {
             finish()
         }
-
+        btnConfApp = findViewById(R.id.btnConfApp)
         val email = intent.getStringExtra("email")
         val appointmentId = intent.getStringExtra("appointmentId")
         val userId = intent.getStringExtra("userId")
@@ -52,5 +64,13 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
         tVNote.text = "Ghi chú: ${note}"
         tVPhoneNumber.text = "Số điện thoại: ${phoneNumber}"
         tVStatus.text = "Trạng thái: ${status}"
+
+        btnConfApp.setOnClickListener {
+
+        }
     }
+
+
+
+
 }

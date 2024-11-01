@@ -101,11 +101,11 @@
                 android:layout_marginTop="16dp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:visibility="visible"
                 android:id="@+id/recyclerAdminDentist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:visibility="visible" />
+
             <TextView
                 android:padding="10dp"
                 android:layout_margin="10dp"
@@ -127,7 +127,15 @@
                 android:layout_height="wrap_content"
                 />
 
-
+            <Button
+                android:id="@+id/btnaddShiftButton"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_margin="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/btn_custom"
+                android:text="Cập nhật "
+                app:backgroundTint="@null" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

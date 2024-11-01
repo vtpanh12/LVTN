@@ -20,18 +20,18 @@ import com.google.firebase.firestore.firestore
 
 class AdminConfAppointmentActivity : AppCompatActivity() {
     private lateinit var btnConfApp: Button
-    // create Firebase authentication object
     private lateinit var auth: FirebaseAuth
-    // Access a Cloud Firestore instance from your Activity
-    val db = Firebase.firestore
+    private val db = Firebase.firestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_admin_conf_appointment)
+
         val iVBackAdminApp = findViewById<ImageView>(R.id.iVBackAdminApp)
         iVBackAdminApp.setOnClickListener {
             finish()
         }
+
         btnConfApp = findViewById(R.id.btnConfApp)
         val email = intent.getStringExtra("email")
         val appointmentId = intent.getStringExtra("appointmentId")
@@ -44,57 +44,47 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
         val status = intent.getStringExtra("status")
         val phoneNumber = intent.getStringExtra("phoneNumber")
 
-
-        val tVUserName = findViewById<TextView>(R.id.tVAConfAppUser)
-        val tVEmail = findViewById<TextView>(R.id.tVAConfAppEmail)
-        val tVAppId = findViewById<TextView>(R.id.tVAConfAppAppId)
-        val tVUserId = findViewById<TextView>(R.id.tVAConfAppUserId)
-        val tVNote = findViewById<TextView>(R.id.tVAConfAppNote)
-        val tVService = findViewById<TextView>(R.id.tVAConfAppService)
-        val tVHour = findViewById<TextView>(R.id.tVAConfAppHour)
-        val tVDate = findViewById<TextView>(R.id.tVAConfAppDate)
-        val tVStatus = findViewById<TextView>(R.id.tVAConfAppStatus)
-        val tVPhoneNumber = findViewById<TextView>(R.id.tVAConfAppPhoneNumber)
-
-        tVEmail.text = "Email: ${email}"
-        tVAppId.text = "Appointment ID: ${appointmentId}"
-        tVUserId.text = "User ID: ${userId}"
-        tVUserName.text = "Họ và tên: ${username}"
-        tVService.text = "Dịch vụ: ${service}"
-        tVDate.text = "Ngày hẹn: ${date}"
-        tVHour.text = "Giờ hẹn: ${hour}"
-        tVNote.text = "Ghi chú: ${note}"
-        tVPhoneNumber.text = "Số điện thoại: ${phoneNumber}"
-        tVStatus.text = "Trạng thái: ${status}"
-
-        btnConfApp = findViewById(R.id.btnConfApp)
-        val shiftId = determineShiftId(intent.getStringExtra("hour"))
+        // Hiển thị thông tin cuộc hẹn
+        displayAppointmentInfo(email, appointmentId, userId, username, service, date, hour, note, phoneNumber, status)
 
         btnConfApp.setOnClickListener {
-            val appointmentId = intent.getStringExtra("appointmentId")
-
+            val shiftId = determineShiftId(hour)
+            Toast.makeText(this, "$service, $date, $shiftId, $hour", Toast.LENGTH_SHORT).show()
             if (appointmentId != null && service != null && date != null && shiftId != null) {
-                selectDentistForAppointment(service, date, shiftId)
+                if (hour != null) {
+                    selectDentistForAppointment(service, date, shiftId, hour, appointmentId)
+                }
             } else {
-                Toast.makeText(this, "Thiếu thông tin để chọn bác sĩ  $service $date $shiftId ", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Thiếu thông tin để chọn bác sĩ", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
+    // Hiển thị thông tin cuộc hẹn
+    private fun displayAppointmentInfo(email: String?, appointmentId: String?, userId: String?, username: String?, service: String?, date: String?, hour: String?, note: String?, phoneNumber: String?, status: String?) {
+        findViewById<TextView>(R.id.tVAConfAppEmail).text = "Email: $email"
+        findViewById<TextView>(R.id.tVAConfAppAppId).text = "Appointment ID: $appointmentId"
+        findViewById<TextView>(R.id.tVAConfAppUserId).text = "User ID: $userId"
+        findViewById<TextView>(R.id.tVAConfAppUser).text = "Họ và tên: $username"
+        findViewById<TextView>(R.id.tVAConfAppService).text = "Dịch vụ: $service"
+        findViewById<TextView>(R.id.tVAConfAppDate).text = "Ngày hẹn: $date"
+        findViewById<TextView>(R.id.tVAConfAppHour).text = "Giờ hẹn: $hour"
+        findViewById<TextView>(R.id.tVAConfAppNote).text = "Ghi chú: $note"
+        findViewById<TextView>(R.id.tVAConfAppPhoneNumber).text = "Số điện thoại: $phoneNumber"
+        findViewById<TextView>(R.id.tVAConfAppStatus).text = "Trạng thái: $status"
+    }
+
     // Xác định ca trực dựa trên giờ hẹn
     private fun determineShiftId(hour: String?): String? {
-        // Tách giờ từ chuỗi "HH:mm"
-        val hourOnly = hour?.split(":")?.getOrNull(0)?.toIntOrNull()
-
-        return when (hourOnly) {
+        val hourInt = hour?.substringBefore(":")?.toIntOrNull()
+        return when (hourInt) {
             in 8..12 -> "1"  // Ca sáng
             in 13..17 -> "2" // Ca chiều
             else -> null
         }
     }
 
-    private fun selectDentistForAppointment(service: String, date: String, shiftId: String) {
-        //so sanh speciatly == service => kq duoc luu vao dentistDocuments
+    private fun selectDentistForAppointment(service: String, date: String, shiftId: String, appointmentHour: String, appointmentId: String) {
         db.collection("dentists").whereEqualTo("specialty", service).get()
             .addOnSuccessListener { dentistDocuments ->
                 val availableDentists = mutableListOf<String>()
@@ -109,13 +99,28 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
 
                     shiftRef.get().addOnSuccessListener { shiftDoc ->
                         if (shiftDoc.exists()) {
-                            availableDentists.add(dentistName)
+                            val shift = shiftDoc.toObject(Shift::class.java)
+                            val matchingSlotKey = findMatchingSlot(appointmentHour, shift?.slots ?: emptyMap())
+                            if (matchingSlotKey != null) {
+                                // Cập nhật slot
+                                Toast.makeText(this,
+                                        "$dentistName vào giờ $appointmentHour", Toast.LENGTH_SHORT).show()
+                                bookSlot(dentistId, date, shiftId, matchingSlotKey, appointmentId)
+                                availableDentists.add(dentistName)
+                            }
+                            else{
+                                Toast.makeText(this,
+                                        "$dentistName vào giờ $appointmentHour", Toast.LENGTH_SHORT).show()
+                            }
                         }
+                        // Kiểm tra tất cả bác sĩ đã được duyệt
                         if (dentistDoc == dentistDocuments.last()) {
                             if (availableDentists.isNotEmpty()) {
                                 showDentistSelectionDialog(availableDentists)
                             } else {
-                                Toast.makeText(this, "Không có bác sĩ phù hợp", Toast.LENGTH_SHORT).show()
+
+                                //Toast.makeText(this, "$service, $date, $shiftId", Toast.LENGTH_SHORT).show()
+                                //Toast.makeText(this, "Không có bác sĩ phù hợp", Toast.LENGTH_SHORT).show()
                             }
                         }
                     }.addOnFailureListener {
@@ -125,6 +130,44 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
             }.addOnFailureListener {
                 Toast.makeText(this, "Lỗi khi truy vấn danh sách bác sĩ", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    // Tìm slot phù hợp với giờ hẹn
+    private fun findMatchingSlot(appointmentTime: String, shiftSlots: Map<String, Slot>): String? {
+        val appointmentHour = appointmentTime.substringBefore(":").toIntOrNull()
+
+        return appointmentHour?.let {
+            // Định dạng giờ thành chuỗi "HH:00"
+            val formattedHour = String.format("%02d:00", appointmentHour)
+
+            // Tìm kiếm khóa định dạng trong shiftSlots
+            shiftSlots.keys.find { slotHour -> slotHour == formattedHour }
+        }
+    }
+
+
+    // Cập nhật slot khi đặt lịch
+    private fun bookSlot(dentistId: String, date: String, shiftId: String, slotKey: String, appointmentId: String) {
+        val slotRef = db.collection("dentists").document(dentistId)
+            .collection("shifts").document("${date}_$shiftId")
+
+        slotRef.get().addOnSuccessListener { shiftDoc ->
+            if (shiftDoc.exists()) {
+                val shift = shiftDoc.toObject(Shift::class.java)
+                val slots = shift?.slots?.toMutableMap() ?: mutableMapOf()
+                slots[slotKey]?.isBooked = true
+                slots[slotKey]?.id_app = appointmentId // Gán ID lịch khám
+
+                // Cập nhật lại ca trực với slot đã được đặt
+                slotRef.update("slots", slots).addOnSuccessListener {
+                    Toast.makeText(this, "Đặt lịch thành công!", Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener {
+                    Toast.makeText(this, "Lỗi khi cập nhật slot", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }.addOnFailureListener {
+            Toast.makeText(this, "Lỗi khi truy vấn ca trực", Toast.LENGTH_SHORT).show()
+        }
     }
 
     // Hiển thị danh sách bác sĩ phù hợp trong Dialog
@@ -139,4 +182,6 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
         builder.create().show()
     }
 }
+
+
 

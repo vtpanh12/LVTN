@@ -99,18 +99,26 @@
                 android:layout_below="@id/calendarView"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp" />
+            <TextView
+                android:id="@+id/tvNoAppointmentsMorn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chưa có lịch làm việc."
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:textSize="25sp"
+                android:textColor="#8D2646"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerAdminDentist"
+                android:id="@+id/recyclerMorning"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible" />
-
+                 />
             <TextView
                 android:padding="10dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/btn_custom"
-                android:id="@+id/tvbc"
+                android:id="@+id/tvas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Buổi chiều"
@@ -119,23 +127,22 @@
                 android:layout_below="@id/calendarView"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp" />
+            <TextView
+                android:id="@+id/tvNoAppointmentAfter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chưa có lịch làm việc."
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:textSize="25sp"
+                android:textColor="#8D2646"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:visibility="visible"
-                android:id="@+id/recyclerAdmin"
+                android:id="@+id/recyclerAfternoon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />
 
-            <Button
-                android:id="@+id/btnaddShiftButton"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_margin="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/btn_custom"
-                android:text="Cập nhật "
-                app:backgroundTint="@null" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

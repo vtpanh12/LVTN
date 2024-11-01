@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -65,12 +67,76 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
         tVPhoneNumber.text = "Số điện thoại: ${phoneNumber}"
         tVStatus.text = "Trạng thái: ${status}"
 
-        btnConfApp.setOnClickListener {
+        btnConfApp = findViewById(R.id.btnConfApp)
+        val shiftId = determineShiftId(intent.getStringExtra("hour"))
 
+        btnConfApp.setOnClickListener {
+            val appointmentId = intent.getStringExtra("appointmentId")
+
+            if (appointmentId != null && service != null && date != null && shiftId != null) {
+                selectDentistForAppointment(service, date, shiftId)
+            } else {
+                Toast.makeText(this, "Thiếu thông tin để chọn bác sĩ  $service $date $shiftId ", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
+    // Xác định ca trực dựa trên giờ hẹn
+    private fun determineShiftId(hour: String?): String? {
+        // Tách giờ từ chuỗi "HH:mm"
+        val hourOnly = hour?.split(":")?.getOrNull(0)?.toIntOrNull()
 
+        return when (hourOnly) {
+            in 8..12 -> "1"  // Ca sáng
+            in 13..17 -> "2" // Ca chiều
+            else -> null
+        }
+    }
 
+    private fun selectDentistForAppointment(service: String, date: String, shiftId: String) {
+        //so sanh speciatly == service => kq duoc luu vao dentistDocuments
+        db.collection("dentists").whereEqualTo("specialty", service).get()
+            .addOnSuccessListener { dentistDocuments ->
+                val availableDentists = mutableListOf<String>()
 
+                // Duyệt từng bác sĩ và kiểm tra lịch trống
+                for (dentistDoc in dentistDocuments) {
+                    val dentistId = dentistDoc.id
+                    val dentistName = dentistDoc.getString("username") ?: "Unknown Dentist"
+
+                    val shiftRef = db.collection("dentists").document(dentistId)
+                        .collection("shifts").document("${date}_$shiftId")
+
+                    shiftRef.get().addOnSuccessListener { shiftDoc ->
+                        if (shiftDoc.exists()) {
+                            availableDentists.add(dentistName)
+                        }
+                        if (dentistDoc == dentistDocuments.last()) {
+                            if (availableDentists.isNotEmpty()) {
+                                showDentistSelectionDialog(availableDentists)
+                            } else {
+                                Toast.makeText(this, "Không có bác sĩ phù hợp", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }.addOnFailureListener {
+                        Toast.makeText(this, "Lỗi khi truy vấn ca trực", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }.addOnFailureListener {
+                Toast.makeText(this, "Lỗi khi truy vấn danh sách bác sĩ", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    // Hiển thị danh sách bác sĩ phù hợp trong Dialog
+    private fun showDentistSelectionDialog(availableDentists: List<String>) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Chọn bác sĩ")
+        builder.setItems(availableDentists.toTypedArray()) { _, which ->
+            val selectedDentist = availableDentists[which]
+            Toast.makeText(this, "Bác sĩ đã chọn: $selectedDentist", Toast.LENGTH_SHORT).show()
+        }
+        builder.setNegativeButton("Hủy") { dialog, _ -> dialog.dismiss() }
+        builder.create().show()
+    }
 }
+

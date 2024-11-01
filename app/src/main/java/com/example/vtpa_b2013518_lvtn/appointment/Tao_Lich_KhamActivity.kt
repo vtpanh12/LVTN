@@ -75,7 +75,7 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
             val day = calendar.get(Calendar.DAY_OF_MONTH)
 
             val datePickerDialog = DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->
-                val formattedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                val formattedDate = String.format("%02d-%02d-%d", selectedDay, selectedMonth + 1, selectedYear)
                 tVDate.text = formattedDate
             }, year, month, day)
             // Thiết lập ngày tối thiểu là hôm nay
@@ -93,7 +93,7 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
             val minute = calendar.get(Calendar.MINUTE)
 
             val timePickerDialog = TimePickerDialog(this, { _, selectedHour, selectedMinute ->
-                val formattedTime = "$selectedHour:$selectedMinute"
+                val formattedTime = String.format("%02d:%02d", selectedHour, selectedMinute)
                 tVHour.text = formattedTime
             }, hour, minute, true)
 

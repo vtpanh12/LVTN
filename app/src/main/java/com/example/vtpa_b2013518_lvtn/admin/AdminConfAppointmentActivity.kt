@@ -1,6 +1,7 @@
 package com.example.vtpa_b2013518_lvtn.admin
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -22,6 +23,7 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
     private lateinit var btnConfApp: Button
     private lateinit var auth: FirebaseAuth
     private val db = Firebase.firestore
+    val userCurrentId = FirebaseAuth.getInstance().currentUser?.uid
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,6 +95,9 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
                 for (dentistDoc in dentistDocuments) {
                     val dentistId = dentistDoc.id
                     val dentistName = dentistDoc.getString("username") ?: "Unknown Dentist"
+                    if (userCurrentId != null) {
+                        confAppointment(appointmentId, userCurrentId, dentistId)
+                    }
 
                     val shiftRef = db.collection("dentists").document(dentistId)
                         .collection("shifts").document("${date}_$shiftId")
@@ -108,10 +113,6 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
                                 bookSlot(dentistId, date, shiftId, matchingSlotKey, appointmentId)
                                 availableDentists.add(dentistName)
                             }
-                            else{
-                                Toast.makeText(this,
-                                        "$dentistName vào giờ $appointmentHour", Toast.LENGTH_SHORT).show()
-                            }
                         }
                         // Kiểm tra tất cả bác sĩ đã được duyệt
                         if (dentistDoc == dentistDocuments.last()) {
@@ -119,8 +120,7 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
                                 showDentistSelectionDialog(availableDentists)
                             } else {
 
-                                //Toast.makeText(this, "$service, $date, $shiftId", Toast.LENGTH_SHORT).show()
-                                //Toast.makeText(this, "Không có bác sĩ phù hợp", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "Không có bác sĩ phù hợp", Toast.LENGTH_SHORT).show()
                             }
                         }
                     }.addOnFailureListener {
@@ -175,11 +175,22 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Chọn bác sĩ")
         builder.setItems(availableDentists.toTypedArray()) { _, which ->
-            val selectedDentist = availableDentists[which]
-            Toast.makeText(this, "Bác sĩ đã chọn: $selectedDentist", Toast.LENGTH_SHORT).show()
+            ///val selectedDentist = availableDentists[which]
+            //Toast.makeText(this, "Bác sĩ đã chọn: $selectedDentist", Toast.LENGTH_SHORT).show()
         }
         builder.setNegativeButton("Hủy") { dialog, _ -> dialog.dismiss() }
         builder.create().show()
+    }
+    private fun confAppointment(appointmentId: String, userCurrentId: String, dentistId: String) {
+        db.collection("appointments").document(appointmentId)
+            .update("status", "Đặt lịch thành công", "id_dentist", dentistId )
+            .addOnSuccessListener {
+                //sendCancellationNotification(userId)
+                Toast.makeText(this, "Đặt lịch thành công!: $appointmentId", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                Log.w("CancelAppointment", "Error updating document", e)
+            }
     }
 }
 

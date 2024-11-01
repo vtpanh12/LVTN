@@ -70,7 +70,6 @@ class AdminCancelAppointmentActivity : AppCompatActivity() {
             if (appointmentId != null && userCurrentId != null){
                 cancelAppointment(appointmentId, userCurrentId)
             }
-
         }
     }
     private fun cancelAppointment(appointmentId: String, userCurrentId: String) {

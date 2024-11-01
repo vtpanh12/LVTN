@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".admin.AdminConfAppointmentActivity">
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:background="@drawable/btn_custom1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="330dp">
+        <LinearLayout
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/item_bg"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <ImageView
+                android:id="@+id/iVBackDentistDAD"
+                android:layout_width="40dp"
+                android:layout_height="36dp"
+                android:layout_margin="15dp"
+                android:layout_weight="0.1"
+                app:srcCompat="@drawable/back" />
+            <TextView
+                android:paddingRight="30dp"
+                android:id="@+id/tVDentistDADEmail"
+                android:layout_width="231dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.9"
+                android:text="VO THI PHUONG ANH"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/tVDentistDADUserId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="ID Khách hàng:" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/tVDentistDADAppId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="ID Lịch khám:" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/tVDentistDADUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Họ và tên:" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:id="@+id/tVDentistDADService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dịch vụ:" />
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:textSize="18sp"
+            android:id="@+id/tVDentistDADDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ngày hẹn:" />
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:textSize="18sp"
+            android:id="@+id/tVDentistDADHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Giờ hẹn:" />
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:textSize="18sp"
+            android:id="@+id/tVDentistDADPhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Số điện thoại:" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:textSize="18sp"
+            android:id="@+id/tVDentistDADNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ghi chú:" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

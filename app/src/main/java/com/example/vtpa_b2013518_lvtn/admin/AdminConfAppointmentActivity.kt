@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.vtpa_b2013518_lvtn.R
+import com.example.vtpa_b2013518_lvtn.adapter.Appointment
 import com.example.vtpa_b2013518_lvtn.adapter.Shift
 import com.example.vtpa_b2013518_lvtn.adapter.Slot
 import com.google.firebase.Firebase
@@ -88,34 +89,37 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
 
     private fun selectDentistForAppointment(service: String, date: String, shiftId: String, appointmentHour: String, appointmentId: String) {
         db.collection("dentists").whereEqualTo("specialty", service).get()
-            .addOnSuccessListener { dentistDocuments ->
+            .addOnSuccessListener { dentists ->
+                //list dentist co lich trong
                 val availableDentists = mutableListOf<String>()
 
                 // Duyệt từng bác sĩ và kiểm tra lịch trống
-                for (dentistDoc in dentistDocuments) {
-                    val dentistId = dentistDoc.id
-                    val dentistName = dentistDoc.getString("username") ?: "Unknown Dentist"
+                for (dentist in dentists) {
+                    val dentistId = dentist.id
+                    val dentistName = dentist.getString("username") ?: "khong co nha si phu hop"
+                    val dentistEmail = dentist.getString("email")?:"khong co email"
+                    val dentistPhoneNumber = dentist.getString("phoneNumber")?:"khong co sdt"
                     if (userCurrentId != null) {
                         confAppointment(appointmentId, userCurrentId, dentistId)
                     }
-
-                    val shiftRef = db.collection("dentists").document(dentistId)
+                    //tim shift dua tren date tren lich kham
+                    val shift = db.collection("dentists").document(dentistId)
                         .collection("shifts").document("${date}_$shiftId")
 
-                    shiftRef.get().addOnSuccessListener { shiftDoc ->
+                    shift.get().addOnSuccessListener { shiftDoc ->
                         if (shiftDoc.exists()) {
+                            //chuyen doi Shift thanh oop shift
                             val shift = shiftDoc.toObject(Shift::class.java)
                             val matchingSlotKey = findMatchingSlot(appointmentHour, shift?.slots ?: emptyMap())
                             if (matchingSlotKey != null) {
                                 // Cập nhật slot
-                                Toast.makeText(this,
-                                        "$dentistName vào giờ $appointmentHour", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "$dentistName vào giờ $appointmentHour", Toast.LENGTH_SHORT).show()
                                 bookSlot(dentistId, date, shiftId, matchingSlotKey, appointmentId)
                                 availableDentists.add(dentistName)
                             }
                         }
                         // Kiểm tra tất cả bác sĩ đã được duyệt
-                        if (dentistDoc == dentistDocuments.last()) {
+                        if (dentist == dentists.last()) {
                             if (availableDentists.isNotEmpty()) {
                                 showDentistSelectionDialog(availableDentists)
                             } else {
@@ -134,6 +138,7 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
 
     // Tìm slot phù hợp với giờ hẹn
     private fun findMatchingSlot(appointmentTime: String, shiftSlots: Map<String, Slot>): String? {
+        //lay gio
         val appointmentHour = appointmentTime.substringBefore(":").toIntOrNull()
 
         return appointmentHour?.let {
@@ -145,17 +150,50 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
         }
     }
 
+    private fun getInfoAppointment(appointmentId: String, dentistId: String, date: String, shiftId: String){
+        val slot = db.collection("dentists").document(dentistId)
+            .collection("shifts").document("${date}_$shiftId")
+        slot.get().addOnSuccessListener {shiftDoc ->
+            //kiem tra xem shift co ton tai khong
+            if (shiftDoc.exists()){
+                val shift = shiftDoc.toObject(Shift::class.java)
+                //fliterValues: loc cac slot da duoc dat
+                val bookedAppointments = shift?.slots?.filterValues { it.isBooked == true } // Lọc các slot đã đặt
+                // forEach Duyệt qua tung slot đã được đặt và lấy thông tin appointment
+                bookedAppointments?.forEach { (slotKey, slot) ->
+                    val appointmentId = slot.id_app
+
+                    if (appointmentId != null) {
+                        db.collection("appointments").document(appointmentId).get()
+                            .addOnSuccessListener { appointmentDoc ->
+                                if (appointmentDoc.exists()) {
+                                    val appointment = appointmentDoc.toObject(Appointment::class.java)
+                                    // Xử lý appointment ở đây, ví dụ: hiển thị hoặc thêm vào danh sách
+                                    Log.d("Appointment", "Cuộc hẹn: ${appointment}")
+                                }
+                            }.addOnFailureListener {
+                                Log.e("Error", "Không thể lấy thông tin cuộc hẹn với ID: $appointmentId")
+                            }
+                    }
+                }
+            }
+        }.addOnFailureListener {
+            Log.e("Error", "Lỗi khi truy vấn ca trực")
+            }
+        }
 
     // Cập nhật slot khi đặt lịch
     private fun bookSlot(dentistId: String, date: String, shiftId: String, slotKey: String, appointmentId: String) {
         val slotRef = db.collection("dentists").document(dentistId)
             .collection("shifts").document("${date}_$shiftId")
-
+        //lay du lieu shifts (date_shiftId)
         slotRef.get().addOnSuccessListener { shiftDoc ->
             if (shiftDoc.exists()) {
                 val shift = shiftDoc.toObject(Shift::class.java)
+                //lay slot tu Shift (data class slot)
+                //toMutableMap: cho phep chinh sua ca slot
                 val slots = shift?.slots?.toMutableMap() ?: mutableMapOf()
-                slots[slotKey]?.isBooked = true
+                slots[slotKey]?.isBooked = true     //danh dau da dat lich kham (true)
                 slots[slotKey]?.id_app = appointmentId // Gán ID lịch khám
 
                 // Cập nhật lại ca trực với slot đã được đặt
@@ -193,6 +231,3 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
             }
     }
 }
-
-
-

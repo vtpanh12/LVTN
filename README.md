@@ -25,8 +25,10 @@ Chức năng:
   + Xác nhận lịch khám
   + Phân quyền của người dùng (role: user, admin, dentist)
   + Cập nhật chức vụ, chuyên khoa cho dentist
+  + Chọn bác sĩ phù hợp cho từng lịch khám
 - Dentist:
   + Cập nhật thông tin người dùng
   + Đổi mật khẩu
   + Đăng xuất
-  + Xem lịch làm việc *  
+  + Xem lịch làm việc
+  + Xem thông tin lịch khám trong ngày

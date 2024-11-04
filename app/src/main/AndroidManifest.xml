@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Vtpa_b2013518_lvtn"
         tools:targetApi="31">
         <activity
+            android:name=".admin.AdminDentistAssignmentEditActivity"
+            android:exported="false" />
+        <activity
             android:name=".admin.AdminDentistAssignmentActivity"
             android:exported="false" />
         <activity

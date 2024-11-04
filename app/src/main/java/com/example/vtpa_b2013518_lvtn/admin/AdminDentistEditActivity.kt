@@ -80,8 +80,8 @@ class AdminDentistEditActivity : AppCompatActivity() {
         tVUserName.text = "Họ và tên: ${username}"
         tVDate.text = "Ngày sinh: ${date}"
         tVPhoneNumber.text = "Số điện thoại: ${phoneNumber}"
-        tVGender.text = "Ngày sinh: ${gender}"
-        tVAddress.text = "Ngày sinh: ${address}"
+        tVGender.text = "Giới tính: ${gender}"
+        tVAddress.text = "Địa chỉ: ${address}"
 
 
         btnUpdateDentist = findViewById(R.id.btnUpdateDentist)
@@ -90,24 +90,6 @@ class AdminDentistEditActivity : AppCompatActivity() {
             val specialty = spinnerSpecialty.selectedItem.toString()
             if (dentistId != null && userCurrentId != null){
                 updateDentist(dentistId, userCurrentId, role, specialty)
-            }
-
-            val calendar = Calendar.getInstance()
-            val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-
-            for (i in 0 until 7) {
-                val date = dateFormat.format(calendar.time)
-                // Kiểm tra nếu có dentistId và selectedDate đã được chọn
-                if (dentistId != null) {
-                    addEmptyShiftsForDentist(dentistId, date)
-                } else {
-                    Toast.makeText(
-                        this,
-                        "Error",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                calendar.add(Calendar.DAY_OF_YEAR, 1)
             }
 
         }
@@ -124,61 +106,5 @@ class AdminDentistEditActivity : AppCompatActivity() {
                 Log.w("CancelAppointment", "Error updating document", e)
             }
     }
-    private fun addEmptyShiftsForDentist(dentistId: String, date: String) {
-        val morningslots = mapOf(
-            "08:00" to Slot(),
-            "09:00" to Slot(),
-            "10:00" to Slot(),
-            "11:00" to Slot()
-        )
-        val morningShift = Shift(
-            id_dentist = dentistId,
-            date = date,
-            shiftId = "1",
-            startTime = "08:00",
-            endTime = "12:00",
-            slots = morningslots
-        )
-        val afternoonSlots = mapOf(
-            "13:00" to Slot(),
-            "14:00" to Slot(),
-            "15:00" to Slot(),
-            "16:00" to Slot()
-        )
 
-        val afternoonShift = Shift(
-            id_dentist = dentistId,
-            date = date,
-            shiftId = "2",
-            startTime = "13:00",
-            endTime = "17:00",
-            slots =afternoonSlots
-        )
-
-        // Thêm ca sáng
-        db.collection("dentists")
-            .document(dentistId)
-            .collection("shifts")  // Đảm bảo tên collection là "shifts"
-            .document("${date}_1")
-            .set(morningShift)
-            .addOnSuccessListener {
-                Log.d("Firestore", "Ca sáng đã được thêm cho bác sĩ $dentistId vào ngày $date.")
-            }
-            .addOnFailureListener { e ->
-                Log.w("Firestore", "Lỗi khi thêm ca sáng: ", e)
-            }
-
-        // Thêm ca chiều
-        db.collection("dentists")
-            .document(dentistId)
-            .collection("shifts")
-            .document("${date}_2")
-            .set(afternoonShift)
-            .addOnSuccessListener {
-                Log.d("Firestore", "Ca chiều đã được thêm cho bác sĩ $dentistId vào ngày $date.")
-            }
-            .addOnFailureListener { e ->
-                Log.w("Firestore", "Lỗi khi thêm ca chiều: ", e)
-            }
-    }
 }

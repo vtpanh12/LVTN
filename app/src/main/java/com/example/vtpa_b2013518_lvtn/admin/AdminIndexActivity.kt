@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -29,17 +30,46 @@ class AdminIndexActivity : AppCompatActivity() {
         linearAdmin.setOnClickListener {
             startActivity(Intent(this, AdminActivity::class.java))
         }
-        val linearLichKham= findViewById<LinearLayout>(R.id.linearLichKham)
+        val linearLichKham= findViewById<LinearLayout>(R.id.linearAdminLichKham)
         linearLichKham.setOnClickListener {
             startActivity(Intent(this, AdminAppointmentActivity::class.java))
         }
-        val linearDentist= findViewById<LinearLayout>(R.id.linearDentist)
+        val linearDentist= findViewById<LinearLayout>(R.id.linearAdminDentist)
         linearDentist.setOnClickListener {
             startActivity(Intent(this, AdminDentistActivity::class.java))
         }
-        val linearAuth= findViewById<LinearLayout>(R.id.linearAuth)
+        val iVDentist = findViewById<ImageView>(R.id.iVAdminDentist)
+        iVDentist.setOnClickListener {
+            startActivity(Intent(this, AdminDentistActivity::class.java))
+        }
+        val tVDentist = findViewById<TextView>(R.id.tVAdminDentist)
+        tVDentist.setOnClickListener {
+            startActivity(Intent(this, AdminDentistActivity::class.java))
+        }
+        val linearAuth= findViewById<LinearLayout>(R.id.linearAdminAuth)
         linearAuth.setOnClickListener {
             startActivity(Intent(this, AdminAuthActivity::class.java))
         }
+        val iVAuth = findViewById<ImageView>(R.id.iVAdminAuth)
+        iVAuth.setOnClickListener {
+            startActivity(Intent(this, AdminAuthActivity::class.java))
+        }
+        val tVAuth = findViewById<TextView>(R.id.tVAdminAuth)
+        tVAuth.setOnClickListener {
+            startActivity(Intent(this, AdminAuthActivity::class.java))
+        }
+        val linearAssignment= findViewById<LinearLayout>(R.id.linearAdminAssignment)
+        linearAssignment.setOnClickListener {
+            startActivity(Intent(this, AdminDentistAssignmentActivity::class.java))
+        }
+        val iVAssignment = findViewById<ImageView>(R.id.iVAdminAssignment)
+        iVAssignment.setOnClickListener {
+            startActivity(Intent(this, AdminDentistAssignmentActivity::class.java))
+        }
+        val tVAssignment = findViewById<TextView>(R.id.tVAdminAssignment)
+        tVAuth.setOnClickListener {
+            startActivity(Intent(this, AdminDentistAssignmentActivity::class.java))
+        }
+
     }
 }

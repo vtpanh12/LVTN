@@ -81,8 +81,8 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
     private fun determineShiftId(hour: String?): String? {
         val hourInt = hour?.substringBefore(":")?.toIntOrNull()
         return when (hourInt) {
-            in 8..12 -> "1"  // Ca sáng
-            in 13..17 -> "2" // Ca chiều
+            in 7..12 -> "1"  // Ca sáng
+            in 13..18 -> "2" // Ca chiều
             else -> null
         }
     }
@@ -192,15 +192,22 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
                 val shift = shiftDoc.toObject(Shift::class.java)
                 //lay slot tu Shift (data class slot)
                 //toMutableMap: cho phep chinh sua ca slot
+                //slotKey: la gio{isBooker, id_app}
                 val slots = shift?.slots?.toMutableMap() ?: mutableMapOf()
-                slots[slotKey]?.isBooked = true     //danh dau da dat lich kham (true)
-                slots[slotKey]?.id_app = appointmentId // Gán ID lịch khám
+                val selecSlot = slots[slotKey]
+                if (selecSlot?.isBooked == true){
+                    Toast.makeText(this, "Lịch khám đã đầy!", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    slots[slotKey]?.isBooked = true     //danh dau da dat lich kham (true)
+                    slots[slotKey]?.id_app = appointmentId // Gán ID lịch khám
 
-                // Cập nhật lại ca trực với slot đã được đặt
-                slotRef.update("slots", slots).addOnSuccessListener {
-                    Toast.makeText(this, "Đặt lịch thành công!", Toast.LENGTH_SHORT).show()
-                }.addOnFailureListener {
-                    Toast.makeText(this, "Lỗi khi cập nhật slot", Toast.LENGTH_SHORT).show()
+                    // Cập nhật lại ca trực với slot đã được đặt
+                    slotRef.update("slots", slots).addOnSuccessListener {
+                        Toast.makeText(this, "Đặt lịch thành công!", Toast.LENGTH_SHORT).show()
+                    }.addOnFailureListener {
+                        Toast.makeText(this, "Lỗi khi cập nhật slot", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }.addOnFailureListener {
@@ -213,8 +220,9 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Chọn bác sĩ")
         builder.setItems(availableDentists.toTypedArray()) { _, which ->
-            ///val selectedDentist = availableDentists[which]
-            //Toast.makeText(this, "Bác sĩ đã chọn: $selectedDentist", Toast.LENGTH_SHORT).show()
+            //ten bac si
+            val selectedDentist = availableDentists[which]
+            Toast.makeText(this, "Bác sĩ đã chọn: $selectedDentist", Toast.LENGTH_SHORT).show()
         }
         builder.setNegativeButton("Hủy") { dialog, _ -> dialog.dismiss() }
         builder.create().show()

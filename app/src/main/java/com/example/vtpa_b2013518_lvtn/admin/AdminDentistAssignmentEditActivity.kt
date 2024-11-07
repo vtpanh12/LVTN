@@ -88,6 +88,7 @@ class AdminDentistAssignmentEditActivity : AppCompatActivity() {
     }
     private fun addEmptyShiftsForDentist(dentistId: String, date: String) {
         val morningSlots = mapOf(
+            "07:00" to Slot(),
             "08:00" to Slot(),
             "09:00" to Slot(),
             "10:00" to Slot(),
@@ -97,7 +98,7 @@ class AdminDentistAssignmentEditActivity : AppCompatActivity() {
             id_dentist = dentistId,
             date = date,
             shiftId = "1",
-            startTime = "08:00",
+            startTime = "07:00",
             endTime = "12:00",
             slots = morningSlots
         )
@@ -106,14 +107,15 @@ class AdminDentistAssignmentEditActivity : AppCompatActivity() {
             "13:00" to Slot(),
             "14:00" to Slot(),
             "15:00" to Slot(),
-            "16:00" to Slot()
+            "16:00" to Slot(),
+            "17:00" to Slot()
         )
         val afternoonShift = Shift(
             id_dentist = dentistId,
             date = date,
             shiftId = "2",
             startTime = "13:00",
-            endTime = "17:00",
+            endTime = "18:00",
             slots = afternoonSlots
         )
 

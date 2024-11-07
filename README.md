@@ -26,6 +26,7 @@ Chức năng:
   + Phân quyền của người dùng (role: user, admin, dentist)
   + Cập nhật chức vụ, chuyên khoa cho dentist
   + Chọn bác sĩ phù hợp cho từng lịch khám
+  + Tạo lịch khám cho dentist
 - Dentist:
   + Cập nhật thông tin người dùng
   + Đổi mật khẩu

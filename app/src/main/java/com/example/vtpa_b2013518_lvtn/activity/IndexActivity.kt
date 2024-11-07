@@ -59,10 +59,6 @@ class IndexActivity : AppCompatActivity() {
         btnTrangChu.setOnClickListener {
             startActivity(Intent(this, IndexActivity::class.java))
         }
-        val btnNews= findViewById<LinearLayout>(R.id.linearNews)
-        btnNews.setOnClickListener {
-            startActivity(Intent(this, NewsActivity::class.java))
-        }
         val btnUsers= findViewById<LinearLayout>(R.id.linearUsers)
         btnUsers.setOnClickListener {
             startActivity(Intent(this, IndexUserActivity::class.java))
@@ -71,20 +67,15 @@ class IndexActivity : AppCompatActivity() {
     private fun showBottomSheet() {
         // Khởi tạo BottomSheetDialog
         val bottomSheetDialog = BottomSheetDialog(this)
-
         // Inflate layout cho BottomSheet
         val view = LayoutInflater.from(this).inflate(R.layout.bottom_sheet_dialog, null)
-
         // Bắt sự kiện đóng BottomSheet khi người dùng click vào nút "Đóng"
         val iVClose = view.findViewById<ImageView>(R.id.iVClose)
         iVClose.setOnClickListener {
             bottomSheetDialog.dismiss() // Đóng BottomSheet
         }
-
         // Gán view cho BottomSheetDialog
         bottomSheetDialog.setContentView(view)
-
-        // Hiển thị BottomSheetDialog
         bottomSheetDialog.show()
     }
 }

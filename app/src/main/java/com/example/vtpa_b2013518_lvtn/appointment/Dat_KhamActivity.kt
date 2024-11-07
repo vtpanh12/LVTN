@@ -39,7 +39,7 @@ class Dat_KhamActivity : AppCompatActivity() {
         }
         val iVBackApp = findViewById<ImageView>(R.id.iVBackApp)
         iVBackApp.setOnClickListener {
-            finish()
+            startActivity(Intent(this, IndexActivity::class.java))
         }
         iVDatKham = findViewById(R.id.iVDatKham)
         tVDatKham = findViewById(R.id.tVDatKham)

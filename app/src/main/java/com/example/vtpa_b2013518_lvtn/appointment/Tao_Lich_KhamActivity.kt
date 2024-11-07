@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.vtpa_b2013518_lvtn.R
+import com.example.vtpa_b2013518_lvtn.activity.IndexActivity
 import com.example.vtpa_b2013518_lvtn.adapter.Appointment
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -53,7 +54,7 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
 
         val iVBackCreate = findViewById<ImageView>(R.id.iVBackCreateApp)
         iVBackCreate.setOnClickListener {
-            finish()
+            startActivity(Intent(this, IndexActivity::class.java))
         }
         // Tạo danh sách các dịch vụ
         val services = arrayOf("Trám răng", "Nhổ răng", "Cạo vôi", "Phục hình", "Chữa tủy", "Tẩy răng")

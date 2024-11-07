@@ -15,7 +15,7 @@ class AppointmentAdapter(private val appointments: List<Appointment>) :
     RecyclerView.Adapter<AppointmentAdapter.AppointmentViewHolder>() {
 
     class AppointmentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val id_app: TextView = view.findViewById(R.id.tVIFAppId)
+        //val id_app: TextView = view.findViewById(R.id.tVIFAppId)
         val email: TextView = view.findViewById(R.id.tVIFEmail)
         val username: TextView = view.findViewById(R.id.tVIFUser)
         val service: TextView = view.findViewById(R.id.tVIFService)
@@ -36,7 +36,7 @@ class AppointmentAdapter(private val appointments: List<Appointment>) :
 
     override fun onBindViewHolder(holder: AppointmentViewHolder, position: Int) {
         val appointment = appointments[position]
-        holder.id_app.text = "Appointment ID: ${appointment.id_app}"
+        //holder.id_app.text = "Appointment ID: ${appointment.id_app}"
         holder.username.text = "Họ và tên: ${appointment.username}"
         holder.email.text = "Email: ${appointment.email}"
         holder.service.text = "Dịch vụ: ${appointment.service}"
@@ -45,8 +45,6 @@ class AppointmentAdapter(private val appointments: List<Appointment>) :
         holder.note.text = "Ghi chú: ${appointment.note}"
         holder.phoneNumber.text = "Số điện thoại: ${appointment.phoneNumber}"
         holder.status.text = "Trạng thái: ${appointment.status}"
-
-
     }
 
     override fun getItemCount() = appointments.size

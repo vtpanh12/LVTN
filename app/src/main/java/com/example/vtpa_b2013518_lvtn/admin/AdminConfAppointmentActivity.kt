@@ -52,7 +52,7 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
 
         btnConfApp.setOnClickListener {
             val shiftId = determineShiftId(hour)
-            Toast.makeText(this, "$service, $date, $shiftId, $hour", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, "$service, $date, $shiftId, $hour", Toast.LENGTH_SHORT).show()
             if (appointmentId != null && service != null && date != null && shiftId != null) {
                 if (hour != null) {
                     selectDentistForAppointment(service, date, shiftId, hour, appointmentId)
@@ -64,7 +64,8 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
     }
 
     // Hiển thị thông tin cuộc hẹn
-    private fun displayAppointmentInfo(email: String?, appointmentId: String?, userId: String?, username: String?, service: String?, date: String?, hour: String?, note: String?, phoneNumber: String?, status: String?) {
+    private fun displayAppointmentInfo(email: String?, appointmentId: String?, userId: String?,
+        username: String?, service: String?, date: String?, hour: String?, note: String?, phoneNumber: String?, status: String?) {
         findViewById<TextView>(R.id.tVAConfAppEmail).text = "Email: $email"
         findViewById<TextView>(R.id.tVAConfAppAppId).text = "Appointment ID: $appointmentId"
         findViewById<TextView>(R.id.tVAConfAppUserId).text = "User ID: $userId"
@@ -92,6 +93,7 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
             .addOnSuccessListener { dentists ->
                 //list dentist co lich trong
                 val availableDentists = mutableListOf<String>()
+                val availableDentistsDetails = mutableListOf<Triple<String, String, String>>()
 
                 // Duyệt từng bác sĩ và kiểm tra lịch trống
                 for (dentist in dentists) {
@@ -113,15 +115,16 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
                             val matchingSlotKey = findMatchingSlot(appointmentHour, shift?.slots ?: emptyMap())
                             if (matchingSlotKey != null) {
                                 // Cập nhật slot
-                                Toast.makeText(this, "$dentistName vào giờ $appointmentHour", Toast.LENGTH_SHORT).show()
+                                //Toast.makeText(this, "$dentistName vào giờ $appointmentHour", Toast.LENGTH_SHORT).show()
                                 bookSlot(dentistId, date, shiftId, matchingSlotKey, appointmentId)
                                 availableDentists.add(dentistName)
+                                availableDentistsDetails.add(Triple(dentistName, dentistEmail, dentistPhoneNumber))
                             }
                         }
                         // Kiểm tra tất cả bác sĩ đã được duyệt
                         if (dentist == dentists.last()) {
                             if (availableDentists.isNotEmpty()) {
-                                showDentistSelectionDialog(availableDentists)
+                                showDentistSelectionDialog(availableDentists, availableDentistsDetails)
                             } else {
 
                                 Toast.makeText(this, "Không có bác sĩ phù hợp", Toast.LENGTH_SHORT).show()
@@ -204,7 +207,7 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
 
                     // Cập nhật lại ca trực với slot đã được đặt
                     slotRef.update("slots", slots).addOnSuccessListener {
-                        Toast.makeText(this, "Đặt lịch thành công!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Đã cập nhật ca trực!", Toast.LENGTH_SHORT).show()
                     }.addOnFailureListener {
                         Toast.makeText(this, "Lỗi khi cập nhật slot", Toast.LENGTH_SHORT).show()
                     }
@@ -216,23 +219,33 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
     }
 
     // Hiển thị danh sách bác sĩ phù hợp trong Dialog
-    private fun showDentistSelectionDialog(availableDentists: List<String>) {
+    private fun showDentistSelectionDialog(availableDentists: List<String>, availableDentistsDetails: List<Triple<String, String, String>>) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Chọn bác sĩ")
         builder.setItems(availableDentists.toTypedArray()) { _, which ->
-            //ten bac si
-            val selectedDentist = availableDentists[which]
-            Toast.makeText(this, "Bác sĩ đã chọn: $selectedDentist", Toast.LENGTH_SHORT).show()
+            // Lấy thông tin của bác sĩ đã chọn
+            val selectedDentist = availableDentistsDetails[which]
+            val dentistName = selectedDentist.first
+            val dentistEmail = selectedDentist.second
+            val dentistPhoneNumber = selectedDentist.third
+
+            // Cập nhật các TextView trên giao diện với thông tin bác sĩ đã chọn
+            findViewById<TextView>(R.id.tVAConfAppDentist).text = "Nha sĩ: $dentistName"
+            //findViewById<TextView>(R.id.tVAConfAppDentistEmail).text = " |  $dentistEmail"
+            findViewById<TextView>(R.id.tVAConfAppDentistPhoneNumber).text = " |  $dentistPhoneNumber"
+
+            Toast.makeText(this, "Bác sĩ đã chọn: $dentistName", Toast.LENGTH_SHORT).show()
         }
         builder.setNegativeButton("Hủy") { dialog, _ -> dialog.dismiss() }
         builder.create().show()
     }
+
     private fun confAppointment(appointmentId: String, userCurrentId: String, dentistId: String) {
         db.collection("appointments").document(appointmentId)
             .update("status", "Đặt lịch thành công", "id_dentist", dentistId )
             .addOnSuccessListener {
                 //sendCancellationNotification(userId)
-                Toast.makeText(this, "Đặt lịch thành công!: $appointmentId", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "Đặt lịch thành công!: $appointmentId", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener { e ->
                 Log.w("CancelAppointment", "Error updating document", e)

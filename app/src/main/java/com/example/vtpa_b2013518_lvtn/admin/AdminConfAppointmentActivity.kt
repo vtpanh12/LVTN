@@ -114,11 +114,12 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
                             val shift = shiftDoc.toObject(Shift::class.java)
                             val matchingSlotKey = findMatchingSlot(appointmentHour, shift?.slots ?: emptyMap())
                             if (matchingSlotKey != null) {
-                                // Cập nhật slot
-                                //Toast.makeText(this, "$dentistName vào giờ $appointmentHour", Toast.LENGTH_SHORT).show()
-                                bookSlot(dentistId, date, shiftId, matchingSlotKey, appointmentId)
-                                availableDentists.add(dentistName)
-                                availableDentistsDetails.add(Triple(dentistName, dentistEmail, dentistPhoneNumber))
+                                val slotBooked = bookSlot(dentistId, date, shiftId, matchingSlotKey, appointmentId)
+                                if (slotBooked) {
+                                    availableDentists.add(dentistName)
+                                    availableDentistsDetails.add(Triple(dentistName, dentistEmail, dentistPhoneNumber))
+                                    //break // Dừng lại nếu tìm thấy bác sĩ phù hợp
+                                }
                             }
                         }
                         // Kiểm tra tất cả bác sĩ đã được duyệt
@@ -126,7 +127,6 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
                             if (availableDentists.isNotEmpty()) {
                                 showDentistSelectionDialog(availableDentists, availableDentistsDetails)
                             } else {
-
                                 Toast.makeText(this, "Không có bác sĩ phù hợp", Toast.LENGTH_SHORT).show()
                             }
                         }
@@ -186,37 +186,43 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
         }
 
     // Cập nhật slot khi đặt lịch
-    private fun bookSlot(dentistId: String, date: String, shiftId: String, slotKey: String, appointmentId: String) {
+
+    private fun bookSlot(dentistId: String, date: String, shiftId: String, slotKey: String, appointmentId: String): Boolean {
         val slotRef = db.collection("dentists").document(dentistId)
             .collection("shifts").document("${date}_$shiftId")
-        //lay du lieu shifts (date_shiftId)
+        var slotBooked = false
+
+        // Lấy dữ liệu ca trực (shift)
         slotRef.get().addOnSuccessListener { shiftDoc ->
             if (shiftDoc.exists()) {
                 val shift = shiftDoc.toObject(Shift::class.java)
-                //lay slot tu Shift (data class slot)
-                //toMutableMap: cho phep chinh sua ca slot
-                //slotKey: la gio{isBooker, id_app}
                 val slots = shift?.slots?.toMutableMap() ?: mutableMapOf()
-                val selecSlot = slots[slotKey]
-                if (selecSlot?.isBooked == true){
-                    Toast.makeText(this, "Lịch khám đã đầy!", Toast.LENGTH_SHORT).show()
-                }
-                else{
-                    slots[slotKey]?.isBooked = true     //danh dau da dat lich kham (true)
+                val selectedSlot = slots[slotKey]
+
+                if (selectedSlot?.isBooked == true) {
+                    // Slot đã đầy, báo về false để hàm gọi bỏ qua bác sĩ này
+                    slotBooked = false
+                } else {
+                    slots[slotKey]?.isBooked = true     // Đánh dấu đã đặt lịch khám
                     slots[slotKey]?.id_app = appointmentId // Gán ID lịch khám
 
                     // Cập nhật lại ca trực với slot đã được đặt
                     slotRef.update("slots", slots).addOnSuccessListener {
                         Toast.makeText(this, "Đã cập nhật ca trực!", Toast.LENGTH_SHORT).show()
+                        slotBooked = true // Đặt thành công
                     }.addOnFailureListener {
                         Toast.makeText(this, "Lỗi khi cập nhật slot", Toast.LENGTH_SHORT).show()
+                        slotBooked = false
                     }
                 }
             }
         }.addOnFailureListener {
             Toast.makeText(this, "Lỗi khi truy vấn ca trực", Toast.LENGTH_SHORT).show()
+            slotBooked = false
         }
+        return slotBooked
     }
+
 
     // Hiển thị danh sách bác sĩ phù hợp trong Dialog
     private fun showDentistSelectionDialog(availableDentists: List<String>, availableDentistsDetails: List<Triple<String, String, String>>) {

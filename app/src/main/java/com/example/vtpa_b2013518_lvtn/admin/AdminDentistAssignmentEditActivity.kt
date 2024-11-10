@@ -75,6 +75,7 @@ class AdminDentistAssignmentEditActivity : AppCompatActivity() {
                 // Kiểm tra nếu có dentistId và selectedDate đã được chọn
                 if (dentistId != null) {
                     addEmptyShiftsForDentist(dentistId, date)
+                    Toast.makeText(this, "Đã cập nhật lịch làm việc thành công!",Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(
                         this,

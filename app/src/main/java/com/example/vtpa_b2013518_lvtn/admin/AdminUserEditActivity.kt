@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.vtpa_b2013518_lvtn.R
+import com.example.vtpa_b2013518_lvtn.adapter.Appointment
+import com.example.vtpa_b2013518_lvtn.adapter.Shift
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.firestore
@@ -86,3 +88,44 @@ class AdminUserEditActivity : AppCompatActivity() {
 
 
 }
+//private fun getInfoAppointment(
+//    appointmentId: String,
+//    dentistId: String,
+//    date: String,
+//    shiftId: String
+//) {
+//    val slot = db.collection("dentists").document(dentistId)
+//        .collection("shifts").document("${date}_$shiftId")
+//    slot.get().addOnSuccessListener { shiftDoc ->
+//        //kiem tra xem shift co ton tai khong
+//        if (shiftDoc.exists()) {
+//            val shift = shiftDoc.toObject(Shift::class.java)
+//            //fliterValues: loc cac slot da duoc dat
+//            val bookedAppointments =
+//                shift?.slots?.filterValues { it.isBooked == true } // Lọc các slot đã đặt
+//            // forEach Duyệt qua tung slot đã được đặt và lấy thông tin appointment
+//            bookedAppointments?.forEach { (slotKey, slot) ->
+//                val appointmentId = slot.id_app
+//
+//                if (appointmentId != null) {
+//                    db.collection("appointments").document(appointmentId).get()
+//                        .addOnSuccessListener { appointmentDoc ->
+//                            if (appointmentDoc.exists()) {
+//                                val appointment =
+//                                    appointmentDoc.toObject(Appointment::class.java)
+//                                // Xử lý appointment ở đây, ví dụ: hiển thị hoặc thêm vào danh sách
+//                                Log.d("Appointment", "Cuộc hẹn: ${appointment}")
+//                            }
+//                        }.addOnFailureListener {
+//                            Log.e(
+//                                "Error",
+//                                "Không thể lấy thông tin cuộc hẹn với ID: $appointmentId"
+//                            )
+//                        }
+//                }
+//            }
+//        }
+//    }.addOnFailureListener {
+//        Log.e("Error", "Lỗi khi truy vấn ca trực")
+//    }
+//}

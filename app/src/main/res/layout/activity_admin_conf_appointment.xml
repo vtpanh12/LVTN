@@ -132,15 +132,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nha sĩ:" />
-            <TextView
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="5dp"
-                android:textSize="18sp"
-                android:id="@+id/tVAConfAppDentistPhoneNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="|" />
             >
         </LinearLayout>
     </LinearLayout>

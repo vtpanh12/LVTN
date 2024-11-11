@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vtpa_b2013518_lvtn.R
 import com.example.vtpa_b2013518_lvtn.adapter.Appointment
+import com.example.vtpa_b2013518_lvtn.adapter.Dentist
+import com.example.vtpa_b2013518_lvtn.adapter.DentistConfAppAdapter
 import com.example.vtpa_b2013518_lvtn.adapter.Shift
 import com.example.vtpa_b2013518_lvtn.adapter.Slot
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -134,7 +136,7 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
                             val selectedSlot = slots[slotKey]
                             if (selectedSlot?.isBooked == false) {
                                 availableDentists.add(dentistId) // Thêm bác sĩ vào danh sách
-                                Toast.makeText(this, "$dentistId", Toast.LENGTH_SHORT).show()
+                                //Toast.makeText(this, "$dentistId", Toast.LENGTH_SHORT).show()
                             }
                         }
 
@@ -157,16 +159,89 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
             }
     }
 
-    private fun showDentistSelectionDialog(availableDentists: List<String>) {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Chọn bác sĩ")
-        builder.setItems(availableDentists.toTypedArray()) { _, which ->
-            val selectedDentist = availableDentists[which]
-            // Cập nhật các TextView trên giao diện với thông tin bác sĩ đã chọn
-            findViewById<TextView>(R.id.tVAConfAppDentist).text = "Nha sĩ: $selectedDentist"
-        }
-        builder.setNegativeButton("Hủy") { dialog, _ -> dialog.dismiss() }
-        builder.create().show()
+//    private fun showDentistSelectionDialog(availableDentists: List<String>) {
+//        val dentistDetails = mutableListOf<String>()
+//        var dentistsLoaded = 0
+//
+//        // Lấy thông tin chi tiết của từng bác sĩ dựa trên id
+//        for (dentistId in availableDentists) {
+//            db.collection("dentists").document(dentistId).get()
+//                .addOnSuccessListener { document ->
+//                    dentistsLoaded++
+//                    if (document.exists()) {
+//                        // Lấy thông tin chi tiết của bác sĩ từ tài liệu
+//                        val dentistName = document.getString("username") ?: "N/A"
+//                        val specialty = document.getString("specialty") ?: "N/A"
+//                        val phoneNumber = document.getString("phoneNumber") ?: "N/A"
+//                        val email = document.getString("email") ?: "N/A"
+//
+//                        // Thêm thông tin bác sĩ vào danh sách
+//                        val dentistInfo = "Tên: $dentistName|$specialty|$phoneNumber| $email"
+//
+//                        dentistDetails.add(dentistInfo)
+//                    } else {
+//                        dentistDetails.add("Thông tin không có sẵn cho bác sĩ ID: $dentistId")
+//                    }
+//
+//                    // Khi đã tải hết thông tin tất cả bác sĩ
+//                    if (dentistsLoaded == availableDentists.size) {
+//                        // Hiển thị dialog với danh sách bác sĩ
+//                        val builder = AlertDialog.Builder(this)
+//                        builder.setTitle("Chọn bác sĩ")
+//                        builder.setItems(dentistDetails.toTypedArray()) { _, which ->
+//                            // Khi bác sĩ được chọn
+//                            val selectedDentist = availableDentists[which]
+//                            findViewById<TextView>(R.id.tVAConfAppDentist).text = "Nha sĩ: $selectedDentist"
+//                        }
+//                        builder.setNegativeButton("Hủy") { dialog, _ -> dialog.dismiss() }
+//                        builder.create().show()
+//                    }
+//                }
+//                .addOnFailureListener {
+//                    Toast.makeText(this, "Lỗi khi lấy thông tin bác sĩ", Toast.LENGTH_SHORT).show()
+//                }
+//        }
+//    }
+private fun showDentistSelectionDialog(availableDentists: List<String>) {
+    val dentistList = mutableListOf<Dentist>()
+    val dialog = BottomSheetDialog(this)
+    val view = layoutInflater.inflate(R.layout.bottom_sheet_dialog_confapp, null)
+    val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewDentists)
+    recyclerView.layoutManager = LinearLayoutManager(this)
+
+    // Lấy thông tin chi tiết của từng bác sĩ dựa trên id và thêm vào dentistList
+    for (dentistId in availableDentists) {
+        db.collection("dentists").document(dentistId).get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val dentist = Dentist(
+                        id_dentist = dentistId,
+                        username = document.getString("username") ?: "N/A",
+                        specialty = document.getString("specialty") ?: "N/A",
+                        phoneNumber = document.getString("phoneNumber") ?: "N/A",
+                        email = document.getString("email") ?: "N/A"
+                    )
+                    dentistList.add(dentist)
+
+                    if (dentistList.size == availableDentists.size) {
+                        // Sau khi lấy đủ thông tin các bác sĩ
+                        val adapter = DentistConfAppAdapter(dentistList) { selectedDentist ->
+                            // Cập nhật TextView trên giao diện với thông tin bác sĩ đã chọn
+                            findViewById<TextView>(R.id.tVAConfAppDentist).text = "Nha sĩ: ${selectedDentist.username}"
+                            dialog.dismiss()
+                        }
+                        recyclerView.adapter = adapter
+                        dialog.setContentView(view)
+                        dialog.show()
+                    }
+                }
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Lỗi khi lấy thông tin bác sĩ", Toast.LENGTH_SHORT).show()
+            }
     }
+}
+
+
 }
 

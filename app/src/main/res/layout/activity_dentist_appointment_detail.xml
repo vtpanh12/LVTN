@@ -13,7 +13,7 @@
         android:background="@drawable/btn_custom1"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="330dp">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_marginBottom="10dp"
             android:background="@drawable/item_bg"
@@ -22,7 +22,7 @@
             android:layout_height="60dp">
 
             <ImageView
-                android:id="@+id/iVBackAdminApp"
+                android:id="@+id/iVBackDentistAppDetail"
                 android:layout_width="40dp"
                 android:layout_height="36dp"
                 android:layout_margin="15dp"
@@ -30,7 +30,7 @@
                 app:srcCompat="@drawable/back" />
             <TextView
                 android:paddingRight="30dp"
-                android:id="@+id/tVACAppEmail"
+                android:id="@+id/tVDentistAppDetailEmail"
                 android:layout_width="231dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -45,23 +45,7 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:id="@+id/tVACAppUserId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="ID Khách hàng:" />
-        <TextView
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:id="@+id/tVACAppAppId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="ID Lịch khám:" />
-        <TextView
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:id="@+id/tVACAppUser"
+            android:id="@+id/tVDentistAppDetailUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
@@ -70,7 +54,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:textSize="18sp"
-            android:id="@+id/tVACAppService"
+            android:id="@+id/tVDentistAppDetailService"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dịch vụ:" />
@@ -79,7 +63,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:textSize="18sp"
-            android:id="@+id/tVACAppDate"
+            android:id="@+id/tVDentistAppDetailDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ngày hẹn:" />
@@ -88,7 +72,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:textSize="18sp"
-            android:id="@+id/tVACAppHour"
+            android:id="@+id/tVDentistAppDetailHour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Giờ hẹn:" />
@@ -97,7 +81,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:textSize="18sp"
-            android:id="@+id/tVACAppPhoneNumber"
+            android:id="@+id/tVDentistAppDetailPhoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Số điện thoại:" />
@@ -105,16 +89,16 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:textSize="18sp"
-            android:id="@+id/tVACAppNote"
+            android:id="@+id/tVDentistAppDetailNote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ghi chú:" />
         <TextView
             android:layout_marginLeft="20dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="15dp"
             android:layout_marginTop="5dp"
             android:textSize="18sp"
-            android:id="@+id/tVACAppStatus"
+            android:id="@+id/tVDentistAppDetailStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Trạng thái" />
@@ -122,14 +106,14 @@
 
 
     <Button
-        android:id="@+id/btnCancelApp"
+        android:id="@+id/btnDentistAppDetail"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:layout_margin="20dp"
         android:layout_marginRight="20dp"
         android:textSize="20sp"
         android:background="@drawable/btn_custom"
-        android:text="Xác nhận hủy lịch khám"
+        android:text="Tạo hồ sơ bệnh án"
         app:backgroundTint="@null" />
 
 </LinearLayout>

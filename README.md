@@ -2,7 +2,7 @@
 Chức năng:
 - Đăng nhập
 - Đăng ký bằng email
-- Xác thực email
+  + Xác thực email
   + Đếm ngược 60s để gửi lại email xác thực
 - Quên mật khẩu
     + Gửi email để đặt lại mật khẩu cho người dùng
@@ -33,3 +33,4 @@ Chức năng:
   + Đăng xuất
   + Xem lịch làm việc
   + Xem thông tin lịch khám trong ngày
+  + Xem thông tin chi tiết của từng lịch khám nhận được

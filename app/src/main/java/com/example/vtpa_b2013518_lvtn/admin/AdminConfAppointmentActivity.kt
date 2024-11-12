@@ -144,11 +144,11 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
                     // Lấy id_dentist
                     val dentistId = dentist.id
                     // Truy cập vào lịch làm việc của nha sĩ
-                    val shift = db.collection("dentists").document(dentistId)
+                    val shiftRef = db.collection("dentists").document(dentistId)
                         .collection("shifts").document("${date}_$shiftId")
 
                     // Lấy thông tin của shift
-                    shift.get().addOnSuccessListener { shiftDoc ->
+                    shiftRef.get().addOnSuccessListener { shiftDoc ->
                         dentistsChecked++ // Tăng số bác sĩ đã kiểm tra
                         if (shiftDoc.exists()) {
                             val shift = shiftDoc.toObject(Shift::class.java)
@@ -164,7 +164,7 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
                         if (dentistsChecked == dentists.size()) {
                             if (availableDentists.isNotEmpty()) {
                                 // Nếu danh sách bác sĩ có sẵn không rỗng -> hiển thị
-                                showDentistSelectionDialog(availableDentists)
+                                showDentistSelectionDialog(availableDentists,hour,date)
                             } else {
                                 // Nếu danh sách bác sĩ rỗng, hiện thông báo
                                 Toast.makeText(this, "Không có bác sĩ phù hợp", Toast.LENGTH_SHORT).show()
@@ -178,7 +178,7 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
                 Toast.makeText(this, "Lỗi khi truy vấn bác sĩ", Toast.LENGTH_SHORT).show()
             }
     }
-    private fun showDentistSelectionDialog(availableDentists: List<String>) {
+    private fun showDentistSelectionDialog(availableDentists: List<String>, hour: String, date: String) {
         val dentistList = mutableListOf<Dentist>()
         val dialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.bottom_sheet_dialog_confapp, null)
@@ -208,6 +208,10 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
                                     updateAppointment(appointmentId, selectedDentist.id_dentist!!)
                                     //Toast.makeText(this, "${selectedDentist.username}", Toast.LENGTH_SHORT).show()
                                     //getInfoDentist(selectedDentist.id_dentist!!)
+                                    val shiftId = determineShiftId(hour)
+                                    if (shiftId != null) {
+                                        bookSlot(selectedDentist.id_dentist!!, date, shiftId, appointmentId, hour)
+                                    }
                                 }
                                 dialog.dismiss()
                             }
@@ -232,6 +236,33 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Log.w("CancelAppointment", "Error updating document", e)
             }
+    }
+
+    private fun bookSlot(dentistId: String, date: String, shiftId: String,
+                         appointmentId: String, hour: String) {
+        val shiftRef = db.collection("dentists").document(dentistId)
+            .collection("shifts").document("${date}_$shiftId")
+        shiftRef.get().addOnSuccessListener { shiftDoc ->
+            if (shiftDoc.exists()) {
+                val shift = shiftDoc.toObject(Shift::class.java)
+                val slots = shift?.slots?.toMutableMap() ?: mutableMapOf()
+                val slotKey = findMatchingSlot(hour, shift?.slots ?: emptyMap())
+                val selectedSlot = slots[slotKey]
+                if (selectedSlot != null) {
+                    selectedSlot.isBooked = true
+                    selectedSlot.id_app = appointmentId
+
+                    // Cập nhật lại shift với slot đã được đặt
+                    shiftRef.update("slots", slots).addOnSuccessListener {
+                        Toast.makeText(this, "Đã cập nhật ca trực!", Toast.LENGTH_SHORT).show()
+                    }.addOnFailureListener {
+                        Toast.makeText(this, "Lỗi khi cập nhật slot", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }.addOnFailureListener {
+            Toast.makeText(this, "Lỗi khi truy vấn ca trực", Toast.LENGTH_SHORT).show()
+        }
     }
 }
 

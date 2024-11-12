@@ -56,14 +56,35 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
         displayAppointmentInfo(email, appointmentId, userId, username, service,
             date, hour, note, phoneNumber, status
         )
+//
+        if (appointmentId != null) {
+            db.collection("appointments").document(appointmentId).get()
+                .addOnSuccessListener { app ->
+                    var dentistId = app.getString("id_dentist")
+                    if (dentistId != null) {
+                        db.collection("dentists").document(dentistId).get()
+                            .addOnSuccessListener { doc ->
+                                if (doc!=null){
+                                    var username = doc.getString("username")
+                                    findViewById<TextView>(R.id.tVAConfAppDentist).text = "Nha sĩ: $username"
+                                } else{
+                                    Log.d("TAG", "No such document")
+                                }
+                            }.addOnFailureListener{
+                                Toast.makeText(this, "Lỗi khi tải thông tin:", Toast.LENGTH_SHORT).show()
+                            }
+                    }
+                }.addOnFailureListener{
 
+                }
+        }
         btnConfApp.setOnClickListener {
             //lấy shiftId để chọn là ca sáng hay chiều
             val shiftId = determineShiftId(hour)
             if (appointmentId != null && service != null && date != null && shiftId != null) {
                 if (hour != null) {
                     selectDentist(service, date, shiftId, hour, appointmentId)
-                    Toast.makeText(this, "$service, $date, $shiftId, $hour", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this, "$service, $date, $shiftId, $hour", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 Toast.makeText(this, "Thiếu thông tin để chọn bác sĩ", Toast.LENGTH_SHORT).show()
@@ -139,7 +160,6 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
                                 //Toast.makeText(this, "$dentistId", Toast.LENGTH_SHORT).show()
                             }
                         }
-
                         // Khi duyệt hết tất cả các nha sĩ
                         if (dentistsChecked == dentists.size()) {
                             if (availableDentists.isNotEmpty()) {
@@ -158,90 +178,60 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
                 Toast.makeText(this, "Lỗi khi truy vấn bác sĩ", Toast.LENGTH_SHORT).show()
             }
     }
+    private fun showDentistSelectionDialog(availableDentists: List<String>) {
+        val dentistList = mutableListOf<Dentist>()
+        val dialog = BottomSheetDialog(this)
+        val view = layoutInflater.inflate(R.layout.bottom_sheet_dialog_confapp, null)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewDentists)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        val appointmentId = intent.getStringExtra("appointmentId")
+        // Lấy thông tin chi tiết của từng bác sĩ dựa trên id và thêm vào dentistList
+        for (dentistId in availableDentists) {
+            db.collection("dentists").document(dentistId).get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        val dentist = Dentist(
+                            id_dentist = dentistId,
+                            username = document.getString("username") ?: "N/A",
+                            specialty = document.getString("specialty") ?: "N/A",
+                            phoneNumber = document.getString("phoneNumber") ?: "N/A",
+                            email = document.getString("email") ?: "N/A"
+                        )
+                        dentistList.add(dentist)
 
-//    private fun showDentistSelectionDialog(availableDentists: List<String>) {
-//        val dentistDetails = mutableListOf<String>()
-//        var dentistsLoaded = 0
-//
-//        // Lấy thông tin chi tiết của từng bác sĩ dựa trên id
-//        for (dentistId in availableDentists) {
-//            db.collection("dentists").document(dentistId).get()
-//                .addOnSuccessListener { document ->
-//                    dentistsLoaded++
-//                    if (document.exists()) {
-//                        // Lấy thông tin chi tiết của bác sĩ từ tài liệu
-//                        val dentistName = document.getString("username") ?: "N/A"
-//                        val specialty = document.getString("specialty") ?: "N/A"
-//                        val phoneNumber = document.getString("phoneNumber") ?: "N/A"
-//                        val email = document.getString("email") ?: "N/A"
-//
-//                        // Thêm thông tin bác sĩ vào danh sách
-//                        val dentistInfo = "Tên: $dentistName|$specialty|$phoneNumber| $email"
-//
-//                        dentistDetails.add(dentistInfo)
-//                    } else {
-//                        dentistDetails.add("Thông tin không có sẵn cho bác sĩ ID: $dentistId")
-//                    }
-//
-//                    // Khi đã tải hết thông tin tất cả bác sĩ
-//                    if (dentistsLoaded == availableDentists.size) {
-//                        // Hiển thị dialog với danh sách bác sĩ
-//                        val builder = AlertDialog.Builder(this)
-//                        builder.setTitle("Chọn bác sĩ")
-//                        builder.setItems(dentistDetails.toTypedArray()) { _, which ->
-//                            // Khi bác sĩ được chọn
-//                            val selectedDentist = availableDentists[which]
-//                            findViewById<TextView>(R.id.tVAConfAppDentist).text = "Nha sĩ: $selectedDentist"
-//                        }
-//                        builder.setNegativeButton("Hủy") { dialog, _ -> dialog.dismiss() }
-//                        builder.create().show()
-//                    }
-//                }
-//                .addOnFailureListener {
-//                    Toast.makeText(this, "Lỗi khi lấy thông tin bác sĩ", Toast.LENGTH_SHORT).show()
-//                }
-//        }
-//    }
-private fun showDentistSelectionDialog(availableDentists: List<String>) {
-    val dentistList = mutableListOf<Dentist>()
-    val dialog = BottomSheetDialog(this)
-    val view = layoutInflater.inflate(R.layout.bottom_sheet_dialog_confapp, null)
-    val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewDentists)
-    recyclerView.layoutManager = LinearLayoutManager(this)
-
-    // Lấy thông tin chi tiết của từng bác sĩ dựa trên id và thêm vào dentistList
-    for (dentistId in availableDentists) {
-        db.collection("dentists").document(dentistId).get()
-            .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    val dentist = Dentist(
-                        id_dentist = dentistId,
-                        username = document.getString("username") ?: "N/A",
-                        specialty = document.getString("specialty") ?: "N/A",
-                        phoneNumber = document.getString("phoneNumber") ?: "N/A",
-                        email = document.getString("email") ?: "N/A"
-                    )
-                    dentistList.add(dentist)
-
-                    if (dentistList.size == availableDentists.size) {
-                        // Sau khi lấy đủ thông tin các bác sĩ
-                        val adapter = DentistConfAppAdapter(dentistList) { selectedDentist ->
-                            // Cập nhật TextView trên giao diện với thông tin bác sĩ đã chọn
-                            findViewById<TextView>(R.id.tVAConfAppDentist).text = "Nha sĩ: ${selectedDentist.username}"
-                            dialog.dismiss()
+                        if (dentistList.size == availableDentists.size) {
+                            // Sau khi lấy đủ thông tin các bác sĩ
+                            val adapter = DentistConfAppAdapter(dentistList) { selectedDentist ->
+                                // Cập nhật TextView trên giao diện với thông tin bác sĩ đã chọn
+                                findViewById<TextView>(R.id.tVAConfAppDentist).text = "Nha sĩ: ${selectedDentist.username}"
+                                if (appointmentId != null && selectedDentist.id_dentist != null) {
+                                    updateAppointment(appointmentId, selectedDentist.id_dentist!!)
+                                    //Toast.makeText(this, "${selectedDentist.username}", Toast.LENGTH_SHORT).show()
+                                    //getInfoDentist(selectedDentist.id_dentist!!)
+                                }
+                                dialog.dismiss()
+                            }
+                            recyclerView.adapter = adapter
+                            dialog.setContentView(view)
+                            dialog.show()
                         }
-                        recyclerView.adapter = adapter
-                        dialog.setContentView(view)
-                        dialog.show()
                     }
                 }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Lỗi khi lấy thông tin bác sĩ", Toast.LENGTH_SHORT).show()
+                }
+        }
+    }
+    private fun updateAppointment(appointmentId: String, dentistId: String) {
+        db.collection("appointments").document(appointmentId)
+            .update("id_dentist", dentistId )
+            .addOnSuccessListener {
+                Toast.makeText(this, "Đã cập nhật dentistId vào lịch khám: $appointmentId", Toast.LENGTH_SHORT).show()
+
             }
-            .addOnFailureListener {
-                Toast.makeText(this, "Lỗi khi lấy thông tin bác sĩ", Toast.LENGTH_SHORT).show()
+            .addOnFailureListener { e ->
+                Log.w("CancelAppointment", "Error updating document", e)
             }
     }
-}
-
-
 }
 

@@ -118,22 +118,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Trạng thái" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="5dp"
-                android:textSize="18sp"
-                android:id="@+id/tVAConfAppDentist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nha sĩ:" />
-            >
-        </LinearLayout>
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:id="@+id/tVAConfAppDentist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nha sĩ:" />
     </LinearLayout>
 
 

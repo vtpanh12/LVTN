@@ -56,7 +56,7 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
         displayAppointmentInfo(email, appointmentId, userId, username, service,
             date, hour, note, phoneNumber, status
         )
-//
+
         if (appointmentId != null) {
             db.collection("appointments").document(appointmentId).get()
                 .addOnSuccessListener { app ->

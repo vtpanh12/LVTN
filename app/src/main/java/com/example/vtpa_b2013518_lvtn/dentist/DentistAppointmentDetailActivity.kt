@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -28,30 +29,22 @@ class DentistAppointmentDetailActivity : AppCompatActivity() {
         iVBackDentist.setOnClickListener {
             startActivity(Intent(this, DentistAppointmentActivity::class.java))
         }
+        val appointmentId = intent.getStringExtra("appointmentId")
+        findViewById<TextView>(R.id.tVDentistAppDetailUser).text = "Nha sĩ: $appointmentId"
     }
-//    private fun getInfoApp(dentistId:String, hour:String, date: String, shiftId: String){
-//        val shiftRef = db.collection("dentists").document(dentistId)
-//            .collection("shifts").document("${date}_$shiftId")
-//        shiftRef.get().addOnSuccessListener { shiftDoc ->
-//            if (shiftDoc.exists()) {
-//                val shift = shiftDoc.toObject(Shift::class.java)
-//                val slots = shift?.slots?.toMutableMap() ?: mutableMapOf()
-//                val slotKey = findMatchingSlot(hour, shift?.slots ?: emptyMap())
-//                val selectedSlot = slots[slotKey]
-//                if (selectedSlot != null) {
-//                    selectedSlot.isBooked = true
-//                    selectedSlot.id_app = appointmentId
-//
-//                    // Cập nhật lại shift với slot đã được đặt
-//                    shiftRef.update("slots", slots).addOnSuccessListener {
-//                        Toast.makeText(this, "Đã cập nhật ca trực!", Toast.LENGTH_SHORT).show()
-//                    }.addOnFailureListener {
-//                        Toast.makeText(this, "Lỗi khi cập nhật slot", Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//            }
-//        }.addOnFailureListener {
-//            Toast.makeText(this, "Lỗi khi truy vấn ca trực", Toast.LENGTH_SHORT).show()
-//        }
-//    }
+    private fun displayAppointmentInfo(email: String?, appointmentId: String?, userId: String?,
+                                       username: String?, service: String?, date: String?, hour: String?,
+                                       note: String?, phoneNumber: String?, status: String?
+    ) {
+        findViewById<TextView>(R.id.tVAConfAppEmail).text = "Email: $email"
+        findViewById<TextView>(R.id.tVAConfAppAppId).text = "Appointment ID: $appointmentId"
+        findViewById<TextView>(R.id.tVAConfAppUserId).text = "User ID: $userId"
+        findViewById<TextView>(R.id.tVAConfAppUser).text = "Họ và tên: $username"
+        findViewById<TextView>(R.id.tVAConfAppService).text = "Dịch vụ: $service"
+        findViewById<TextView>(R.id.tVAConfAppDate).text = "Ngày hẹn: $date"
+        findViewById<TextView>(R.id.tVAConfAppHour).text = "Giờ hẹn: $hour"
+        findViewById<TextView>(R.id.tVAConfAppNote).text = "Ghi chú: $note"
+        findViewById<TextView>(R.id.tVAConfAppPhoneNumber).text = "Số điện thoại: $phoneNumber"
+        findViewById<TextView>(R.id.tVAConfAppStatus).text = "Trạng thái: $status"
+    }
 }

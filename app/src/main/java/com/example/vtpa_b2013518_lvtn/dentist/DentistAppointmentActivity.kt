@@ -1,5 +1,6 @@
 package com.example.vtpa_b2013518_lvtn.dentist
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -33,7 +34,9 @@ class DentistAppointmentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dentist_appointment)
 
         val iVBackDentistApp = findViewById<ImageView>(R.id.iVBackDentistApp)
-        iVBackDentistApp.setOnClickListener { finish() }
+        iVBackDentistApp.setOnClickListener {
+            startActivity(Intent(this, DentistIndexActivity::class.java))
+        }
 
         val calendarView = findViewById<CalendarView>(R.id.calendarView)
         val tvSelectedDate = findViewById<TextView>(R.id.tvSelectedDate)

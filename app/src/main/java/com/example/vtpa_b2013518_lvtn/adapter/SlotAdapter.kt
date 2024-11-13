@@ -42,6 +42,7 @@ class SlotAdapter(private var slotList: List<Pair<String, Slot>>) : RecyclerView
         holder.iVDetail.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, DentistAppointmentDetailActivity::class.java)
+            intent.putExtra("appointmentId", slot.id_app) // Truyền id_app sang activity
             context.startActivity(intent)
         }
     }

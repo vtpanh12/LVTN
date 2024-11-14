@@ -43,7 +43,6 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_tao_lich_kham)
         // Khai báo Spinner và Button
         spinnerServices = findViewById(R.id.spinner_DichVu)

@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.vtpa_b2013518_lvtn.R
 import com.example.vtpa_b2013518_lvtn.adapter.Shift
+import com.example.vtpa_b2013518_lvtn.admin.AdminDentistAssignmentEditActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.firestore
@@ -30,9 +31,9 @@ class DentistAppointmentDetailActivity : AppCompatActivity() {
         iVBackDentist.setOnClickListener {
             startActivity(Intent(this, DentistAppointmentActivity::class.java))
         }
+
         btnDentistAppDetail = findViewById(R.id.btnDentistAppDetail)
         val appointmentId = intent.getStringExtra("appointmentId")
-        //findViewById<TextView>(R.id.tVDentistAppDetailUser).text = "Nha sĩ: $appointmentId"
         if (appointmentId != null) {
             db.collection("appointments").document(appointmentId).get()
                 .addOnSuccessListener { app ->
@@ -49,10 +50,18 @@ class DentistAppointmentDetailActivity : AppCompatActivity() {
                     Toast.makeText(this, "Lỗi khi tải thông tin:", Toast.LENGTH_SHORT).show()
                 }
         }
-        btnDentistAppDetail.setOnClickListener {
-            val intent = Intent(this, DentistMedicalRecordActivity::class.java)
-            intent.putExtra("appointmentId",appointmentId ) // Truyền id_app sang activity
-            startActivity(intent)
+            btnDentistAppDetail.setOnClickListener {
+                val intent = Intent(this, DentistMedicalRecordActivity::class.java)
+                intent.putExtra("email", findViewById<TextView>(R.id.tVDentistAppDetailEmail).text.toString())
+                intent.putExtra("username", findViewById<TextView>(R.id.tVDentistAppDetailUser).text.toString())
+                intent.putExtra("service", findViewById<TextView>(R.id.tVDentistAppDetailService).text.toString())
+                intent.putExtra("date", findViewById<TextView>(R.id.tVDentistAppDetailDate).text.toString())
+                intent.putExtra("hour", findViewById<TextView>(R.id.tVDentistAppDetailHour).text.toString())
+                intent.putExtra("note", findViewById<TextView>(R.id.tVDentistAppDetailNote).text.toString())
+                intent.putExtra("phoneNumber", findViewById<TextView>(R.id.tVDentistAppDetailPhoneNumber).text.toString())
+                intent.putExtra("status", findViewById<TextView>(R.id.tVDentistAppDetailStatus).text.toString())
+                startActivity(intent)
+
         }
     }
     private fun displayAppointmentInfo(email: String?, username: String?, service: String?,

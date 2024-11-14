@@ -185,50 +185,53 @@
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="15dp"
                     android:textSize="18sp"
-                    android:id="@+id/tVDentistMedicalRecordDates"
+                    android:id="@+id/tVDates"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ngày tạo hồ sơ bệnh án:" />
-                <EditText
-                    android:id="@+id/eTDentistMedicalRecordTDates"
+                <TextView
+                    android:padding="10dp"
+                    android:id="@+id/tVDentistMedicalRecordDates"
+                    android:textSize="20sp"
+                    android:gravity=""
                     android:layout_width="match_parent"
-                    android:ems="10"
                     android:layout_height="46dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/edittext_user_bg"
-                    android:inputType="text" />
+                    android:text="" />
                 <TextView
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="15dp"
                     android:textSize="18sp"
-                    android:id="@+id/tVDentistMedicalRecordNextAppointment"
+                    android:id="@+id/tVDentistMedicaldNextAppointment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Lịch hẹn cho lần khám tiếp theo (nếu có) :" />
-                <EditText
-                    android:layout_marginBottom="15dp"
-                    android:id="@+id/eTDentistMedicalRecordTNextAppointment"
+                <TextView
+                    android:padding="10dp"
+                    android:id="@+id/tVDentistMedicalRecordNextAppointment"
+                    android:textSize="20sp"
+                    android:gravity=""
                     android:layout_width="match_parent"
-                    android:ems="10"
                     android:layout_height="46dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/edittext_user_bg"
-                    android:inputType="text" />
+                    android:text="" />
             </LinearLayout>
         </ScrollView>
-
-
 
     </LinearLayout>
 
     <Button
         android:id="@+id/btnDentistMedicalRecord"
         android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_margin="20dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginRight="20dp"
         android:textSize="20sp"
         android:background="@drawable/btn_custom"

@@ -10,5 +10,5 @@ data class MedicalRecord(
     val prescription: String = "",        // Đơn thuốc
     val notes: String = "",               // Ghi chú bổ sung từ nha sĩ
     val date: String = "",                // Ngày tạo hồ sơ bệnh án
-    val nextAppointment: String? = null   // Ngày hẹn lần sau (nếu có)
+    val nextAppointment: String = ""   // Ngày hẹn lần sau (nếu có)
 )

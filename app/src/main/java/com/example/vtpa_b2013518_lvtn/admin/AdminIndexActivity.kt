@@ -67,7 +67,7 @@ class AdminIndexActivity : AppCompatActivity() {
             startActivity(Intent(this, AdminDentistAssignmentActivity::class.java))
         }
         val tVAssignment = findViewById<TextView>(R.id.tVAdminAssignment)
-        tVAuth.setOnClickListener {
+        tVAssignment.setOnClickListener {
             startActivity(Intent(this, AdminDentistAssignmentActivity::class.java))
         }
 

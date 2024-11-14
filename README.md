@@ -16,6 +16,7 @@ Chức năng:
   + Xem thông tin của các dịch vụ
   + Đổi mật khẩu
   + Đăng xuất
+  + Xem hồ sơ bệnh án của bản thân
 - Admin:
   + Cập nhật thông tin người dùng
   + Đổi mật khẩu
@@ -27,6 +28,7 @@ Chức năng:
   + Cập nhật chức vụ, chuyên khoa cho dentist
   + Chọn bác sĩ phù hợp cho từng lịch khám
   + Tạo lịch khám cho dentist
+  + Truy cập vào hồ sơ bệnh án của khách hàng
 - Dentist:
   + Cập nhật thông tin người dùng
   + Đổi mật khẩu
@@ -34,3 +36,5 @@ Chức năng:
   + Xem lịch làm việc
   + Xem thông tin lịch khám trong ngày
   + Xem thông tin chi tiết của từng lịch khám nhận được
+  + Tạo hồ sơ bệnh án cho khách hàng
+  + Xem hồ sơ bệnh án của khách hàng (cho phép chỉnh sửa)

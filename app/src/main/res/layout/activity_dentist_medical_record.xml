@@ -170,7 +170,7 @@
                     android:id="@+id/tVDentistMedicalRecordNotes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ghi chú bổ sung của nha sĩ:" />
+                    android:text="Ghi chú bổ sung của nha sĩ (nếu có):" />
                 <EditText
                     android:id="@+id/eTDentistMedicalRecordNotes"
                     android:layout_width="match_parent"

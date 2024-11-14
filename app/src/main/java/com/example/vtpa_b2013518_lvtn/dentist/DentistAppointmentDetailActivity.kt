@@ -60,6 +60,7 @@ class DentistAppointmentDetailActivity : AppCompatActivity() {
                 intent.putExtra("note", findViewById<TextView>(R.id.tVDentistAppDetailNote).text.toString())
                 intent.putExtra("phoneNumber", findViewById<TextView>(R.id.tVDentistAppDetailPhoneNumber).text.toString())
                 intent.putExtra("status", findViewById<TextView>(R.id.tVDentistAppDetailStatus).text.toString())
+                intent.putExtra("appointmentId", appointmentId)
                 startActivity(intent)
 
         }

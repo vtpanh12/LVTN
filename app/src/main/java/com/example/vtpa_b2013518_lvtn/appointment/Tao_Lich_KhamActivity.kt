@@ -305,7 +305,8 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
         // Kiểm tra xem người dùng có tồn tại không và trả về email
         return user?.email
     }
-    private fun saveAppointment(service: String, date: String, hour: String, note: String, username: String, phoneNumber: String) {
+    private fun saveAppointment(service: String, date: String, hour: String, note: String,
+                                username: String, phoneNumber: String) {
         val email = getEmail()
         val appointment = Appointment(
             id_app = "",
@@ -336,7 +337,6 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
             .update("id_app", appointmentId)
             .addOnSuccessListener {
                 Toast.makeText(this, "Lịch hẹn đã được tạo với ID: $appointmentId", Toast.LENGTH_SHORT).show()
-
                 db.collection("appointments").document(appointmentId)
                     .get()
                     .addOnSuccessListener { document ->

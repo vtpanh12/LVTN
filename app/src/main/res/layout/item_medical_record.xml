@@ -46,7 +46,7 @@
 
     <TextView
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:textSize="18sp"
         android:id="@+id/tVMRPhoneNumber"
         android:layout_width="wrap_content"
@@ -55,7 +55,7 @@
 
     <TextView
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:textSize="18sp"
         android:id="@+id/tVMRTime"
         android:layout_width="wrap_content"

@@ -24,7 +24,7 @@ class AdminDentistAssignmentEditActivity : AppCompatActivity() {
     private lateinit var btnUpdateDentistAss: Button
     private lateinit var auth: FirebaseAuth
     private val db = Firebase.firestore
-    val userCurrentId = FirebaseAuth.getInstance().currentUser?.uid
+        val userCurrentId = FirebaseAuth.getInstance().currentUser?.uid
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_dentist_assignment_edit)

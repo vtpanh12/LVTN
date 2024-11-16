@@ -19,6 +19,14 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="50dp">
+            <ImageView
+                android:id="@+id/iVBackAMREdit"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="15dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.01"
+                app:srcCompat="@drawable/back" />
 
             <TextView
                 android:id="@+id/tVAMREEmail"
@@ -27,7 +35,6 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:text="Email:"
-                android:paddingLeft="20dp"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
         </LinearLayout>

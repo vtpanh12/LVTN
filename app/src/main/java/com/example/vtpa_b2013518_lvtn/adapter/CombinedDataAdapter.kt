@@ -38,7 +38,7 @@ class CombinedDataAdapter(private val data: List<CombinedData>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         holder.email.text = "Email: ${item.appointment.email}"
-        holder.username.text = "Họ và tên: ${item.appointment.username}"
+        holder.username.text = "Họ và tên khách hàng: ${item.appointment.username}"
         holder.time.text = "Thời gian: "+  "${item.appointment.date}  | ${item.appointment.hour}"
         holder.phoneNumber.text="Số điện thoại: ${item.appointment.phoneNumber}"
         holder.diagnosis.text = "Chẩn đoán: ${item.medicalrecord.diagnosis}"
@@ -60,8 +60,10 @@ class CombinedDataAdapter(private val data: List<CombinedData>) :
             intent.putExtra("dentistName", item.dentist.username)
             intent.putExtra("treatment", item.medicalrecord.treatment)
             intent.putExtra("dates", item.medicalrecord.date)
-            intent.putExtra("notes",item.medicalrecord.prescription
-                    + item.medicalrecord.notes +item.medicalrecord.nextAppointment)
+            intent.putExtra("id_mr", item.medicalrecord.id_mr)
+            intent.putExtra("prescription", item.medicalrecord.prescription)
+            intent.putExtra("nextAppointment", item.medicalrecord.nextAppointment)
+            intent.putExtra("notes", item.medicalrecord.notes)
             context.startActivity(intent)
         }
     }

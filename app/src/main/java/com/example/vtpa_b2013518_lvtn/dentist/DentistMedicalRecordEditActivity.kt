@@ -1,7 +1,9 @@
 package com.example.vtpa_b2013518_lvtn.dentist
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -12,4 +14,5 @@ class DentistMedicalRecordEditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dentist_medical_record_edit)
     }
+
 }

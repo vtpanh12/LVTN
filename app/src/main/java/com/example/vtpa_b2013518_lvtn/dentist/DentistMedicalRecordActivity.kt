@@ -144,7 +144,8 @@ class DentistMedicalRecordActivity : AppCompatActivity() {
             date = date,
             notes = notes,
             nextAppointment = nextAppointment,
-            status = "Đã khám"
+            status = "Đã khám",
+            price = ""
         )
 
         db.collection("medicalrecords")

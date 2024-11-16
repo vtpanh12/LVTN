@@ -168,7 +168,7 @@
 
             <ImageView
                 android:id="@+id/iVAdminAssignment"
-                android:layout_width="wrap_content"
+                android:layout_width="84dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
@@ -188,7 +188,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearDentist1"
+            android:id="@+id/linearAdminMedicalRecord"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
@@ -196,15 +196,29 @@
             android:background="@drawable/custom_view"
             android:orientation="vertical">
 
+            <ImageView
+                android:id="@+id/iVAdminMedicalRecord"
+                android:layout_width="wrap_content"
+                android:layout_height="66dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:backgroundTint="@null"
+                app:srcCompat="@drawable/medical_record" />
 
-
+            <TextView
+                android:id="@+id/tVAdminMedicalRecord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hồ sơ bệnh án"
+                android:textAlignment="center"
+                android:textSize="25sp" />
 
         </LinearLayout>
 
-
     </LinearLayout>
-
-
 
     <LinearLayout
         android:id="@+id/linearLayout2"

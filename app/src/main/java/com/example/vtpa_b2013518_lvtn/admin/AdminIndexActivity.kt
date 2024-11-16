@@ -70,6 +70,17 @@ class AdminIndexActivity : AppCompatActivity() {
         tVAssignment.setOnClickListener {
             startActivity(Intent(this, AdminDentistAssignmentActivity::class.java))
         }
-
+        val linearMedicalRecord= findViewById<LinearLayout>(R.id.linearAdminMedicalRecord)
+        linearMedicalRecord.setOnClickListener {
+            startActivity(Intent(this, AdminMedicalRecordActivity::class.java))
+        }
+        val iVMedicalRecord = findViewById<ImageView>(R.id.iVAdminMedicalRecord)
+        iVMedicalRecord.setOnClickListener {
+            startActivity(Intent(this, AdminMedicalRecordActivity::class.java))
+        }
+        val tVMedicalRecord = findViewById<TextView>(R.id.tVAdminMedicalRecord)
+        tVMedicalRecord.setOnClickListener {
+            startActivity(Intent(this, AdminMedicalRecordActivity::class.java))
+        }
     }
 }

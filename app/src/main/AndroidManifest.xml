@@ -15,6 +15,12 @@
         android:theme="@style/Theme.Vtpa_b2013518_lvtn"
         tools:targetApi="31">
         <activity
+            android:name=".admin.AdminMedicalRecordEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.AdminMedicalRecordActivity"
+            android:exported="false" />
+        <activity
             android:name=".dentist.DentistMedicalRecordEditActivity"
             android:exported="false" />
         <activity

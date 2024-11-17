@@ -27,9 +27,9 @@ import com.google.firebase.firestore.firestore
 
 class AdminConfAppointmentActivity : AppCompatActivity() {
     private lateinit var btnConfApp: Button
-    private lateinit var auth: FirebaseAuth
+    private lateinit var tVDentist: TextView
     private val db = Firebase.firestore
-    val userCurrentId = FirebaseAuth.getInstance().currentUser?.uid
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,39 +56,27 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
         displayAppointmentInfo(email, appointmentId, userId, username, service,
             date, hour, note, phoneNumber, status
         )
+        tVDentist = findViewById(R.id.tVAConfAppDentist)
+        // Khôi phục thông tin bác sĩ đã chọn
+        val sharedPrefs = getSharedPreferences("SelectedDentist", MODE_PRIVATE)
+        val dentistName = sharedPrefs.getString("dentistName", null)
+        val dentistEmail = sharedPrefs.getString("dentistEmail", null)
 
-        if (appointmentId != null) {
-            db.collection("appointments").document(appointmentId).get()
-                .addOnSuccessListener { app ->
-                    var dentistId = app.getString("id_dentist")
-                    if (dentistId != null) {
-                        db.collection("dentists").document(dentistId).get()
-                            .addOnSuccessListener { doc ->
-                                if (doc!=null){
-                                    var username = doc.getString("username")
-                                    findViewById<TextView>(R.id.tVAConfAppDentist).text = "Nha sĩ: $username"
-                                } else{
-                                    Log.d("TAG", "No such document")
-                                }
-                            }.addOnFailureListener{
-                                Toast.makeText(this, "Lỗi khi tải thông tin:", Toast.LENGTH_SHORT).show()
-                            }
-                    }
-                }.addOnFailureListener{
-
-                }
+        if (dentistName != null && dentistEmail != null) {
+            tVDentist.text = "Nha sĩ: $dentistName ($dentistEmail)"
         }
+
         btnConfApp.setOnClickListener {
             //lấy shiftId để chọn là ca sáng hay chiều
             val shiftId = determineShiftId(hour)
             if (appointmentId != null && service != null && date != null && shiftId != null) {
                 if (hour != null) {
                     selectDentist(service, date, shiftId, hour, appointmentId)
-                    //Toast.makeText(this, "$service, $date, $shiftId, $hour", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 Toast.makeText(this, "Thiếu thông tin để chọn bác sĩ", Toast.LENGTH_SHORT).show()
             }
+
         }
     }
 
@@ -114,7 +102,10 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
         return when (hourInt) {
             in 7..12 -> "1"  // Ca sáng
             in 13..18 -> "2" // Ca chiều
-            else -> null
+            else -> {
+                Toast.makeText(this, "Giờ hẹn không hợp lệ", Toast.LENGTH_SHORT).show()
+                null
+            }
         }
     }
 
@@ -122,7 +113,11 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
     private fun findMatchingSlot(appointmentTime: String, shiftSlots: Map<String, Slot>): String? {
         //lay gio
         val appointmentHour = appointmentTime.substringBefore(":").toIntOrNull()
-        return appointmentHour?.let {
+        if (appointmentHour == null) {
+            Toast.makeText(this, "Giờ hẹn không hợp lệ", Toast.LENGTH_SHORT).show()
+            return null
+        }
+            return appointmentHour?.let {
             // Định dạng giờ thành chuỗi "HH:00"
             val formattedHour = String.format("%02d:00", appointmentHour)
             // Tìm kiếm khóa định dạng trong shiftSlots
@@ -198,12 +193,22 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
                             email = document.getString("email") ?: "N/A"
                         )
                         dentistList.add(dentist)
-
                         if (dentistList.size == availableDentists.size) {
                             // Sau khi lấy đủ thông tin các bác sĩ
                             val adapter = DentistConfAppAdapter(dentistList) { selectedDentist ->
+                            // Lưu thông tin bác sĩ vào SharedPreferences
+                                val sharedPrefs = getSharedPreferences("SelectedDentist", MODE_PRIVATE)
+                                sharedPrefs.edit()
+                                    .putString("dentistName", selectedDentist.username)
+                                    .putString("dentistEmail", selectedDentist.email)
+                                    .apply()
                                 // Cập nhật TextView trên giao diện với thông tin bác sĩ đã chọn
-                                findViewById<TextView>(R.id.tVAConfAppDentist).text = "Nha sĩ: ${selectedDentist.username}"
+                                findViewById<TextView>(R.id.tVAConfAppDentist).text =
+                                    "Nha sĩ: ${selectedDentist.username} (${selectedDentist.email}) "
+                                // Cách clear
+//                                val sharedPrefs = getSharedPreferences("SelectedDentist", MODE_PRIVATE)
+//                                sharedPrefs.edit().clear().apply()
+
                                 if (appointmentId != null && selectedDentist.id_dentist != null) {
                                     updateAppointment(appointmentId, selectedDentist.id_dentist!!)
                                     //Toast.makeText(this, "${selectedDentist.username}", Toast.LENGTH_SHORT).show()
@@ -228,7 +233,7 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
     }
     private fun updateAppointment(appointmentId: String, dentistId: String) {
         db.collection("appointments").document(appointmentId)
-            .update("id_dentist", dentistId )
+            .update("id_dentist", dentistId, "status","Đặt lịch thành công")
             .addOnSuccessListener {
                 Toast.makeText(this, "Đã cập nhật dentistId vào lịch khám: $appointmentId", Toast.LENGTH_SHORT).show()
 
@@ -237,7 +242,6 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
                 Log.w("CancelAppointment", "Error updating document", e)
             }
     }
-
     private fun bookSlot(dentistId: String, date: String, shiftId: String,
                          appointmentId: String, hour: String) {
         val shiftRef = db.collection("dentists").document(dentistId)
@@ -254,6 +258,7 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
 
                     // Cập nhật lại shift với slot đã được đặt
                     shiftRef.update("slots", slots).addOnSuccessListener {
+
                         Toast.makeText(this, "Đã cập nhật ca trực!", Toast.LENGTH_SHORT).show()
                     }.addOnFailureListener {
                         Toast.makeText(this, "Lỗi khi cập nhật slot", Toast.LENGTH_SHORT).show()

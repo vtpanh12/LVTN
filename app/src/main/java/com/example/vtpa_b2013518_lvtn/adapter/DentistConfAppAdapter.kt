@@ -23,7 +23,8 @@ class DentistConfAppAdapter(
         private val checkBox: CheckBox = itemView.findViewById(R.id.checkBoxSelectDentist)
 
         fun bind(dentist: Dentist, position: Int) {
-            dentistInfo.text = "Tên: ${dentist.username}\nChuyên khoa: ${dentist.specialty}\nSĐT: ${dentist.phoneNumber}\nEmail: ${dentist.email}"
+            dentistInfo.text = "Tên: ${dentist.username}\nChuyên khoa: ${dentist.specialty}\n" +
+                    "SĐT: ${dentist.phoneNumber}\nEmail: ${dentist.email}"
 
             // Cập nhật trạng thái checkbox
             checkBox.isChecked = position == selectedPosition

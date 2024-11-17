@@ -2,7 +2,9 @@ package com.example.vtpa_b2013518_lvtn.admin
 
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +23,9 @@ class AdminAuthActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: UserAdapter
     private lateinit var userList: MutableList<User>
+    private lateinit var eTAdminAuthSearch: EditText
+    private lateinit var iVAdminAuthSearch: ImageView
+    private lateinit var tVAdminAuthSearchNoResults: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_auth)
@@ -36,6 +41,18 @@ class AdminAuthActivity : AppCompatActivity() {
         //updateRecyclerView()
         //Gọi hàm lấy dữ liệu từ Firestore và hiển thị trên RecyclerView
         loadAppointments()
+        eTAdminAuthSearch = findViewById(R.id.eTAdminAuthSearch)
+        iVAdminAuthSearch = findViewById(R.id.iVAdminAuthSearch)
+        tVAdminAuthSearchNoResults = findViewById(R.id.tVAdminAuthSearchNoResults)
+
+        iVAdminAuthSearch.setOnClickListener {
+            val email = eTAdminAuthSearch.text.toString().trim()
+            if (email.isNotEmpty()) {
+                searchUserByEmail(email)
+            } else {
+                Toast.makeText(this, "Please enter an email to search", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
     private fun loadAppointments() {
         val db = FirebaseFirestore.getInstance()
@@ -62,6 +79,30 @@ class AdminAuthActivity : AppCompatActivity() {
                     adapter.notifyDataSetChanged()
 
                 }
+            }
+    }
+    private fun searchUserByEmail(email: String) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("users")
+            .whereEqualTo("email", email)
+            .get()
+            .addOnSuccessListener { documents ->
+                userList.clear() // Xóa danh sách cũ
+                if (!documents.isEmpty) {
+                    // Có kết quả
+                    for (document in documents) {
+                        val user = document.toObject(User::class.java)
+                        userList.add(user)
+                    }
+                    tVAdminAuthSearchNoResults.visibility = View.GONE // Ẩn TextView
+                } else {
+                    // Không có kết quả
+                    tVAdminAuthSearchNoResults.visibility = View.VISIBLE
+                }
+                adapter.notifyDataSetChanged() // Cập nhật RecyclerView
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Error: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
     }
 }

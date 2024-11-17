@@ -47,20 +47,58 @@
                     android:textColor="@color/white"
                     android:textSize="28sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
+                    />
+
 
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout54"
+                android:layout_width="374dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_user_bg"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/eTAdminAuthSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8"
+                    android:background="@null"
+                    android:hint="Hãy nhập địa chỉ email" />
+
+                <ImageView
+                    android:id="@+id/iVAdminAuthSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0"
+                    android:alpha="0.5"
+                    app:srcCompat="@drawable/search" />
+
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tVAdminAuthSearchNoResults"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="Không có Email"
+                android:textSize="16sp"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginTop="16dp" />
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerAdminUser"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
+                android:layout_height="wrap_content" />
 
 
         </LinearLayout>

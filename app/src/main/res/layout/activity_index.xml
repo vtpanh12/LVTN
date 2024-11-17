@@ -264,7 +264,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearNews"
+            android:id="@+id/linearUserMedicalRecord"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
@@ -272,17 +272,17 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView15"
+                android:id="@+id/iVUserMedicalRecord"
                 android:layout_width="match_parent"
                 android:layout_height="33dp"
                 app:srcCompat="@drawable/tin_tuc" />
 
             <TextView
 
-                android:id="@+id/textView2"
+                android:id="@+id/tVUserMedicalRecord"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lịch sử"
+                android:text="Bệnh án"
                 android:gravity="center"  />
         </LinearLayout>
 

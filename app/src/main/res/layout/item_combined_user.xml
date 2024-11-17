@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/btn_custom1"
+    android:paddingBottom="8dp"
+    >
+    <LinearLayout
+        android:background="@drawable/item_bg"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/tVAMREmail"
+            android:layout_width="231dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="Email:"
+            android:paddingLeft="20dp"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/tVAMRUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="Họ và tên khách hàng:" />
+
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:id="@+id/tVAMRPhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Số điện thoại:" />
+
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:id="@+id/tVAMRTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thời gian: 10-10-2024  |  09:00" />
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:id="@+id/tVAMRDiagnosis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chẩn đoán:" />
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:id="@+id/tVAMRTreatment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phương pháp điều trị:" />
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:id="@+id/tVAMRDentist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bác sĩ diều trị:" />
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:id="@+id/tVAMRDates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ngày tạo: 10-07-2024" />
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:id="@+id/tVAMRPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hình thức thanh toán: Tiền mặt" />
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:id="@+id/tVAMRPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tổng tiền:" />
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:id="@+id/tVAMRNotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ghi chú (đơn thuốc, ghi chú, lịch hẹn): \n" />
+</LinearLayout>

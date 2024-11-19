@@ -32,13 +32,13 @@
         android:id="@+id/tVAMRUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:text="Họ và tên khách hàng:" />
 
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVAMRPhoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVAMRTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVAMRDiagnosis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVAMRTreatment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVAMRDentist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVAMRDates"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVAMRPayment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVAMRPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVAMRNotes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

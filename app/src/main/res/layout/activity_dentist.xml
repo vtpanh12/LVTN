@@ -39,7 +39,7 @@
                 android:text="Tài khoản"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="28sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +70,7 @@
                 android:layout_height="44dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:textSize="25sp"
+                android:textSize="16sp"
                 android:text="Hồ sơ cá nhân" />
         </LinearLayout>
         <LinearLayout
@@ -81,8 +81,8 @@
 
             <ImageView
                 android:id="@+id/imageView83"
-                android:layout_width="50dp"
-                android:layout_height="44dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_weight="0.1"
                 app:srcCompat="@drawable/bao_mat" />
 
@@ -92,7 +92,7 @@
                 android:layout_height="44dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:textSize="25sp"
+                android:textSize="18sp"
                 android:text="Mật khẩu và bảo mật" />
         </LinearLayout>
         <LinearLayout
@@ -104,8 +104,8 @@
 
             <ImageView
                 android:id="@+id/imageView8"
-                android:layout_width="50dp"
-                android:layout_height="44dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_weight="0.1"
                 app:srcCompat="@drawable/dang_xuat" />
 
@@ -115,7 +115,7 @@
                 android:layout_height="44dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:textSize="25sp"
+                android:textSize="18sp"
                 android:text="Đăng xuất" />
         </LinearLayout>
 

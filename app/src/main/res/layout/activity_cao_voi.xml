@@ -42,7 +42,7 @@
                     android:text="CẠO VÔI RĂNG"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="28sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:text="1. Cạo vôi răng là gì?"
                 android:textStyle="bold"
-                android:textSize="25sp"
+                android:textSize="18sp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 app:layout_constraintBottom_toBottomOf="@id/textView6"
@@ -72,7 +72,7 @@
                 android:id="@+id/textView8"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:justificationMode="inter_word"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
-                android:textSize="25sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:text="2. Khi nào cần cạo vôi răng"
                 />
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:justificationMode="inter_word"
                 android:text="Nên cạo vôi răng ít nhất 6 tháng/ lần. Bên cạnh đó, tùy mức độ vôi răng
 mà bác sĩ sẽ tư vấn thời gian lấy cao răng." />
@@ -113,7 +113,7 @@ mà bác sĩ sẽ tư vấn thời gian lấy cao răng." />
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
-                android:textSize="25sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:text="3. Cạo vôi răng giá bao nhiêu?" />
 
@@ -125,19 +125,19 @@ mà bác sĩ sẽ tư vấn thời gian lấy cao răng." />
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:text="Cạo vôi đánh bóng	 200,000 – 300,000" />
 
             <Button
                 android:id="@+id/button3"
                 android:layout_width="260dp"
-                android:layout_height="64dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/btn_color"
                 android:text="Đặt lịch khám ngay"
                 android:textStyle="bold"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 

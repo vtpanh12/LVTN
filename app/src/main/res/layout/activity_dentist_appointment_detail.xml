@@ -38,7 +38,7 @@
                 android:text="VO THI PHUONG ANH"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -48,12 +48,12 @@
             android:id="@+id/tVDentistAppDetailUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:text="Họ và tên:" />
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:id="@+id/tVDentistAppDetailService"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:id="@+id/tVDentistAppDetailDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:id="@+id/tVDentistAppDetailHour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:id="@+id/tVDentistAppDetailPhoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:id="@+id/tVDentistAppDetailNote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="15dp"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:id="@+id/tVDentistAppDetailStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -109,9 +109,10 @@
         android:id="@+id/btnDentistAppDetail"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:layout_margin="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="20dp"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:background="@drawable/btn_custom"
         android:text="Tạo hồ sơ bệnh án"
         app:backgroundTint="@null" />

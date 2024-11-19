@@ -50,13 +50,12 @@ class AdminAuthActivity : AppCompatActivity() {
             if (email.isNotEmpty()) {
                 searchUserByEmail(email)
             } else {
-                Toast.makeText(this, "Please enter an email to search", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Hãy nhập địa chỉ email!", Toast.LENGTH_SHORT).show()
             }
         }
     }
     private fun loadAppointments() {
         val db = FirebaseFirestore.getInstance()
-
         // Lắng nghe các thay đổi trong collection "appointments"
         db.collection("users")
             .addSnapshotListener { snapshots, e ->
@@ -64,7 +63,6 @@ class AdminAuthActivity : AppCompatActivity() {
                     Toast.makeText(this, "Lỗi khi tải dữ liệu: ${e.message}", Toast.LENGTH_SHORT).show()
                     return@addSnapshotListener
                 }
-
                 // Kiểm tra nếu không có lịch hẹn
                 if (snapshots != null && snapshots.isEmpty) {
                     Toast.makeText(this, "Chưa có lịch khám.", Toast.LENGTH_SHORT).show()
@@ -77,7 +75,6 @@ class AdminAuthActivity : AppCompatActivity() {
                         userList.add(user)
                     }
                     adapter.notifyDataSetChanged()
-
                 }
             }
     }

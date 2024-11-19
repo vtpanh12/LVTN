@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="411dp"
-        android:layout_height="239dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,89 +21,88 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/top1" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="407dp"
-        android:layout_height="68dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.243"
-        app:srcCompat="@drawable/vector" />
+    <!--    <ImageView-->
+<!--        android:id="@+id/imageView4"-->
+<!--        android:layout_width="416dp"-->
+<!--        android:layout_height="214dp"-->
+<!--        android:scaleType="fitXY"-->
+<!--        app:srcCompat="@drawable/top2"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="1.0" />-->
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="416dp"
-        android:layout_height="214dp"
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="32dp"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/top2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.247"
+        app:srcCompat="@drawable/vector" />
 
     <TextView
         android:id="@+id/tvLogin"
         android:layout_width="194dp"
         android:layout_height="58dp"
+        android:layout_marginTop="32dp"
         android:text="ĐĂNG NHẬP"
         android:textColor="#0E6289"
-        android:textSize="30sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
         app:layout_constraintVertical_bias="0.07" />
 
-    <Button
-        android:id="@+id/btnLIDangNhap"
-        android:layout_width="167dp"
-        android:layout_height="63dp"
-        android:backgroundTint="@color/main_color"
-        android:text="Đăng nhập"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.492" />
 
     <EditText
         android:id="@+id/eTLIEmail"
-        android:layout_width="365dp"
+        android:layout_width="0dp"
         android:layout_height="55dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/btn_bg"
         android:ems="10"
         android:hint="  Email"
         android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.652"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/tvLogin"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/eTLIMatKhau"
-        android:layout_width="365dp"
+        android:layout_width="0dp"
         android:layout_height="55dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/btn_bg"
         android:ems="10"
         android:hint="  Mật khẩu"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.652"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eTLIEmail"
-        app:layout_constraintVertical_bias="0.114" />
+        app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
+        <ImageView
         android:alpha="0.3"
         android:id="@+id/iVLIPW"
         android:layout_width="50dp"
@@ -115,30 +114,47 @@
         app:layout_constraintTop_toTopOf="@+id/eTLIMatKhau"
         app:srcCompat="@drawable/hide_pw" />
 
+    <Button
+        android:id="@+id/btnLIDangNhap"
+        android:layout_width="167dp"
+        android:layout_height="63dp"
+        android:backgroundTint="@color/main_color"
+        android:text="Đăng nhập"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eTLIMatKhau"
+        app:layout_constraintVertical_bias="0.149" />
+
     <TextView
         android:id="@+id/tVLIDangky"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="228dp"
         android:text="Đăng ký"
         android:textColor="#2A4F0B"
-        android:textSize="25sp"
+        android:textSize="15sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.141"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLIDangNhap"
+        app:layout_constraintVertical_bias="0.17000002" />
 
     <TextView
         android:id="@+id/tVLIQuenMatKhau"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="224dp"
+        android:layout_marginTop="8dp"
         android:text="Quên mật khẩu"
-        android:textSize="20sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.942"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLIDangNhap"
+        app:layout_constraintVertical_bias="0.19999999" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

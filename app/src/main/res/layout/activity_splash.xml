@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="411dp"
-        android:layout_height="239dp"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,65 +25,68 @@
         android:id="@+id/imageView2"
         android:layout_width="407dp"
         android:layout_height="68dp"
+        android:layout_marginEnd="4dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.31"
+        app:layout_constraintVertical_bias="0.24000001"
         app:srcCompat="@drawable/vector" />
+
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="339dp"
-        android:layout_height="295dp"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.438"
-        app:srcCompat="@drawable/logo"/>
-
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.137"
+        app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/textView26"
-        android:layout_width="341dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="296dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="GIỮ GÌN VÀ TÔN VINH NỤ CƯỜI CỦA BẠN"
-        android:textSize="18sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ProgressBar
-        android:indeterminateTint="@color/btn_color"
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView26"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="212dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        android:indeterminateTint="@color/btn_color"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView26"
+        app:layout_constraintVertical_bias="0.14" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="416dp"
-        android:layout_height="214dp"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/top2" />
 

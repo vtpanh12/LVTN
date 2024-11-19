@@ -6,73 +6,67 @@
     android:orientation="vertical"
     android:background="@drawable/btn_custom1"
     android:padding="30dp">
-<!--    <TextView-->
-<!--        android:id="@+id/tVIFAppId"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:textSize="18sp"-->
-<!--        android:text="ID Lịch khám:" />-->
 
     <TextView
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVIFUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Họ và tên:" />
     <TextView
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVIFEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email:" />
 
     <TextView
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVIFService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dịch vụ:" />
 
     <TextView
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVIFDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ngày hẹn:" />
 
     <TextView
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVIFHour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Giờ hẹn:" />
 
     <TextView
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVIFPhoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Số điện thoại:" />
     <TextView
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVIFNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ghi chú:" />
     <TextView
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVIFStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Trạng thái" />
     <TextView
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVIFDentistUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nha sĩ:" />
     <TextView
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVIFDentistInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

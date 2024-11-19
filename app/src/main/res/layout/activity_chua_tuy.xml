@@ -41,7 +41,7 @@
                     android:text="CHỮA TỦY"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="28sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:text="1. Chữa tủy là gì?"
                 android:textStyle="bold"
-                android:textSize="25sp"
+                android:textSize="18sp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 app:layout_constraintBottom_toBottomOf="@id/textView6"
@@ -70,7 +70,7 @@
                 android:id="@+id/textView8"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:justificationMode="inter_word"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
-                android:textSize="25sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:text="2. Dấu hiệu răng cần điều trị tủy răng"
                 />
@@ -98,7 +98,7 @@
             <TextView
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:justificationMode="inter_word"
                 android:id="@+id/textView9"
                 android:layout_width="match_parent"
@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:justificationMode="inter_word"
                 android:text="- Lợi ở vùng có răng bị sâu hoặc chấn thương bị sưng, có hoặc không có sưng mặt kèm theo." />
             <TextView
@@ -122,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:justificationMode="inter_word"
                 android:text="- vùng lợi ở răng bị sâu hoặc chấn thương có nốt nổi lên như mụn, ấn vào thấy có dịch hoặc mủ vàng chảy ra." />
 
@@ -132,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
-                android:textSize="25sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:text="3. Chữa tủy răng giá bao nhiêu?" />
 
@@ -142,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:text="- Chữa tủy bằng tay            500,000- 800,000" />
             <TextView
                 android:id="@+id/textView14"
@@ -150,20 +150,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:text="- Chữa tủy bằng máy
                 	  1,000,000" />
 
             <Button
                 android:id="@+id/button3"
                 android:layout_width="260dp"
-                android:layout_height="64dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/btn_color"
                 android:text="Đặt lịch khám ngay"
                 android:textStyle="bold"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

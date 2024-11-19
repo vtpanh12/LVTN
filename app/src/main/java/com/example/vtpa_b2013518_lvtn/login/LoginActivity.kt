@@ -96,34 +96,35 @@ class LoginActivity : AppCompatActivity() {
     private fun login() {
         val email = etEmail.text.toString()
         val pass = etPass.text.toString()
+        if(email.isNullOrEmpty() || pass.isNullOrEmpty()){
+            Toast.makeText(this, "Hãy điền đầy đủ thông tin", Toast.LENGTH_SHORT).show()
+        }else{
 
-        // function using Firebase auth object
-        // On successful response Display a Toast
+            auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(this) {
+                if (it.isSuccessful) {
+                    Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show()
+                    val currentUser = auth.currentUser
+                    val userId = FirebaseAuth.getInstance().currentUser?.uid
+                    if (userId != null && currentUser != null)  {
+                        // Kiểm tra người dùng đã tồn tại trong Firestore chưa
+                        val userRef = FirebaseFirestore.getInstance().collection("users").document(userId)
+                        userRef.get().addOnSuccessListener{ document ->
 
-        auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(this) {
-            if (it.isSuccessful) {
-                Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show()
-                val currentUser = auth.currentUser
-                val userId = FirebaseAuth.getInstance().currentUser?.uid
-                if (userId != null && currentUser != null)  {
-                    // Kiểm tra người dùng đã tồn tại trong Firestore chưa
-                    val userRef = FirebaseFirestore.getInstance().collection("users").document(userId)
-                    userRef.get().addOnSuccessListener{ document ->
-
-                        if (document.exists()) {
-                            // Người dùng đã tồn tại, chỉ lấy role và phân quyền
-                            getUserRole(userId)
-                        } else {
-                            // Người dùng mới, lưu vào Firestore với role mặc định là "user"
-                            saveUserToFirestore(userId, email, "user")
-                            getUserRole(userId)
+                            if (document.exists()) {
+                                // Người dùng đã tồn tại, chỉ lấy role và phân quyền
+                                getUserRole(userId)
+                            } else {
+                                // Người dùng mới, lưu vào Firestore với role mặc định là "user"
+                                saveUserToFirestore(userId, email, "user")
+                                getUserRole(userId)
+                            }
+                        }.addOnFailureListener{
+                                e->Log.w("Firestore", "Error getting document", e)
                         }
-                    }.addOnFailureListener{
-                        e->Log.w("Firestore", "Error getting document", e)
                     }
-                }
-            } else
-                Toast.makeText(this, "Đăng nhập thất bại ", Toast.LENGTH_SHORT).show()
+                } else
+                    Toast.makeText(this, "Đăng nhập thất bại ", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -137,7 +138,6 @@ class LoginActivity : AppCompatActivity() {
                 "role" to role
 
             )
-
             db.collection("users").document(uid)
                 .set(userData, SetOptions.merge()) // Dùng merge để không ghi đè toàn bộ tài liệu
                 .addOnSuccessListener {
@@ -173,7 +173,6 @@ class LoginActivity : AppCompatActivity() {
                             val intent = Intent(this, IndexActivity::class.java)
                             startActivity(intent)
                             finish()
-
                         }
                     }
                 } else {
@@ -184,26 +183,5 @@ class LoginActivity : AppCompatActivity() {
                 Log.d("Firestore", "get failed with ", exception)
             }
     }
-
-//        // Create a new user with a first and last name
-//        val user = hashMapOf(
-//            "first" to "Ada",
-//            "last" to "Lovelace",
-//            "born" to 1815
-//        )
-
-// Add a new document with a generated ID
-//    private fun creatUser(user: User){
-//    db.collection("users")
-//        .add(user)
-//        .addOnSuccessListener { documentReference ->
-//            Toast.makeText(this, "save", Toast.LENGTH_SHORT).show()
-//            Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-//        }
-//        .addOnFailureListener { e ->
-//            Log.w(TAG, "Error adding document", e)
-//        }
-//    }
-
 
 }

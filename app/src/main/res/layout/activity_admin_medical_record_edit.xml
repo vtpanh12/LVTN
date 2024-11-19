@@ -36,7 +36,7 @@
                 android:layout_weight="1"
                 android:text="Email:"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <TextView
@@ -45,13 +45,13 @@
             android:id="@+id/tVAMREUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:text="Họ và tên khách hàng:" />
 
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:id="@+id/tVAMREPhoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:id="@+id/tVAMRETime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:id="@+id/tVAMREDiagnosis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:id="@+id/tVAMRETreatment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:id="@+id/tVAMREDentist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:id="@+id/tVAMREDates"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:id="@+id/tVAMREPayment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="51dp"
+            android:layout_height="50dp"
             android:orientation="horizontal">
 
             <TextView
@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0"
-                android:paddingLeft="20dp"
+                android:paddingLeft="18dp"
                 android:text="Tổng tiền:"
                 android:textSize="18sp" />
 
@@ -136,7 +136,7 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:id="@+id/tVAMRENotes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -150,7 +150,7 @@
         android:layout_height="52dp"
         android:layout_margin="20dp"
         android:layout_marginRight="20dp"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:background="@drawable/btn_custom"
         android:text="Cập nhật hồ sơ bệnh án"
         app:backgroundTint="@null" />

@@ -43,7 +43,7 @@
         android:id="@+id/tVUIUserId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:text="ID Người dùng:" />
 
     <TextView
@@ -52,7 +52,7 @@
         android:id="@+id/tVUIUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:text="Họ và tên:" />
     <TextView
         android:layout_marginLeft="20dp"
@@ -60,12 +60,12 @@
         android:id="@+id/tVUIDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:text="Ngày sinh:" />
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVUIGender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="5dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVUIPhoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="5dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVUIAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="5dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVUIRole"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

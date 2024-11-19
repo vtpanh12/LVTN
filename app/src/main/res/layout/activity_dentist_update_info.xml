@@ -43,7 +43,7 @@
                 android:text="Hồ sơ cá nhân"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="28sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +68,7 @@
                 android:layout_marginBottom="780dp"
                 android:paddingLeft="20dp"
                 android:text="Họ và tên"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="normal" />
 
             <ImageView
@@ -82,7 +82,7 @@
         <EditText
             android:id="@+id/eTHoVaTenDentist"
             android:layout_width="match_parent"
-            android:layout_height="46dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/edittext_user_bg"
@@ -105,7 +105,7 @@
                 android:layout_marginBottom="780dp"
                 android:paddingLeft="20dp"
                 android:text="Ngày sinh"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="normal" />
 
             <ImageView
@@ -119,10 +119,10 @@
         <TextView
             android:padding="10dp"
             android:id="@+id/tVNgaySinhDentist"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:gravity=""
             android:layout_width="match_parent"
-            android:layout_height="46dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/edittext_user_bg"
@@ -137,11 +137,11 @@
             <TextView
                 android:id="@+id/textView1912"
                 android:layout_width="wrap_content"
-                android:layout_height="38dp"
+                android:layout_height="47dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="780dp"
-                android:paddingLeft="20dp"
+                android:paddingLeft="18dp"
                 android:text="Số điện thoại"
                 android:textSize="20sp"
                 android:textStyle="normal" />
@@ -158,7 +158,7 @@
             android:id="@+id/eTSDTDentist"
             android:layout_width="match_parent"
             android:ems="10"
-            android:layout_height="46dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/edittext_user_bg"
@@ -176,7 +176,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="780dp"
-                android:paddingLeft="20dp"
+                android:paddingLeft="18dp"
                 android:text="Giới tính"
                 android:textSize="20sp"
                 android:textStyle="normal" />
@@ -223,7 +223,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="780dp"
-                android:paddingLeft="20dp"
+                android:paddingLeft="18dp"
                 android:text="Địa chỉ"
                 android:textSize="20sp"
                 android:textStyle="normal" />
@@ -238,7 +238,7 @@
         <EditText
             android:id="@+id/eTDiaChiDentist"
             android:layout_width="match_parent"
-            android:layout_height="46dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/edittext_user_bg"
@@ -258,7 +258,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="780dp"
-                android:paddingLeft="20dp"
+                android:paddingLeft="18dp"
                 android:text="Email"
                 android:textSize="20sp"
                 android:textStyle="normal" />
@@ -273,7 +273,7 @@
         <EditText
             android:id="@+id/eTEmailDentist"
             android:layout_width="match_parent"
-            android:layout_height="46dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/edittext_user_bg"

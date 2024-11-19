@@ -40,7 +40,6 @@
                 android:layout_gravity="center"
                 android:layout_weight="0.9"
                 android:text="VO THI PHUONG ANH"
-
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -52,7 +51,7 @@
             android:id="@+id/tVAUEDentistId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:text="ID Nha sĩ:" />
 
         <TextView
@@ -61,7 +60,7 @@
             android:id="@+id/tVAUEDentist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:text="Họ và tên:" />
         <TextView
             android:layout_marginLeft="20dp"
@@ -69,12 +68,12 @@
             android:id="@+id/tVAUEDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:text="Ngày sinh:" />
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:id="@+id/tVAUEGender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -83,7 +82,7 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:id="@+id/tVAUEPhoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -92,7 +91,7 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:id="@+id/tVAUEAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -101,7 +100,7 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:id="@+id/tVAUERole"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -113,15 +112,15 @@
             android:layout_marginRight="20dp"
             android:id="@+id/spinner_Role"
             android:layout_width="match_parent"
-            android:layout_height="52dp" />
+            android:layout_height="45dp" />
     </LinearLayout>
     <Button
         android:id="@+id/btnUpdateUser"
         android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_margin="20dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:background="@drawable/btn_custom"
         android:text="Cập nhật thông tin người dùng"
         app:backgroundTint="@null" />

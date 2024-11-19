@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="749dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="0dp"
-                android:layout_height="75dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginRight="45dp"
                 android:layout_weight="0.9"
@@ -43,7 +43,7 @@
                 android:text="Hồ sơ cá nhân"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="28sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -66,9 +66,9 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="780dp"
-                android:paddingLeft="20dp"
+                android:paddingLeft="24dp"
                 android:text="Họ và tên"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="normal" />
 
             <ImageView
@@ -82,7 +82,7 @@
         <EditText
             android:id="@+id/eTHoVaTenAdmin"
             android:layout_width="match_parent"
-            android:layout_height="46dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/edittext_user_bg"
@@ -103,9 +103,9 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="780dp"
-                android:paddingLeft="20dp"
+                android:paddingLeft="14dp"
                 android:text="Ngày sinh"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="normal" />
 
             <ImageView
@@ -117,16 +117,16 @@
         </LinearLayout>
 
         <TextView
-            android:padding="10dp"
             android:id="@+id/tVNgaySinhAdmin"
-            android:textSize="20sp"
-            android:gravity=""
             android:layout_width="match_parent"
-            android:layout_height="46dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/edittext_user_bg"
-            android:text="" />
+            android:gravity=""
+            android:padding="10dp"
+            android:text=""
+            android:textSize="14sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -143,7 +143,7 @@
                 android:layout_marginBottom="780dp"
                 android:paddingLeft="20dp"
                 android:text="Số điện thoại"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="normal" />
 
             <ImageView
@@ -157,12 +157,13 @@
         <EditText
             android:id="@+id/eTSDTAdmin"
             android:layout_width="match_parent"
-            android:ems="10"
-            android:layout_height="46dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/edittext_user_bg"
+            android:ems="10"
             android:inputType="phone" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="33dp"
@@ -176,9 +177,9 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="780dp"
-                android:paddingLeft="20dp"
+                android:paddingLeft="14dp"
                 android:text="Giới tính"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="normal" />
 
             <ImageView
@@ -192,10 +193,10 @@
         <RadioGroup
             android:id="@+id/rGGioiTinhAdmin"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content" >
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/rBNamAdmin"
@@ -204,12 +205,13 @@
                 android:text="Nam" />
 
             <RadioButton
-                android:layout_marginLeft="20dp"
                 android:id="@+id/rBNuAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
                 android:text="Nữ" />
         </RadioGroup>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="33dp"
@@ -225,7 +227,7 @@
                 android:layout_marginBottom="780dp"
                 android:paddingLeft="20dp"
                 android:text="Địa chỉ"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="normal" />
 
             <ImageView
@@ -235,16 +237,18 @@
                 app:srcCompat="@drawable/bat_buoc" />
 
         </LinearLayout>
+
         <EditText
             android:id="@+id/eTDiaChiAdmin"
             android:layout_width="match_parent"
-            android:layout_height="46dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/edittext_user_bg"
             android:ems="10"
             android:inputType="text"
             android:text="" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="33dp"
@@ -258,7 +262,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="780dp"
-                android:paddingLeft="20dp"
+                android:paddingLeft="18dp"
                 android:text="Email"
                 android:textSize="20sp"
                 android:textStyle="normal" />
@@ -270,16 +274,17 @@
                 app:srcCompat="@drawable/bat_buoc" />
 
         </LinearLayout>
+
         <EditText
             android:id="@+id/eTEmailAdmin"
             android:layout_width="match_parent"
-            android:layout_height="46dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/edittext_user_bg"
             android:ems="10"
-            android:inputType="text"
             android:enabled="false"
+            android:inputType="text"
             android:text="" />
 
         <Button

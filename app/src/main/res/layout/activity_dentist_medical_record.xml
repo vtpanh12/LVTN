@@ -38,7 +38,7 @@
                 android:text="VO THI PHUONG ANH"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="25sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -47,12 +47,12 @@
             android:id="@+id/tVDentistMedicalRecordlUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:text="Họ và tên:" />
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:id="@+id/tVDentistMedicalRecordService"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:id="@+id/tVDentistMedicalRecordDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:id="@+id/tVDentistMedicalRecordHour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:id="@+id/tVDentistMedicalRecordPhoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:id="@+id/tVDentistMedicalRecordNote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -95,14 +95,14 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:id="@+id/tVDentistMedicalRecordStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Trạng thái" />
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="500dp">
+            android:layout_height="370dp">
             <LinearLayout
                 android:layout_marginBottom="10dp"
                 android:orientation="vertical"
@@ -112,7 +112,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="15dp"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:id="@+id/tVDentistMedicalRecordDiagnosis"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                     android:id="@+id/eTDentistMedicalRecordDiagnosis"
                     android:layout_width="match_parent"
                     android:ems="10"
-                    android:layout_height="46dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/edittext_user_bg"
@@ -130,7 +130,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="15dp"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:id="@+id/tVDentistMedicalRecordTreatment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -139,7 +139,7 @@
                     android:id="@+id/eTDentistMedicalRecordTreatment"
                     android:layout_width="match_parent"
                     android:ems="10"
-                    android:layout_height="46dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/edittext_user_bg"
@@ -148,7 +148,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="15dp"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:id="@+id/tVDentistMedicalRecordPrescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -157,7 +157,7 @@
                     android:id="@+id/eTDentistMedicalRecordPrescription"
                     android:layout_width="match_parent"
                     android:ems="10"
-                    android:layout_height="46dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/edittext_user_bg"
@@ -166,7 +166,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="15dp"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:id="@+id/tVDentistMedicalRecordNotes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -175,7 +175,7 @@
                     android:id="@+id/eTDentistMedicalRecordNotes"
                     android:layout_width="match_parent"
                     android:ems="10"
-                    android:layout_height="46dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/edittext_user_bg"
@@ -184,7 +184,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="15dp"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:id="@+id/tVDates"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -195,7 +195,7 @@
                     android:textSize="20sp"
                     android:gravity=""
                     android:layout_width="match_parent"
-                    android:layout_height="46dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/edittext_user_bg"
@@ -204,7 +204,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="15dp"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:id="@+id/tVDentistMedicaldNextAppointment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -212,10 +212,10 @@
                 <TextView
                     android:padding="10dp"
                     android:id="@+id/tVDentistMedicalRecordNextAppointment"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:gravity=""
                     android:layout_width="match_parent"
-                    android:layout_height="46dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="10dp"
@@ -233,7 +233,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="20dp"
         android:layout_marginRight="20dp"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:background="@drawable/btn_custom"
         android:text="Cập nhật hồ sơ bệnh án"
         app:backgroundTint="@null" />

@@ -278,7 +278,6 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
 
         // Gán dữ liệu vào các TextView trong dialog
         dialogView.findViewById<TextView>(R.id.tVCUser).text = "Họ và tên: $username"
-        dialogView.findViewById<TextView>(R.id.tVCUserId).text = "User ID: $userId"
         dialogView.findViewById<TextView>(R.id.tVCService).text = "Dịch vụ: $service"
         dialogView.findViewById<TextView>(R.id.tVCDate).text = "Ngày hẹn: $date"
         dialogView.findViewById<TextView>(R.id.tVCHour).text = "Giờ hẹn: $hour"
@@ -353,8 +352,8 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
         val dialogBuilder = AlertDialog.Builder(this).setView(dialogView)
 
         // Lấy dữ liệu từ Firestore và gán vào TextView
-        dialogView.findViewById<TextView>(R.id.tVIUserId).text = "User ID: ${document.getString("id_user")}"
-        dialogView.findViewById<TextView>(R.id.tVIAppId).text = "Appointment ID: ${document.getString("id_app")}"
+//        dialogView.findViewById<TextView>(R.id.tVIUserId).text = "User ID: ${document.getString("id_user")}"
+//        dialogView.findViewById<TextView>(R.id.tVIAppId).text = "Appointment ID: ${document.getString("id_app")}"
         dialogView.findViewById<TextView>(R.id.tVIUser).text = "Họ và tên: ${document.getString("username")}"
         dialogView.findViewById<TextView>(R.id.tVIService).text = "Dịch vụ: ${document.getString("service")}"
         dialogView.findViewById<TextView>(R.id.tVIDate).text = "Ngày hẹn: ${document.getString("date")}"

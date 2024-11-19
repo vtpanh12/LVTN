@@ -41,13 +41,13 @@
         android:id="@+id/tVMRUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:text="Họ và tên:" />
 
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVMRPhoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVMRTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVMRDiagnosis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVMRTreatment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVMRDates"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVMRNotes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

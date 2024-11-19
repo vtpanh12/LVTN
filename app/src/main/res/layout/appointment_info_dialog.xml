@@ -5,61 +5,49 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="30dp">
-    <TextView
-        android:id="@+id/tVIUserId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:text="User ID:" />
-    <TextView
-        android:id="@+id/tVIAppId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:text="Appointment ID:" />
 
     <TextView
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVIUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Họ và tên:" />
 
     <TextView
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVIService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dịch vụ:" />
 
     <TextView
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVIDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ngày hẹn:" />
 
     <TextView
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVIHour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Giờ hẹn:" />
 
     <TextView
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVIPhoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Số điện thoại:" />
     <TextView
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVINote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ghi chú:" />
     <TextView
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tVIStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,7 +57,7 @@
         android:textColor="@color/btn_color"
         android:id="@+id/btnClose"
         android:layout_width="wrap_content"
-        android:layout_height="42dp"
+        android:layout_height="40dp"
         android:layout_margin="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/btn_custom1"

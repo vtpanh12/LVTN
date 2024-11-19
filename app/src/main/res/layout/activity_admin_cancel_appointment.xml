@@ -8,18 +8,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".admin.AdminCancelAppointmentActivity">
+
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@drawable/btn_custom1"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="330dp">
+        android:orientation="vertical">
+
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/item_bg"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="60dp">
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/iVBackAdminApp"
@@ -28,96 +30,102 @@
                 android:layout_margin="15dp"
                 android:layout_weight="0.1"
                 app:srcCompat="@drawable/back" />
+
             <TextView
-                android:paddingRight="30dp"
                 android:id="@+id/tVACAppEmail"
                 android:layout_width="231dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0.9"
+                android:paddingRight="30dp"
                 android:text="VO THI PHUONG ANH"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
         <TextView
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
             android:id="@+id/tVACAppUserId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="ID Khách hàng:" />
-        <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
+            android:text="ID Khách hàng:"
+            android:textSize="14sp" />
+
+        <TextView
             android:id="@+id/tVACAppAppId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="ID Lịch khám:" />
-        <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
+            android:text="ID Lịch khám:"
+            android:textSize="14sp" />
+
+        <TextView
             android:id="@+id/tVACAppUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="Họ và tên:" />
-        <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:textSize="18sp"
+            android:text="Họ và tên:"
+            android:textSize="14sp" />
+
+        <TextView
             android:id="@+id/tVACAppService"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dịch vụ:" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Dịch vụ:"
+            android:textSize="14sp" />
 
         <TextView
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:textSize="18sp"
             android:id="@+id/tVACAppDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ngày hẹn:" />
-
-        <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:text="Ngày hẹn:"
+            android:textSize="14sp" />
+
+        <TextView
             android:id="@+id/tVACAppHour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Giờ hẹn:" />
-
-        <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:text="Giờ hẹn:"
+            android:textSize="14sp" />
+
+        <TextView
             android:id="@+id/tVACAppPhoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Số điện thoại:" />
-        <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:text="Số điện thoại:"
+            android:textSize="14sp" />
+
+        <TextView
             android:id="@+id/tVACAppNote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ghi chú:" />
-        <TextView
             android:layout_marginLeft="20dp"
-            android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:text="Ghi chú:"
+            android:textSize="14sp" />
+
+        <TextView
             android:id="@+id/tVACAppStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Trạng thái" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:text="Trạng thái"
+            android:textSize="14sp" />
     </LinearLayout>
 
 
@@ -127,7 +135,7 @@
         android:layout_height="52dp"
         android:layout_margin="20dp"
         android:layout_marginRight="20dp"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:background="@drawable/btn_custom"
         android:text="Xác nhận hủy lịch khám"
         app:backgroundTint="@null" />

@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vtpa_b2013518_lvtn.R
+import com.example.vtpa_b2013518_lvtn.activity.IndexActivity
 import com.example.vtpa_b2013518_lvtn.adapter.Appointment
 import com.example.vtpa_b2013518_lvtn.adapter.CombinedData
 import com.example.vtpa_b2013518_lvtn.adapter.CombinedDataAdapter
@@ -29,7 +30,7 @@ class UserMedicalRecordActivity : AppCompatActivity() {
 
         val iVBackDentistMedicalRecord = findViewById<ImageView>(R.id.iVBackUserMedicalRecord)
         iVBackDentistMedicalRecord.setOnClickListener {
-            startActivity(Intent(this, AdminIndexActivity::class.java))
+            startActivity(Intent(this, IndexActivity::class.java))
         }
         val recyclerView: RecyclerView = findViewById(R.id.ryUserMedialRecord)
         recyclerView.layoutManager = LinearLayoutManager(this)

@@ -8,12 +8,18 @@
     tools:context=".admin.AdminActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:id="@+id/linearLayout7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <LinearLayout
+            android:layoutDirection="ltr"
             android:id="@+id/linearLayout5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,7 +45,7 @@
                 android:text="Tài khoản"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="28sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -52,9 +58,9 @@
 
         <LinearLayout
             android:id="@+id/linearIndexAdmin"
-            android:layout_margin="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -70,19 +76,20 @@
                 android:layout_height="44dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:textSize="25sp"
-                android:text="Hồ sơ cá nhân" />
+                android:text="Hồ sơ cá nhân"
+                android:textSize="18sp" />
         </LinearLayout>
+
         <LinearLayout
-            android:layout_margin="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imageView83"
-                android:layout_width="50dp"
-                android:layout_height="44dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_weight="0.1"
                 app:srcCompat="@drawable/bao_mat" />
 
@@ -92,20 +99,21 @@
                 android:layout_height="44dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:textSize="25sp"
-                android:text="Mật khẩu và bảo mật" />
+                android:text="Mật khẩu và bảo mật"
+                android:textSize="18sp" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/linearSignOut"
-            android:layout_margin="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imageView8"
-                android:layout_width="50dp"
-                android:layout_height="44dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_weight="0.1"
                 app:srcCompat="@drawable/dang_xuat" />
 
@@ -115,8 +123,8 @@
                 android:layout_height="44dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:textSize="25sp"
-                android:text="Đăng xuất" />
+                android:text="Đăng xuất"
+                android:textSize="18sp" />
         </LinearLayout>
 
     </LinearLayout>

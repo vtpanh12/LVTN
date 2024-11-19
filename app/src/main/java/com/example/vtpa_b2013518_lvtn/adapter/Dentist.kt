@@ -10,6 +10,4 @@ data class Dentist(
     val address : String ="",
     val email: String ?= null,
     val role: String ="dentist",
-//    val dateShift: String="",
-//    val shifts: List<Shift>
 )

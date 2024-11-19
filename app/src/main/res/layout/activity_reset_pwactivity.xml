@@ -80,13 +80,14 @@
         android:id="@+id/eTRSCMatKhau"
         android:layout_width="365dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="280dp"
+        android:layout_marginBottom="120dp"
         android:background="@drawable/btn_bg"
         android:ems="10"
         android:hint="  Mật khẩu"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.34"
         app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
@@ -159,14 +160,14 @@
         android:id="@+id/eTRSMatKhau"
         android:layout_width="365dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="176dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/btn_bg"
         android:ems="10"
         android:hint="  Nhập lại mật khẩu"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.106"
 
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

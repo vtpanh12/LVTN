@@ -40,5 +40,6 @@ class AdminActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // Xóa hết các activity trước đó
             startActivity(intent)
         }
+
     }
 }

@@ -281,7 +281,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearAdminNews"
+            android:id="@+id/linearAdminStatistics"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="10dp"

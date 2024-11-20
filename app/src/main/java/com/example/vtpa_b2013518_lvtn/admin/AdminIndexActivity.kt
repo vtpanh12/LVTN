@@ -82,5 +82,9 @@ class AdminIndexActivity : AppCompatActivity() {
         tVMedicalRecord.setOnClickListener {
             startActivity(Intent(this, AdminMedicalRecordActivity::class.java))
         }
+        val tVlinearAdminStatistics = findViewById<LinearLayout>(R.id.linearAdminStatistics)
+        tVlinearAdminStatistics.setOnClickListener {
+            startActivity(Intent(this, AdminStatisticsActivity::class.java))
+        }
     }
 }

@@ -1,8 +1,11 @@
 package com.example.vtpa_b2013518_lvtn.admin
 
+import android.animation.ObjectAnimator
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -19,20 +22,71 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class AdminStatisticsActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
-    private lateinit var barChart: BarChart
+    private lateinit var barChartMR: BarChart
+    private lateinit var barChartApp: BarChart
     private val adminCurrentId = FirebaseAuth.getInstance().currentUser?.uid
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_statistics)
+        barChartMR = findViewById(R.id.barChartMR)
+        barChartApp = findViewById(R.id.barChartApp)
 
-        barChart = findViewById(R.id.barChart)
+        val tVASApp = findViewById<TextView>(R.id.tVASApp)
+        val tVASMR = findViewById<TextView>(R.id.tVASMRedcord)
+        tVASApp.setBackgroundColor(Color.rgb(224,224,224))
+        tVASApp.setTextColor(Color.rgb(0,0,102))
+
+        tVASApp.setOnClickListener {
+            countAppByService()
+            // Tạo hiệu ứng thay đổi kích thước
+            val scaleUp = ObjectAnimator.ofFloat(tVASApp, "scaleX", 1f, 1.2f)
+            scaleUp.duration = 200
+            scaleUp.start()
+
+            if (barChartMR.visibility == View.GONE) {
+                tVASMR.setTextColor(Color.rgb(0,0,102))
+                tVASApp.setBackgroundColor(Color.rgb(224,224,224))
+                tVASMR.setBackgroundColor(Color.WHITE)
+                tVASApp.setTextColor(Color.rgb(0,0,102))
+                barChartMR.visibility = View.VISIBLE  // Hiển thị nội dung
+                barChartApp.visibility = View.GONE
+
+            }
+        }
+
+        tVASMR.setOnClickListener {
+
+            // Tạo hiệu ứng thay đổi kích thước
+            val scaleUp = ObjectAnimator.ofFloat(tVASMR, "scaleX", 1f, 1.2f)
+            scaleUp.duration = 200
+            scaleUp.start()
+            tVASApp.setBackgroundColor(Color.WHITE)
+            // Thực hiện hành động sau khi click
+
+            if (barChartApp.visibility == View.GONE) {
+
+                tVASMR.setTextColor(Color.rgb(0,0,102))
+                tVASMR.setBackgroundColor(Color.rgb(224,224,224))
+                barChartApp.visibility = View.VISIBLE  // Hiển thị nội dung
+                countMedicalRecordsByDate()
+                barChartMR.visibility = View.GONE
+
+            } else {
+                barChartApp.visibility = View.GONE  // Ẩn nội dung
+            }
+        }
+
         countMedicalRecordsByDate()
+//
+
 
     }
-        private fun countMedicalRecordsByDate()     {
+    private fun countMedicalRecordsByDate()     {
             if (adminCurrentId != null) {
                 db.collection("medicalrecords")
                     .whereEqualTo("status", "Đã khám")
@@ -47,10 +101,6 @@ class AdminStatisticsActivity : AppCompatActivity() {
                             }
                         }
 
-                        // Chuyển đổi dữ liệu thành danh sách các BarEntry
-//                        val entries = dateCountMap.entries.mapIndexed { index, entry ->
-//                            BarEntry(index.toFloat(), entry.value.toFloat())
-//                        }
                         // Tạo danh sách labels (ngày khám) và các BarEntry
                         val labels = dateCountMap.keys.toList()
                         val entries = dateCountMap.entries.mapIndexed { index, entry ->
@@ -71,24 +121,20 @@ class AdminStatisticsActivity : AppCompatActivity() {
                             }
                         }
 
-                        val yAxisLeft = barChart.axisLeft
+                        val yAxisLeft = barChartMR.axisLeft
                         yAxisLeft.setDrawGridLines(true) // Hiển thị đường lưới ngang
                         yAxisLeft.textColor = Color.BLACK // Màu chữ
                         yAxisLeft.textSize = 12f // Kích thước chữ
                         yAxisLeft.axisMaximum = 10f
                         yAxisLeft.axisMinimum = 0f
-                        barChart.axisRight.isEnabled = false
+                        barChartMR.axisRight.isEnabled = false
 
-
-                        val xAxis = barChart.xAxis
+                        val xAxis = barChartMR.xAxis
                         xAxis.setDrawGridLines(false)
                         xAxis.axisMinimum = 0f // Giá trị nhỏ nhất trên trục X
                         xAxis.axisMaximum = 10f // Giá trị lớn nhất trên trục X
-                        barChart.axisRight.isEnabled = false
+                        barChartMR.axisRight.isEnabled = false
                         xAxis.labelRotationAngle = -45f // Xoay label để tránh đè nhau
-
-
-
                         xAxis.position = XAxis.XAxisPosition.BOTTOM
                         xAxis.valueFormatter = object : ValueFormatter() {
                             override fun getFormattedValue(value: Float): String {
@@ -97,14 +143,11 @@ class AdminStatisticsActivity : AppCompatActivity() {
 
                             }
                         }
-
-
-
                             // Tạo BarData từ BarDataSet và thiết lập cho BarChart
                         val barData = BarData(dataSet)
-                        barChart.data = barData
-                        barChart.invalidate() // Làm mới biểu đồ
-                        barChart.description.text = "Ngày khám"
+                        barChartMR.data = barData
+                        barChartMR.invalidate() // Làm mới biểu đồ
+                        barChartMR.description.text = "Ngày khám"
 
                     }
                     .addOnFailureListener { exception ->
@@ -116,5 +159,75 @@ class AdminStatisticsActivity : AppCompatActivity() {
             }
         }
 
+
+    private fun countAppByService() {
+        if (adminCurrentId != null) {
+            db.collection("appointments")
+                .whereEqualTo("status", "Đặt lịch thành công") // Lọc theo trạng thái
+                .get()
+                .addOnSuccessListener { documents ->
+                    val serviceCountMap = mutableMapOf<String, Int>() // Dùng để lưu số lượng theo từng dịch vụ
+
+                    for (document in documents) {
+                        val service = document.getString("service") // Lấy loại dịch vụ
+                        if (service != null) {
+                            serviceCountMap[service] = serviceCountMap.getOrDefault(service, 0) + 1
+                        }
+                    }
+
+                    // Tạo danh sách labels (dịch vụ) và các BarEntry
+                    val labels = serviceCountMap.keys.toList()
+                    val entries = serviceCountMap.entries.mapIndexed { index, entry ->
+                        BarEntry(index.toFloat(), entry.value.toFloat())
+                    }
+
+                    // Tạo BarDataSet từ danh sách các BarEntry
+                    val dataSet = BarDataSet(entries, "Số lượt 'Đặt khám thành công' theo dịch vụ")
+                    dataSet.color = Color.BLUE // Màu cột
+                    dataSet.valueTextColor = Color.BLACK // Màu chữ hiển thị trên cột
+                    dataSet.valueTextSize = 12f // Kích thước chữ hiển thị
+
+                    // Định dạng giá trị dưới dạng số nguyên
+                    dataSet.valueFormatter = object : ValueFormatter() {
+                        override fun getFormattedValue(value: Float): String {
+                            return value.toInt().toString() // Chuyển giá trị thành số nguyên
+                        }
+                    }
+
+                    // Cấu hình biểu đồ
+                    val yAxisLeft = barChartApp.axisLeft
+                    yAxisLeft.setDrawGridLines(true) // Hiển thị đường lưới ngang
+                    yAxisLeft.textColor = Color.BLACK // Màu chữ
+                    yAxisLeft.textSize = 12f // Kích thước chữ
+                    yAxisLeft.axisMinimum = 0f
+                    barChartApp.axisRight.isEnabled = false
+
+                    val xAxis = barChartApp.xAxis
+                    xAxis.setDrawGridLines(false)
+                    xAxis.position = XAxis.XAxisPosition.BOTTOM
+                    xAxis.labelRotationAngle = -45f // Xoay label để tránh đè nhau
+
+                    // Gán nhãn cho trục X
+                    xAxis.valueFormatter = object : ValueFormatter() {
+                        override fun getFormattedValue(value: Float): String {
+                            val index = value.toInt()
+                            return if (index in labels.indices) labels[index] else ""
+                        }
+                    }
+
+                    // Tạo BarData từ BarDataSet và thiết lập cho BarChart
+                    val barData = BarData(dataSet)
+                    barChartApp.data = barData
+                    barChartApp.invalidate() // Làm mới biểu đồ
+                    barChartApp.description.text = "Loại dịch vụ"
+                }
+                .addOnFailureListener { exception ->
+                    Log.w("Firestore", "Error getting documents: ", exception)
+                    Toast.makeText(this, "Error loading appointments", Toast.LENGTH_SHORT).show()
+                }
+        } else {
+            Toast.makeText(this, "Please log in again", Toast.LENGTH_SHORT).show()
+        }
+    }
 
 }

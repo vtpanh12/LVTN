@@ -3,6 +3,7 @@ package com.example.vtpa_b2013518_lvtn.admin
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -15,61 +16,105 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class AdminStatisticsActivity : AppCompatActivity() {
+    private val db = FirebaseFirestore.getInstance()
+    private lateinit var barChart: BarChart
+    private val adminCurrentId = FirebaseAuth.getInstance().currentUser?.uid
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_statistics)
 
-        val db = FirebaseFirestore.getInstance()
-        val medicalRecords = mutableListOf<MedicalRecord>()
-
-        db.collection("medicalrecords")
-            .whereEqualTo("status", "Đặt khám")
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    val record = document.toObject(MedicalRecord::class.java)
-                    medicalRecords.add(record)
-                }
-                // Sau khi lấy dữ liệu, vẽ biểu đồ
-                drawBarChart(medicalRecords)
-            }
-            .addOnFailureListener { e ->
-                Log.e("Firestore", "Error fetching data", e)
-            }
+        barChart = findViewById(R.id.barChart)
+        countMedicalRecordsByDate()
 
     }
-    private fun drawBarChart(records: List<MedicalRecord>) {
-        // Nhóm dữ liệu theo ngày
-        val groupedData = records.groupingBy { it.date }.eachCount()
+        private fun countMedicalRecordsByDate()     {
+            if (adminCurrentId != null) {
+                db.collection("medicalrecords")
+                    .whereEqualTo("status", "Đã khám")
+                    .get()
+                    .addOnSuccessListener { documents ->
+                        val dateCountMap = mutableMapOf<String, Int>()
 
-        val barEntries = ArrayList<BarEntry>()
-        val labels = ArrayList<String>()
+                        for (document in documents) {
+                            val date = document.getString("date")
+                            if (date != null) {
+                                dateCountMap[date] = dateCountMap.getOrDefault(date, 0) + 1
+                            }
+                        }
 
-        groupedData.entries.forEachIndexed { index, entry ->
-            barEntries.add(BarEntry(index.toFloat(), entry.value.toFloat())) // entry.value là số lượng
-            labels.add(entry.key) // entry.key là ngày
+                        // Chuyển đổi dữ liệu thành danh sách các BarEntry
+//                        val entries = dateCountMap.entries.mapIndexed { index, entry ->
+//                            BarEntry(index.toFloat(), entry.value.toFloat())
+//                        }
+                        // Tạo danh sách labels (ngày khám) và các BarEntry
+                        val labels = dateCountMap.keys.toList()
+                        val entries = dateCountMap.entries.mapIndexed { index, entry ->
+                            BarEntry(index.toFloat(), entry.value.toFloat())
+                        }
+
+
+                        // Tạo BarDataSet từ danh sách các BarEntry
+                        val dataSet = BarDataSet(entries, "Số lượt 'Đã khám' theo ngày")
+                        dataSet.color = Color.BLUE // Màu cột
+                        dataSet.valueTextColor = Color.BLACK // Màu chữ hiển thị trên cột
+                        dataSet.valueTextSize = 12f // Kích thước chữ hiển thị
+
+                         //Định dạng giá trị dưới dạng số nguyên
+                        dataSet.valueFormatter = object : ValueFormatter() {
+                            override fun getFormattedValue(value: Float): String {
+                                return value.toInt().toString() // Chuyển giá trị thành số nguyên
+                            }
+                        }
+
+                        val yAxisLeft = barChart.axisLeft
+                        yAxisLeft.setDrawGridLines(true) // Hiển thị đường lưới ngang
+                        yAxisLeft.textColor = Color.BLACK // Màu chữ
+                        yAxisLeft.textSize = 12f // Kích thước chữ
+                        yAxisLeft.axisMaximum = 10f
+                        yAxisLeft.axisMinimum = 0f
+                        barChart.axisRight.isEnabled = false
+
+
+                        val xAxis = barChart.xAxis
+                        xAxis.setDrawGridLines(false)
+                        xAxis.axisMinimum = 0f // Giá trị nhỏ nhất trên trục X
+                        xAxis.axisMaximum = 10f // Giá trị lớn nhất trên trục X
+                        barChart.axisRight.isEnabled = false
+                        xAxis.labelRotationAngle = -45f // Xoay label để tránh đè nhau
+
+
+
+                        xAxis.position = XAxis.XAxisPosition.BOTTOM
+                        xAxis.valueFormatter = object : ValueFormatter() {
+                            override fun getFormattedValue(value: Float): String {
+                                val index = value.toInt()
+                                return if (index in labels.indices) labels[index] else ""
+
+                            }
+                        }
+
+
+
+                            // Tạo BarData từ BarDataSet và thiết lập cho BarChart
+                        val barData = BarData(dataSet)
+                        barChart.data = barData
+                        barChart.invalidate() // Làm mới biểu đồ
+                        barChart.description.text = "Ngày khám"
+
+                    }
+                    .addOnFailureListener { exception ->
+                        Log.w("Firestore", "Error getting documents: ", exception)
+                        Toast.makeText(this, "Error loading medical records", Toast.LENGTH_SHORT).show()
+                    }
+            } else {
+                Toast.makeText(this, "Please log in again", Toast.LENGTH_SHORT).show()
+            }
         }
 
-        // Tạo BarDataSet
-        val barDataSet = BarDataSet(barEntries, "Số lượt đặt khám")
-        barDataSet.color = Color.BLUE
-
-        // Tạo BarData
-        val barData = BarData(barDataSet)
-        barData.barWidth = 0.9f
-
-        // Cấu hình BarChart
-        val barChart: BarChart = findViewById(R.id.barChart)
-        barChart.data = barData
-        barChart.setFitBars(true) // Đảm bảo cột hiển thị đầy đủ
-        barChart.description.text = "Lượt đặt khám theo ngày"
-        barChart.xAxis.valueFormatter = IndexAxisValueFormatter(labels) // Hiển thị tên ngày
-        barChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
-        barChart.axisRight.isEnabled = false // Tắt trục phải
-        barChart.invalidate() // Refresh biểu đồ
-    }
 
 }

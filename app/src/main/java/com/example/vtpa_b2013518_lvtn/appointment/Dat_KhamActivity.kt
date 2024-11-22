@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -19,6 +20,7 @@ import com.example.vtpa_b2013518_lvtn.R
 import com.example.vtpa_b2013518_lvtn.activity.IndexActivity
 import com.example.vtpa_b2013518_lvtn.adapter.Appointment
 import com.example.vtpa_b2013518_lvtn.adapter.AppointmentAdapter
+import com.example.vtpa_b2013518_lvtn.adapter.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -29,6 +31,11 @@ class Dat_KhamActivity : AppCompatActivity() {
     private lateinit var appointmentList: MutableList<Appointment>
     private lateinit var iVDatKham: ImageView
     private lateinit var tVDatKham: TextView
+
+    private lateinit var eTDKSearch: EditText
+    private lateinit var iVDKSearch: ImageView
+    private lateinit var tVDKSearchNoResults: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -49,6 +56,19 @@ class Dat_KhamActivity : AppCompatActivity() {
 
         // Gọi hàm lấy dữ liệu từ Firestore và hiển thị trên RecyclerView
         loadAppointments()
+
+        eTDKSearch = findViewById(R.id.eTDKSearch)
+        iVDKSearch = findViewById(R.id.iVDKSearch)
+        tVDKSearchNoResults = findViewById(R.id.tVDKSearchNoResults)
+
+        iVDKSearch.setOnClickListener {
+            val date = eTDKSearch.text.toString().trim()
+            if (date.isNotEmpty()) {
+                searchUserByDate(date)
+            } else {
+                Toast.makeText(this, "Hãy nhập ngày DD-MM-YYYY!", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
     private fun loadAppointments() {
         val db = FirebaseFirestore.getInstance()
@@ -89,5 +109,30 @@ class Dat_KhamActivity : AppCompatActivity() {
             adapter = AppointmentAdapter(appointmentList)
             recyclerView.adapter = adapter
         }
+    }
+    private fun searchUserByDate(date: String) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("appointments")
+            .whereEqualTo("id_user", userId)
+            .whereEqualTo("date", date)
+            .get()
+            .addOnSuccessListener { documents ->
+                appointmentList.clear() // Xóa danh sách cũ
+                if (!documents.isEmpty) {
+                    // Có kết quả
+                    for (document in documents) {
+                        val app = document.toObject(Appointment::class.java)
+                        appointmentList.add(app)
+                    }
+                    tVDKSearchNoResults.visibility = View.GONE // Ẩn TextView
+                } else {
+                    // Không có kết quả
+                    tVDKSearchNoResults.visibility = View.VISIBLE
+                }
+                adapter.notifyDataSetChanged() // Cập nhật RecyclerView
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Error: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 }

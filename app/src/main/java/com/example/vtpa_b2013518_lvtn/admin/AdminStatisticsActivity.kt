@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -35,7 +36,10 @@ class AdminStatisticsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_admin_statistics)
         barChartMR = findViewById(R.id.barChartMR)
         barChartApp = findViewById(R.id.barChartApp)
-
+        val iVBackAdminStatistics = findViewById<ImageView>(R.id.iVBackAdminStatistics)
+        iVBackAdminStatistics.setOnClickListener {
+            finish()
+        }
         val tVASApp = findViewById<TextView>(R.id.tVASApp)
         val tVASMR = findViewById<TextView>(R.id.tVASMRedcord)
         tVASApp.setBackgroundColor(Color.rgb(224,224,224))

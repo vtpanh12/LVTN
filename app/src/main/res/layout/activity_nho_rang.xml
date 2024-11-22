@@ -132,7 +132,7 @@ nhổ răng khôn,..." />
                       (tùy theo tình trạng răng) " />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btnNho_rang"
                 android:layout_width="260dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"

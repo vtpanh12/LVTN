@@ -126,7 +126,7 @@
                 200,000 - 400,000 (tùy vào tình trạng của răng khi khám)" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btnTram_rang"
                 android:layout_width="260dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"

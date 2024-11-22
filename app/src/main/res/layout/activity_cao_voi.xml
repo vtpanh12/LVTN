@@ -129,7 +129,7 @@ mà bác sĩ sẽ tư vấn thời gian lấy cao răng." />
                 android:text="Cạo vôi đánh bóng	 200,000 – 300,000" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btnCao_voi"
                 android:layout_width="260dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"

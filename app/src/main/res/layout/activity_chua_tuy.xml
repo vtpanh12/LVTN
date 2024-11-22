@@ -155,7 +155,7 @@
                 	  1,000,000" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btnChua_Tuy"
                 android:layout_width="260dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"

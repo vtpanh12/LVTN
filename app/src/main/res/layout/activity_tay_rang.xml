@@ -171,7 +171,7 @@
                 	 1,800,000" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btnTay_rang"
                 android:layout_width="260dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"

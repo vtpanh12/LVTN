@@ -13,22 +13,25 @@ Chức năng:
 - Khách hàng:
   + Cập nhật thông tin người dùng
   + Đặt lịch khám
+  + Tìm kiếm lịch khám theo ngày
   + Xem thông tin của các dịch vụ
   + Đổi mật khẩu
   + Đăng xuất
   + Xem hồ sơ bệnh án của bản thân
 - Admin:
   + Cập nhật thông tin người dùng
+  + Tìm kiếm theo email của người dùng
   + Đổi mật khẩu
   + Đăng xuất
   + Xem thông tin của các lịch khám
   + Hủy lịch khám
   + Xác nhận lịch khám
   + Phân quyền của người dùng (role: user, admin, dentist)
-  + Cập nhật chức vụ, chuyên khoa cho dentist
+  + Cập nhật chức vụ, chuyên khoa cho nha sĩ
   + Chọn bác sĩ phù hợp cho từng lịch khám
   + Tạo lịch khám cho dentist
-  + Truy cập vào hồ sơ bệnh án của khách hàng
+  + Truy cập vào hồ sơ bệnh án của khách hàng 
+  + Cập nhật giá tiền cho hồ sơ bệnh án
 - Dentist:
   + Cập nhật thông tin người dùng
   + Đổi mật khẩu
@@ -37,4 +40,4 @@ Chức năng:
   + Xem thông tin lịch khám trong ngày
   + Xem thông tin chi tiết của từng lịch khám nhận được
   + Tạo hồ sơ bệnh án cho khách hàng
-  + Xem hồ sơ bệnh án của khách hàng (cho phép chỉnh sửa)
+  + Xem hồ sơ bệnh án của khách hàng (cho phép chỉnh sửa (thêm thông tin))

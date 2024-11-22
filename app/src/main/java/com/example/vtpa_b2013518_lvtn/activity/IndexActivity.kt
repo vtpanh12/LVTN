@@ -1,11 +1,14 @@
 package com.example.vtpa_b2013518_lvtn.activity
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -74,13 +77,43 @@ class IndexActivity : AppCompatActivity() {
         val bottomSheetDialog = BottomSheetDialog(this)
         // Inflate layout cho BottomSheet
         val view = LayoutInflater.from(this).inflate(R.layout.bottom_sheet_dialog, null)
+
         // Bắt sự kiện đóng BottomSheet khi người dùng click vào nút "Đóng"
         val iVClose = view.findViewById<ImageView>(R.id.iVClose)
         iVClose.setOnClickListener {
             bottomSheetDialog.dismiss() // Đóng BottomSheet
         }
+
+        // TextView số điện thoại
+        val tvPhoneNumber = view.findViewById<TextView>(R.id.tVPhoneNumber)
+        val phoneNumber = "0123456789" // Thay bằng số điện thoại thực tế
+        tvPhoneNumber.text = "Tổng đài đặt khám: ${phoneNumber}"
+
+        // Bắt sự kiện click vào TextView để gọi điện
+        tvPhoneNumber.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL).apply {
+                data = Uri.parse("tel:$phoneNumber") // Chuẩn bị dữ liệu là số điện thoại
+            }
+            startActivity(intent) // Khởi chạy giao diện gọi điện
+        }
+        val tvZalo = view.findViewById<TextView>(R.id.tVZalo)
+        val zalo = "0123456789"
+        tvZalo.text = "Hỗ trợ đặt khám qua zalo: ${zalo}"
+        // Bắt sự kiện click vào TextView để mở Zalo
+        tvZalo.setOnClickListener {
+            try {
+                val intent = Intent(Intent.ACTION_VIEW).apply {
+                    // URI để mở Zalo với số điện thoại
+                    data = Uri.parse("https://zalo.me/$zalo")
+                }
+                startActivity(intent)
+            } catch (e: Exception) {
+                Toast.makeText(this, "Không thể mở Zalo. Vui lòng kiểm tra ứng dụng!", Toast.LENGTH_SHORT).show()
+            }
+        }
         // Gán view cho BottomSheetDialog
         bottomSheetDialog.setContentView(view)
         bottomSheetDialog.show()
     }
+
 }

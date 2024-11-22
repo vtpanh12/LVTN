@@ -22,9 +22,14 @@ import com.example.vtpa_b2013518_lvtn.users.IndexUserActivity
 import com.example.vtpa_b2013518_lvtn.users.UserMedicalRecordActivity
 import com.example.vtpa_b2013518_lvtn.users.UsersActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.firestore
 
 class IndexActivity : AppCompatActivity() {
     private lateinit var binding: ActivityIndexBinding
+    val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
+    private val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityIndexBinding.inflate(layoutInflater)
@@ -71,24 +76,39 @@ class IndexActivity : AppCompatActivity() {
         linearMR.setOnClickListener {
             startActivity(Intent(this, UserMedicalRecordActivity::class.java))
         }
+        val tVUser = findViewById<TextView>(R.id.tVUser)
+        if (currentUserId != null) {
+            db.collection("users").document(currentUserId)
+                .get()
+                .addOnSuccessListener { snapshot ->
+                    if (snapshot.exists()) {
+                        val username = snapshot.getString("username") // Lấy giá trị của 'username'
+                        tVUser.text = "Chào mừng ${username}"
+                    } else {
+                        tVUser.text = "Username not found"
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    tVUser.text = "Error: ${exception.message}"
+                }
+        } else {
+            tVUser.text = "User not logged in"
+        }
     }
     private fun showBottomSheet() {
         // Khởi tạo BottomSheetDialog
         val bottomSheetDialog = BottomSheetDialog(this)
         // Inflate layout cho BottomSheet
         val view = LayoutInflater.from(this).inflate(R.layout.bottom_sheet_dialog, null)
-
         // Bắt sự kiện đóng BottomSheet khi người dùng click vào nút "Đóng"
         val iVClose = view.findViewById<ImageView>(R.id.iVClose)
         iVClose.setOnClickListener {
             bottomSheetDialog.dismiss() // Đóng BottomSheet
         }
-
         // TextView số điện thoại
         val tvPhoneNumber = view.findViewById<TextView>(R.id.tVPhoneNumber)
         val phoneNumber = "0123456789" // Thay bằng số điện thoại thực tế
         tvPhoneNumber.text = "Tổng đài đặt khám: ${phoneNumber}"
-
         // Bắt sự kiện click vào TextView để gọi điện
         tvPhoneNumber.setOnClickListener {
             val intent = Intent(Intent.ACTION_DIAL).apply {
@@ -115,5 +135,4 @@ class IndexActivity : AppCompatActivity() {
         bottomSheetDialog.setContentView(view)
         bottomSheetDialog.show()
     }
-
 }

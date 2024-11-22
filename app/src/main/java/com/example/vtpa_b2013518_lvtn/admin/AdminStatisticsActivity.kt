@@ -40,6 +40,7 @@ class AdminStatisticsActivity : AppCompatActivity() {
         val tVASMR = findViewById<TextView>(R.id.tVASMRedcord)
         tVASApp.setBackgroundColor(Color.rgb(224,224,224))
         tVASApp.setTextColor(Color.rgb(0,0,102))
+        countAppByService()
 
         tVASApp.setOnClickListener {
             countAppByService()
@@ -48,19 +49,23 @@ class AdminStatisticsActivity : AppCompatActivity() {
             scaleUp.duration = 200
             scaleUp.start()
 
-            if (barChartMR.visibility == View.GONE) {
-                tVASMR.setTextColor(Color.rgb(0,0,102))
-                tVASApp.setBackgroundColor(Color.rgb(224,224,224))
+            if (barChartMR.visibility == View.VISIBLE) {
                 tVASMR.setBackgroundColor(Color.WHITE)
                 tVASApp.setTextColor(Color.rgb(0,0,102))
-                barChartMR.visibility = View.VISIBLE  // Hiển thị nội dung
-                barChartApp.visibility = View.GONE
+                tVASApp.setBackgroundColor(Color.rgb(224,224,224))
 
+                //tVASApp.setTextColor(Color.rgb(0,0,102))
+                barChartMR.visibility = View.GONE  // Hiển thị nội dung
+                barChartApp.visibility = View.VISIBLE
+
+            }else {
+                barChartApp.visibility = View.VISIBLE  // Ẩn nội dung
+                barChartMR.visibility = View.GONE
             }
         }
 
         tVASMR.setOnClickListener {
-
+            countMedicalRecordsByDate()
             // Tạo hiệu ứng thay đổi kích thước
             val scaleUp = ObjectAnimator.ofFloat(tVASMR, "scaleX", 1f, 1.2f)
             scaleUp.duration = 200
@@ -68,22 +73,13 @@ class AdminStatisticsActivity : AppCompatActivity() {
             tVASApp.setBackgroundColor(Color.WHITE)
             // Thực hiện hành động sau khi click
 
-            if (barChartApp.visibility == View.GONE) {
-
+            if (barChartApp.visibility == View.VISIBLE) {
                 tVASMR.setTextColor(Color.rgb(0,0,102))
                 tVASMR.setBackgroundColor(Color.rgb(224,224,224))
-                barChartApp.visibility = View.VISIBLE  // Hiển thị nội dung
-                countMedicalRecordsByDate()
-                barChartMR.visibility = View.GONE
-
-            } else {
-                barChartApp.visibility = View.GONE  // Ẩn nội dung
+                barChartMR.visibility = View.VISIBLE  // Hiển thị nội dung
+                barChartApp.visibility = View.GONE
             }
         }
-
-        countMedicalRecordsByDate()
-//
-
 
     }
     private fun countMedicalRecordsByDate()     {
@@ -109,7 +105,7 @@ class AdminStatisticsActivity : AppCompatActivity() {
 
 
                         // Tạo BarDataSet từ danh sách các BarEntry
-                        val dataSet = BarDataSet(entries, "Số lượt 'Đã khám' theo ngày")
+                        val dataSet = BarDataSet(entries, "Số lượt đã khám theo ngày")
                         dataSet.color = Color.BLUE // Màu cột
                         dataSet.valueTextColor = Color.BLACK // Màu chữ hiển thị trên cột
                         dataSet.valueTextSize = 12f // Kích thước chữ hiển thị
@@ -162,27 +158,36 @@ class AdminStatisticsActivity : AppCompatActivity() {
 
     private fun countAppByService() {
         if (adminCurrentId != null) {
+            // Danh sách tất cả các loại dịch vụ cần hiển thị
+            val allServices = listOf("Trám răng", "Nhổ răng", "Cạo vôi", "Phục hình", "Chữa tủy", "Tẩy răng")
+
             db.collection("appointments")
                 .whereEqualTo("status", "Đặt lịch thành công") // Lọc theo trạng thái
                 .get()
                 .addOnSuccessListener { documents ->
-                    val serviceCountMap = mutableMapOf<String, Int>() // Dùng để lưu số lượng theo từng dịch vụ
+                    val serviceCountMap = mutableMapOf<String, Int>()
 
+                    // Khởi tạo tất cả các dịch vụ với giá trị 0
+                    allServices.forEach { service ->
+                        serviceCountMap[service] = 0
+                    }
+
+                    // Cập nhật số lượng cho những dịch vụ có trong cơ sở dữ liệu
                     for (document in documents) {
                         val service = document.getString("service") // Lấy loại dịch vụ
-                        if (service != null) {
+                        if (service != null && service in allServices) {
                             serviceCountMap[service] = serviceCountMap.getOrDefault(service, 0) + 1
                         }
                     }
 
                     // Tạo danh sách labels (dịch vụ) và các BarEntry
-                    val labels = serviceCountMap.keys.toList()
-                    val entries = serviceCountMap.entries.mapIndexed { index, entry ->
-                        BarEntry(index.toFloat(), entry.value.toFloat())
+                    val labels = allServices // Sử dụng danh sách đầy đủ các dịch vụ
+                    val entries = labels.mapIndexed { index, service ->
+                        BarEntry(index.toFloat(), serviceCountMap[service]?.toFloat() ?: 0f)
                     }
 
                     // Tạo BarDataSet từ danh sách các BarEntry
-                    val dataSet = BarDataSet(entries, "Số lượt 'Đặt khám thành công' theo dịch vụ")
+                    val dataSet = BarDataSet(entries, "Số lượt đặt khám thành công theo dịch vụ")
                     dataSet.color = Color.BLUE // Màu cột
                     dataSet.valueTextColor = Color.BLACK // Màu chữ hiển thị trên cột
                     dataSet.valueTextSize = 12f // Kích thước chữ hiển thị
@@ -229,5 +234,6 @@ class AdminStatisticsActivity : AppCompatActivity() {
             Toast.makeText(this, "Please log in again", Toast.LENGTH_SHORT).show()
         }
     }
+
 
 }

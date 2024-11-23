@@ -18,6 +18,7 @@ Chức năng:
   + Đổi mật khẩu
   + Đăng xuất
   + Xem hồ sơ bệnh án của bản thân
+  + Gửi ý kiến phản hồi về dịch vụ
 - Admin:
   + Cập nhật thông tin người dùng
   + Tìm kiếm theo email của người dùng

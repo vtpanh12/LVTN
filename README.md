@@ -13,11 +13,13 @@ Chức năng:
 - Khách hàng:
   + Cập nhật thông tin người dùng
   + Đặt lịch khám
+  + Quản lý lịch khám (hủy, chỉnh sửa thông tin)
   + Tìm kiếm lịch khám theo ngày
   + Xem thông tin của các dịch vụ
   + Đổi mật khẩu
   + Đăng xuất
   + Xem hồ sơ bệnh án của bản thân
+  + Gửi ý kiến phản hồi về dịch vụ
 - Admin:
   + Cập nhật thông tin người dùng
   + Tìm kiếm theo email của người dùng
@@ -39,5 +41,4 @@ Chức năng:
   + Xem lịch làm việc
   + Xem thông tin lịch khám trong ngày
   + Xem thông tin chi tiết của từng lịch khám nhận được
-  + Tạo hồ sơ bệnh án cho khách hàng
   + Xem hồ sơ bệnh án của khách hàng (cho phép chỉnh sửa (thêm thông tin))

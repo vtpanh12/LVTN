@@ -44,7 +44,6 @@ class AdminDentistEditActivity : AppCompatActivity() {
         adapterSpeciatly.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerSpecialty.adapter = adapterSpeciatly
         spinnerSpecialty.setSelection(1)
-       // val selectedSpeciatly = spinnerSpecialty.selectedItem.toString()
         spinnerRole = findViewById(R.id.spinner_Role)
 
         val roleList = arrayOf("dentist", "user", "admin")
@@ -55,7 +54,6 @@ class AdminDentistEditActivity : AppCompatActivity() {
         spinnerRole.setSelection(1)
         //val selectedRole = spinnerRole.selectedItem.toString()
 
-
         val email = intent.getStringExtra("email")
         val dentistId = intent.getStringExtra("dentistId")
         val username = intent.getStringExtra("username")
@@ -63,9 +61,6 @@ class AdminDentistEditActivity : AppCompatActivity() {
         val phoneNumber = intent.getStringExtra("phoneNumber")
         val gender = intent.getStringExtra("gender")
         val address = intent.getStringExtra("address")
-
-
-
 
         val tVUserName = findViewById<TextView>(R.id.tVADEDentist)
         val tVEmail = findViewById<TextView>(R.id.tVADEEmail)
@@ -83,7 +78,6 @@ class AdminDentistEditActivity : AppCompatActivity() {
         tVGender.text = "Giới tính: ${gender}"
         tVAddress.text = "Địa chỉ: ${address}"
 
-
         btnUpdateDentist = findViewById(R.id.btnUpdateDentist)
         btnUpdateDentist.setOnClickListener {
             val role = spinnerRole.selectedItem.toString()
@@ -95,7 +89,6 @@ class AdminDentistEditActivity : AppCompatActivity() {
         }
     }
     private fun updateDentist(dentistId: String, userCurrentId: String, role: String, speciatly: String) {
-
         db.collection("dentists").document(dentistId)
             .update("role", role, "specialty", speciatly)
             .addOnSuccessListener {

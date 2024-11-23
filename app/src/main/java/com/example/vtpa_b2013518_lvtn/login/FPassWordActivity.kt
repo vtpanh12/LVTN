@@ -27,7 +27,6 @@ class FPassWordActivity : AppCompatActivity() {
         val email: EditText = findViewById(R.id.eTFPEmail)
         val btnFPAuth: Button = findViewById(R.id.btnFPAuth)
 
-
        btnFPAuth.setOnClickListener {
             val email = email.text.toString().trim()
             if (email.isEmpty()){
@@ -40,7 +39,6 @@ class FPassWordActivity : AppCompatActivity() {
 
     }
     private fun resetPassWord(email: String){
-
         Firebase.auth.sendPasswordResetEmail(email)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {

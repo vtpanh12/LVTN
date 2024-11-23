@@ -38,8 +38,6 @@ class AdminAuthActivity : AppCompatActivity() {
         userList = mutableListOf()
         adapter = UserAdapter(userList)
         recyclerView.adapter = adapter
-        //updateRecyclerView()
-        //Gọi hàm lấy dữ liệu từ Firestore và hiển thị trên RecyclerView
         loadAppointments()
         eTAdminAuthSearch = findViewById(R.id.eTAdminAuthSearch)
         iVAdminAuthSearch = findViewById(R.id.iVAdminAuthSearch)
@@ -84,19 +82,19 @@ class AdminAuthActivity : AppCompatActivity() {
             .whereEqualTo("email", email)
             .get()
             .addOnSuccessListener { documents ->
-                userList.clear() // Xóa danh sách cũ
+                userList.clear()
                 if (!documents.isEmpty) {
                     // Có kết quả
                     for (document in documents) {
                         val user = document.toObject(User::class.java)
                         userList.add(user)
                     }
-                    tVAdminAuthSearchNoResults.visibility = View.GONE // Ẩn TextView
+                    tVAdminAuthSearchNoResults.visibility = View.GONE
                 } else {
-                    // Không có kết quả
                     tVAdminAuthSearchNoResults.visibility = View.VISIBLE
                 }
-                adapter.notifyDataSetChanged() // Cập nhật RecyclerView
+                // Cập nhật RecyclerView
+                adapter.notifyDataSetChanged()
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(this, "Error: ${exception.message}", Toast.LENGTH_SHORT).show()

@@ -22,9 +22,7 @@ import java.util.Locale
 
 class AdminDentistAssignmentEditActivity : AppCompatActivity() {
     private lateinit var btnUpdateDentistAss: Button
-    private lateinit var auth: FirebaseAuth
     private val db = Firebase.firestore
-        val userCurrentId = FirebaseAuth.getInstance().currentUser?.uid
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_dentist_assignment_edit)
@@ -38,7 +36,6 @@ class AdminDentistAssignmentEditActivity : AppCompatActivity() {
         val address = intent.getStringExtra("address")
         val role= intent.getStringExtra("role")
         val specialty = intent.getStringExtra("specialty")
-
 
         val tVUserName = findViewById<TextView>(R.id.tVAssDentist)
         val tVEmail = findViewById<TextView>(R.id.tVAssEmail)

@@ -17,7 +17,6 @@ import com.example.vtpa_b2013518_lvtn.admin.AdminDentistAssignmentActivity
 class DentistIndexActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_dentist_index)
         val linearDentist = findViewById<LinearLayout>(R.id.linearDentist)
         linearDentist.setOnClickListener {

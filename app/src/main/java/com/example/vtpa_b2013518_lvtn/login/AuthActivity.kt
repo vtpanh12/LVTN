@@ -23,7 +23,6 @@ class AuthActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var resendButton: Button
     private lateinit var timerTextView: TextView
-
     //tạo 1 handler de xu ly tac vu tren luong chinh (MainLooper)
     private val handler = Handler(Looper.getMainLooper())  // Sử dụng để kiểm tra xem email da duoc xac thuc hay chua
 
@@ -31,7 +30,6 @@ class AuthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         auth = Firebase.auth
         val userEmail = intent.getStringExtra("USER_EMAIL")
         val noidung = binding.tvEmail
@@ -40,7 +38,6 @@ class AuthActivity : AppCompatActivity() {
         resendButton = findViewById(R.id.btnResendAuth)
 
         resendButton.isEnabled = false
-
         // Khởi tạo bộ đếm ngược 60 giây
         startCountDownTimer()
 
@@ -48,7 +45,6 @@ class AuthActivity : AppCompatActivity() {
         resendButton.setOnClickListener {
             resendVerificationEmail()
         }
-
         startCheckingEmailVerification()
     }
 

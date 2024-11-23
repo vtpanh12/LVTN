@@ -17,19 +17,10 @@ class ResetPWActivity : AppCompatActivity() {
         binding = ActivityResetPwactivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         binding.btnAuthPW.setOnClickListener {
             startActivity(Intent(this, IndexActivity::class.java))
         }
 
     }
 
-//    val emailAddress = "user@example.com"
-//
-//    Firebase.auth.sendPasswordResetEmail(emailAddress)
-//    .addOnCompleteListener { task ->
-//        if (task.isSuccessful) {
-//            Log.d(TAG, "Email sent.")
-//        }
-//    }
 }

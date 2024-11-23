@@ -20,7 +20,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 
-
 class SplashActivity : AppCompatActivity() {
 
     private val db = FirebaseFirestore.getInstance()
@@ -29,7 +28,6 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
         // Sử dụng Handler để tạo độ trễ trước khi điều hướng
         Handler(Looper.getMainLooper()).postDelayed({
             checkUserRole()

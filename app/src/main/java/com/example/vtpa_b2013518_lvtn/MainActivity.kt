@@ -23,12 +23,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
         binding.btnDangnhap.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
-
         binding.btnDangky.setOnClickListener {
             startActivity(Intent(this, SignupActivity::class.java))
         }

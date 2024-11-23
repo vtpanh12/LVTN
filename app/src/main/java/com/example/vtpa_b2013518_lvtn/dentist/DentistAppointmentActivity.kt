@@ -55,7 +55,6 @@ class DentistAppointmentActivity : AppCompatActivity() {
         recyclerViewMorning.layoutManager = LinearLayoutManager(this)
         morningAdapter = SlotAdapter(emptyList())
         recyclerViewMorning.adapter = morningAdapter
-
         recyclerViewAfternoon = findViewById(R.id.recyclerAfternoon)
         recyclerViewAfternoon.layoutManager = LinearLayoutManager(this)
         afternoonAdapter = SlotAdapter(emptyList())

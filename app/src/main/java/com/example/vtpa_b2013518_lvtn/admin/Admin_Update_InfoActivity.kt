@@ -32,10 +32,6 @@ class Admin_Update_InfoActivity : AppCompatActivity() {
     lateinit var eTDiaChiAdmin: EditText
     lateinit var eTEmailAdmin: EditText
     private lateinit var btnUpdateAdmin: Button
-
-    // create Firebase authentication object
-    private lateinit var auth: FirebaseAuth
-    // Access a Cloud Firestore instance from your Activity
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +45,6 @@ class Admin_Update_InfoActivity : AppCompatActivity() {
         eTDiaChiAdmin = findViewById(R.id.eTDiaChiAdmin)
         eTEmailAdmin = findViewById(R.id.eTEmailAdmin)
         val iVBackAdmin = findViewById<ImageView>(R.id.iVBackUpdateAdmin)
-
         iVBackAdmin.setOnClickListener {
             finish()
         }
@@ -75,16 +70,13 @@ class Admin_Update_InfoActivity : AppCompatActivity() {
             // Hiển thị DatePickerDialog
             datePicker.show()
             datePicker.window?.setBackgroundDrawableResource(android.R.color.transparent)
-            // Thay đổi văn bản của nút "OK" thành "Xác nhận" và "Cancel" thành "Hủy"
             datePicker.getButton(DatePickerDialog.BUTTON_POSITIVE).text = "Xác nhận"
             datePicker.getButton(DatePickerDialog.BUTTON_NEGATIVE).text = "Hủy"
         }
 
         val email = getEmail()
-
         // Hiển thị email nếu tồn tại, nếu không thì báo lỗi
         if (email != null) {
-            //eTEmail.setT = "Email: $email"
             eTEmailAdmin.setText(Editable.Factory.getInstance().newEditable(email))
 
             Toast.makeText(this, "Email của người dùng: $email", Toast.LENGTH_SHORT).show()
@@ -101,8 +93,7 @@ class Admin_Update_InfoActivity : AppCompatActivity() {
                         eTHoTenAdmin.setText(document.getString("username"))
                         eTSDTAdmin.setText(document.getString("phoneNumber"))
                         eTDiaChiAdmin.setText(document.getString("address"))
-                        tVNgaySinhAdmin.text = document.getString("date") // Hiển thị ngày sinh
-
+                        tVNgaySinhAdmin.text = document.getString("date")
 
                         // Cập nhật giới tính
                         val gender = document.getString("gender")
@@ -124,7 +115,6 @@ class Admin_Update_InfoActivity : AppCompatActivity() {
                     Toast.makeText(this, "Lỗi khi tải thông tin: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
         }
-
 
         btnUpdateAdmin.setOnClickListener {
             val username = eTHoTenAdmin.text.toString()
@@ -150,8 +140,8 @@ class Admin_Update_InfoActivity : AppCompatActivity() {
                     email = getEmail(),
                     role = "user")
 
-                // Lưu vào Firestore, ví dụ sử dụng UID người dùng làm khóa
-                val userId = FirebaseAuth.getInstance().currentUser?.uid // Bạn sẽ thay bằng user ID thực từ Firebase Auth
+                // Lưu vào Firestore
+                val userId = FirebaseAuth.getInstance().currentUser?.uid
                 if (userId != null){
                     db.collection("admins").document(userId)
                         .set(admin)
@@ -172,9 +162,7 @@ class Admin_Update_InfoActivity : AppCompatActivity() {
     }
 
     private fun getEmail(): String? {
-        // Lấy người dùng hiện tại từ FirebaseAuth
         val user = FirebaseAuth.getInstance().currentUser
-
         // Kiểm tra xem người dùng có tồn tại không và trả về email
         return user?.email
     }

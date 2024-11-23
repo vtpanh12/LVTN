@@ -41,7 +41,6 @@ class AdminCancelAppointmentActivity : AppCompatActivity() {
         val status = intent.getStringExtra("status")
         val phoneNumber = intent.getStringExtra("phoneNumber")
 
-
         val tVUserName = findViewById<TextView>(R.id.tVACAppUser)
         val tVEmail = findViewById<TextView>(R.id.tVACAppEmail)
         val tVAppId = findViewById<TextView>(R.id.tVACAppAppId)
@@ -64,7 +63,6 @@ class AdminCancelAppointmentActivity : AppCompatActivity() {
         tVPhoneNumber.text = "Số điện thoại: ${phoneNumber}"
         tVStatus.text = "Trạng thái: ${status}"
 
-
         btnCancelApp = findViewById(R.id.btnCancelApp)
         btnCancelApp.setOnClickListener {
             if (appointmentId != null && userCurrentId != null){
@@ -76,7 +74,6 @@ class AdminCancelAppointmentActivity : AppCompatActivity() {
         db.collection("appointments").document(appointmentId)
             .update("status", "Hủy")
             .addOnSuccessListener {
-                //sendCancellationNotification(userId)
                 Toast.makeText(this, "Lịch khám đã bị hủy thành công!: $appointmentId", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener { e ->

@@ -35,9 +35,6 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
     lateinit var tVHour: TextView
     lateinit var eTNote: EditText
     private lateinit var btnCreateApp: Button
-    // create Firebase authentication object
-    private lateinit var auth: FirebaseAuth
-    // Access a Cloud Firestore instance from your Activity
     val db = Firebase.firestore
     val userId = FirebaseAuth.getInstance().currentUser?.uid
 
@@ -67,13 +64,11 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
         val selectedService = spinnerServices.selectedItem.toString()
         //Toast.makeText(this, "Dịch vụ đã chọn: $selectedService", Toast.LENGTH_SHORT).show()
 
-
         tVDate.setOnClickListener {
             val calendar = Calendar.getInstance()
             val year = calendar.get(Calendar.YEAR)
             val month = calendar.get(Calendar.MONTH)
             val day = calendar.get(Calendar.DAY_OF_MONTH)
-
             val datePickerDialog = DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->
                 val formattedDate = String.format("%02d-%02d-%d", selectedDay, selectedMonth + 1, selectedYear)
                 tVDate.text = formattedDate
@@ -298,9 +293,7 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
         }
     }
     private fun getEmail(): String? {
-        // Lấy người dùng hiện tại từ FirebaseAuth
         val user = FirebaseAuth.getInstance().currentUser
-
         // Kiểm tra xem người dùng có tồn tại không và trả về email
         return user?.email
     }
@@ -364,7 +357,6 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
 
         val alertDialog = dialogBuilder.create()
         alertDialog.show()
-
         // Xử lý khi người dùng nhấn "Đóng"
         dialogView.findViewById<Button>(R.id.btnClose).setOnClickListener {
             alertDialog.dismiss()

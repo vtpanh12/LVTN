@@ -85,6 +85,4 @@ class AdminUserEditActivity : AppCompatActivity() {
                         Log.w("CancelAppointment", "Error updating document", e)
                     }
                 }
-
-
 }

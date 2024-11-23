@@ -33,27 +33,21 @@ class AdminDentistActivity : AppCompatActivity() {
         dentistList = mutableListOf()
         adapter = DentistAdapter(dentistList)
         recyclerView.adapter = adapter
-        //updateRecyclerView()
-        //Gọi hàm lấy dữ liệu từ Firestore và hiển thị trên RecyclerView
         loadAppointments()
     }
     private fun loadAppointments() {
         val db = FirebaseFirestore.getInstance()
-
-        // Lắng nghe các thay đổi trong collection "appointments"
         db.collection("dentists")
             .addSnapshotListener { snapshots, e ->
                 if (e != null) {
                     Toast.makeText(this, "Lỗi khi tải dữ liệu: ${e.message}", Toast.LENGTH_SHORT).show()
                     return@addSnapshotListener
                 }
-
                 // Kiểm tra nếu không có lịch hẹn
                 if (snapshots != null && snapshots.isEmpty) {
                     Toast.makeText(this, "Chưa có lịch khám.", Toast.LENGTH_SHORT).show()
                     recyclerView.visibility = View.GONE
                 } else {
-
                     dentistList.clear() // Làm sạch danh sách cũ
                     for (doc in snapshots!!) {
                         val dentist = doc.toObject(Dentist::class.java)

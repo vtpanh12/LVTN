@@ -57,11 +57,9 @@ class AdminStatisticsActivity : AppCompatActivity() {
                 tVASMR.setBackgroundColor(Color.WHITE)
                 tVASApp.setTextColor(Color.rgb(0,0,102))
                 tVASApp.setBackgroundColor(Color.rgb(224,224,224))
-
                 //tVASApp.setTextColor(Color.rgb(0,0,102))
                 barChartMR.visibility = View.GONE  // Hiển thị nội dung
                 barChartApp.visibility = View.VISIBLE
-
             }else {
                 barChartApp.visibility = View.VISIBLE  // Ẩn nội dung
                 barChartMR.visibility = View.GONE
@@ -76,7 +74,6 @@ class AdminStatisticsActivity : AppCompatActivity() {
             scaleUp.start()
             tVASApp.setBackgroundColor(Color.WHITE)
             // Thực hiện hành động sau khi click
-
             if (barChartApp.visibility == View.VISIBLE) {
                 tVASMR.setTextColor(Color.rgb(0,0,102))
                 tVASMR.setBackgroundColor(Color.rgb(224,224,224))
@@ -93,21 +90,17 @@ class AdminStatisticsActivity : AppCompatActivity() {
                     .get()
                     .addOnSuccessListener { documents ->
                         val dateCountMap = mutableMapOf<String, Int>()
-
                         for (document in documents) {
                             val date = document.getString("date")
                             if (date != null) {
                                 dateCountMap[date] = dateCountMap.getOrDefault(date, 0) + 1
                             }
                         }
-
                         // Tạo danh sách labels (ngày khám) và các BarEntry
                         val labels = dateCountMap.keys.toList()
                         val entries = dateCountMap.entries.mapIndexed { index, entry ->
                             BarEntry(index.toFloat(), entry.value.toFloat())
                         }
-
-
                         // Tạo BarDataSet từ danh sách các BarEntry
                         val dataSet = BarDataSet(entries, "Số lượt đã khám theo ngày")
                         dataSet.color = Color.BLUE // Màu cột
@@ -120,7 +113,6 @@ class AdminStatisticsActivity : AppCompatActivity() {
                                 return value.toInt().toString() // Chuyển giá trị thành số nguyên
                             }
                         }
-
                         val yAxisLeft = barChartMR.axisLeft
                         yAxisLeft.setDrawGridLines(true) // Hiển thị đường lưới ngang
                         yAxisLeft.textColor = Color.BLACK // Màu chữ
@@ -140,7 +132,6 @@ class AdminStatisticsActivity : AppCompatActivity() {
                             override fun getFormattedValue(value: Float): String {
                                 val index = value.toInt()
                                 return if (index in labels.indices) labels[index] else ""
-
                             }
                         }
                             // Tạo BarData từ BarDataSet và thiết lập cho BarChart
@@ -162,20 +153,17 @@ class AdminStatisticsActivity : AppCompatActivity() {
 
     private fun countAppByService() {
         if (adminCurrentId != null) {
-            // Danh sách tất cả các loại dịch vụ cần hiển thị
+            // Danh sách tất cả các loại dịch vụ
             val allServices = listOf("Trám răng", "Nhổ răng", "Cạo vôi", "Phục hình", "Chữa tủy", "Tẩy răng")
-
             db.collection("appointments")
                 .whereEqualTo("status", "Đặt lịch thành công") // Lọc theo trạng thái
                 .get()
                 .addOnSuccessListener { documents ->
                     val serviceCountMap = mutableMapOf<String, Int>()
-
                     // Khởi tạo tất cả các dịch vụ với giá trị 0
                     allServices.forEach { service ->
                         serviceCountMap[service] = 0
                     }
-
                     // Cập nhật số lượng cho những dịch vụ có trong cơ sở dữ liệu
                     for (document in documents) {
                         val service = document.getString("service") // Lấy loại dịch vụ
@@ -183,13 +171,11 @@ class AdminStatisticsActivity : AppCompatActivity() {
                             serviceCountMap[service] = serviceCountMap.getOrDefault(service, 0) + 1
                         }
                     }
-
                     // Tạo danh sách labels (dịch vụ) và các BarEntry
                     val labels = allServices // Sử dụng danh sách đầy đủ các dịch vụ
                     val entries = labels.mapIndexed { index, service ->
                         BarEntry(index.toFloat(), serviceCountMap[service]?.toFloat() ?: 0f)
                     }
-
                     // Tạo BarDataSet từ danh sách các BarEntry
                     val dataSet = BarDataSet(entries, "Số lượt đặt khám thành công theo dịch vụ")
                     dataSet.color = Color.BLUE // Màu cột
@@ -202,7 +188,6 @@ class AdminStatisticsActivity : AppCompatActivity() {
                             return value.toInt().toString() // Chuyển giá trị thành số nguyên
                         }
                     }
-
                     // Cấu hình biểu đồ
                     val yAxisLeft = barChartApp.axisLeft
                     yAxisLeft.setDrawGridLines(true) // Hiển thị đường lưới ngang
@@ -223,7 +208,6 @@ class AdminStatisticsActivity : AppCompatActivity() {
                             return if (index in labels.indices) labels[index] else ""
                         }
                     }
-
                     // Tạo BarData từ BarDataSet và thiết lập cho BarChart
                     val barData = BarData(dataSet)
                     barChartApp.data = barData

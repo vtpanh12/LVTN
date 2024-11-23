@@ -18,7 +18,6 @@ import com.google.firebase.auth.FirebaseAuth
 class AdminActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_admin)
 
         val iVBackAdmin = findViewById<ImageView>(R.id.iVBackAdmin)
@@ -37,9 +36,9 @@ class AdminActivity : AppCompatActivity() {
         linearSignOut.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             val intent = Intent(this, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // Xóa hết các activity trước đó
+            // Xóa hết các activity trước đó
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
-
     }
 }

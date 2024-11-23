@@ -33,13 +33,9 @@ class Dentist_Update_InfoActivity : AppCompatActivity() {
     lateinit var eTEmailDentist: EditText
     private lateinit var btnUpdateDentist: Button
 
-    // create Firebase authentication object
-    private lateinit var auth: FirebaseAuth
-    // Access a Cloud Firestore instance from your Activity
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_dentist_update_info)
         tVNgaySinhDentist = findViewById(R.id.tVNgaySinhDentist)
         btnUpdateDentist = findViewById(R.id.btnCapNhatDentist)
@@ -102,7 +98,6 @@ class Dentist_Update_InfoActivity : AppCompatActivity() {
                         eTSDTDentist.setText(document.getString("phoneNumber"))
                         eTDiaChiDentist.setText(document.getString("address"))
                         tVNgaySinhDentist.text = document.getString("date") // Hiển thị ngày sinh
-
 
                         // Cập nhật giới tính
                         val gender = document.getString("gender")
@@ -172,7 +167,6 @@ class Dentist_Update_InfoActivity : AppCompatActivity() {
     }
 
     private fun getEmail(): String? {
-        // Lấy người dùng hiện tại từ FirebaseAuth
         val user = FirebaseAuth.getInstance().currentUser
 
         // Kiểm tra xem người dùng có tồn tại không và trả về email

@@ -31,7 +31,6 @@ class Dat_KhamActivity : AppCompatActivity() {
     private lateinit var appointmentList: MutableList<Appointment>
     private lateinit var iVDatKham: ImageView
     private lateinit var tVDatKham: TextView
-
     private lateinit var eTDKSearch: EditText
     private lateinit var iVDKSearch: ImageView
     private lateinit var tVDKSearchNoResults: TextView
@@ -54,7 +53,6 @@ class Dat_KhamActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         appointmentList = mutableListOf()
 
-        // Gọi hàm lấy dữ liệu từ Firestore và hiển thị trên RecyclerView
         loadAppointments()
 
         eTDKSearch = findViewById(R.id.eTDKSearch)
@@ -72,8 +70,6 @@ class Dat_KhamActivity : AppCompatActivity() {
     }
     private fun loadAppointments() {
         val db = FirebaseFirestore.getInstance()
-
-        // Lắng nghe các thay đổi trong collection "appointments"
         db.collection("appointments")
             .whereEqualTo("id_user", userId) // Lọc theo ID của user nếu cần
             .addSnapshotListener { snapshots, e ->
@@ -81,7 +77,6 @@ class Dat_KhamActivity : AppCompatActivity() {
                     Toast.makeText(this, "Lỗi khi tải dữ liệu: ${e.message}", Toast.LENGTH_SHORT).show()
                     return@addSnapshotListener
                 }
-
                 // Kiểm tra nếu không có lịch hẹn
                 if (snapshots != null && snapshots.isEmpty) {
                     Toast.makeText(this, "Chưa có lịch khám.", Toast.LENGTH_SHORT).show()
@@ -95,7 +90,6 @@ class Dat_KhamActivity : AppCompatActivity() {
                         appointmentList.add(appointment)
                     }
                     updateRecyclerView() // Cập nhật lại RecyclerView
-
                 }
             }
     }

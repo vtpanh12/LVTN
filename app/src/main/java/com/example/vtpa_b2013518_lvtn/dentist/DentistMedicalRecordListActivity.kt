@@ -40,7 +40,6 @@ class DentistMedicalRecordListActivity : AppCompatActivity() {
         iVBackDentistMedicalRecord.setOnClickListener {
             startActivity(Intent(this, DentistIndexActivity::class.java))
         }
-
         recyclerView = findViewById(R.id.ryMedialRecordList)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recordList = mutableListOf()
@@ -89,7 +88,6 @@ class DentistMedicalRecordListActivity : AppCompatActivity() {
                             dentistMap[idApp] = combined
                         }
                     }
-
                     if (idAppList.isNotEmpty()) {
                         val appointmentsTask = db.collection("appointments")
                             .whereIn("id_app", idAppList)

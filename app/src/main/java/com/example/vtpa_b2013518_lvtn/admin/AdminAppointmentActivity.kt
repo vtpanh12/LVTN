@@ -31,14 +31,11 @@ class AdminAppointmentActivity : AppCompatActivity() {
         appointmentList = mutableListOf()
         adapter = AppointmentAdmin(appointmentList)
         recyclerView.adapter = adapter
-        //updateRecyclerView()
-         //Gọi hàm lấy dữ liệu từ Firestore và hiển thị trên RecyclerView
         loadAppointments()
     }
     private fun loadAppointments() {
         val db = FirebaseFirestore.getInstance()
-
-        // Lắng nghe các thay đổi trong collection "appointments"
+        // Lắng nghe các thay đổi
         db.collection("appointments")
             .addSnapshotListener { snapshots, e ->
                 if (e != null) {
@@ -51,14 +48,13 @@ class AdminAppointmentActivity : AppCompatActivity() {
                     Toast.makeText(this, "Chưa có lịch khám.", Toast.LENGTH_SHORT).show()
                     recyclerView.visibility = View.GONE
                 } else {
-
-                    appointmentList.clear() // Làm sạch danh sách cũ
+                    // Làm sạch danh sách cũ
+                    appointmentList.clear()
                     for (doc in snapshots!!) {
                         val appointment = doc.toObject(Appointment::class.java)
                         appointmentList.add(appointment)
                     }
                     adapter.notifyDataSetChanged()
-
                 }
             }
     }

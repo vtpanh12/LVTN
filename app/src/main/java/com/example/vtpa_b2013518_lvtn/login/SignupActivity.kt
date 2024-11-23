@@ -43,17 +43,12 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
         binding.btnAuthGmail.setOnClickListener {
             createAccount()
         }
         binding.tVSUDangNhap.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
-
-
-        // View Bindings
         etEmail = findViewById(R.id.etSUEmail)
         etPass = findViewById(R.id.eTSUMatKhau)
         etConfPass = findViewById(R.id.eTSUCMatKhau)
@@ -79,7 +74,6 @@ class SignupActivity : AppCompatActivity() {
                 etPass.inputType = InputType.TYPE_CLASS_TEXT
                 iVSUPW.setImageResource(R.drawable.show_pw) // Đổi icon về "hiện"
             }
-
             // Di chuyển con trỏ về cuối đoạn văn bản
             etPass.setSelection(etPass.text.length)
 
@@ -96,7 +90,6 @@ class SignupActivity : AppCompatActivity() {
                 etConfPass.inputType = InputType.TYPE_CLASS_TEXT
                 iVSUCPW.setImageResource(R.drawable.show_pw) // Đổi icon về "hiện"
             }
-
             // Di chuyển con trỏ về cuối đoạn văn bản
             etConfPass.setSelection(etConfPass.text.length)
 
@@ -291,6 +284,5 @@ class SignupActivity : AppCompatActivity() {
                 hasDigit(password) &&
                 hasSpecialChar(password)
     }
-
 }
 

@@ -29,8 +29,6 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
     private lateinit var btnConfApp: Button
     private lateinit var tVDentist: TextView
     private val db = Firebase.firestore
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_conf_appointment)
@@ -52,7 +50,6 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
         val status = intent.getStringExtra("status")
         val phoneNumber = intent.getStringExtra("phoneNumber")
 
-        // Hiển thị thông tin cuộc hẹn
         displayAppointmentInfo(email, appointmentId, userId, username, service,
             date, hour, note, phoneNumber, status
         )
@@ -76,11 +73,9 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Thiếu thông tin để chọn bác sĩ", Toast.LENGTH_SHORT).show()
             }
-
         }
     }
 
-    // Hiển thị thông tin cuộc hẹn cơ bản
     private fun displayAppointmentInfo(email: String?, appointmentId: String?, userId: String?,
         username: String?, service: String?, date: String?, hour: String?,
         note: String?, phoneNumber: String?, status: String?
@@ -133,7 +128,6 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
                 // Tạo 1 danh sách bác sĩ phù hợp
                 val availableDentists = mutableListOf<String>()
                 var dentistsChecked = 0 // Biến đếm số bác sĩ đã kiểm tra
-
                 // Duyệt qua danh sách bác sĩ có chuyên khoa phù hợp
                 for (dentist in dentists) {
                     // Lấy id_dentist
@@ -141,7 +135,6 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
                     // Truy cập vào lịch làm việc của nha sĩ
                     val shiftRef = db.collection("dentists").document(dentistId)
                         .collection("shifts").document("${date}_$shiftId")
-
                     // Lấy thông tin của shift
                     shiftRef.get().addOnSuccessListener { shiftDoc ->
                         dentistsChecked++ // Tăng số bác sĩ đã kiểm tra
@@ -236,7 +229,6 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
             .update("id_dentist", dentistId, "status","Đặt lịch thành công")
             .addOnSuccessListener {
                 Toast.makeText(this, "Đã cập nhật dentistId vào lịch khám: $appointmentId", Toast.LENGTH_SHORT).show()
-
             }
             .addOnFailureListener { e ->
                 Log.w("CancelAppointment", "Error updating document", e)

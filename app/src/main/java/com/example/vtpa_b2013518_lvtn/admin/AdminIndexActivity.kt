@@ -24,7 +24,6 @@ class AdminIndexActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_admin_index)
         val linearAdmin = findViewById<LinearLayout>(R.id.linearAdmin)
         linearAdmin.setOnClickListener {

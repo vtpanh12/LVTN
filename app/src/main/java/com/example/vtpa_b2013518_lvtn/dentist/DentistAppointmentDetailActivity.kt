@@ -20,9 +20,7 @@ import com.google.firebase.firestore.firestore
 
 class DentistAppointmentDetailActivity : AppCompatActivity() {
     private lateinit var btnDentistAppDetail: Button
-    private lateinit var auth: FirebaseAuth
     private val db = Firebase.firestore
-    val dentistCurrentId = FirebaseAuth.getInstance().currentUser?.uid
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dentist_appointment_detail)

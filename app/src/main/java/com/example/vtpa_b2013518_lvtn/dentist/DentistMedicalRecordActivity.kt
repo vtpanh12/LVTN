@@ -22,9 +22,7 @@ import com.google.firebase.firestore.firestore
 import java.util.Calendar
 
 class DentistMedicalRecordActivity : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
     private val db = Firebase.firestore
-    val dentistCurrentId = FirebaseAuth.getInstance().currentUser?.uid
     lateinit var tVDentistMRDates: TextView
     lateinit var tVDentistMRNextAppointment: TextView
     lateinit var eTDentistMRTreatment: EditText
@@ -82,7 +80,7 @@ class DentistMedicalRecordActivity : AppCompatActivity() {
         val phoneNumber = intent.getStringExtra("phoneNumber")
         val status = intent.getStringExtra("status")
         val appointmentId = intent.getStringExtra("appointmentId")
-        // Hiển thị thông tin lên giao diện hoặc xử lý theo yêu cầu của bạn
+
         displayAppointmentInfo(email, username, service, date, hour, note, phoneNumber, status)
         btnDentistMedicalRecord.setOnClickListener {
             if (appointmentId != null) {

@@ -45,7 +45,6 @@ class AdminMedicalRecordActivity : AppCompatActivity() {
             val combinedList = mutableListOf<CombinedData>()
             val mrs = mrSnapshot.toObjects(MedicalRecord::class.java)
 
-
             mrs.forEach { mr ->
                 val dentistTask = mr.id_dentist?.let { db.collection("dentists").document(it).get() }
                 val appointmentTask = mr.id_app?.let { db.collection("appointments").document(it).get() }
@@ -64,6 +63,4 @@ class AdminMedicalRecordActivity : AppCompatActivity() {
             }
         }
     }
-
-
 }

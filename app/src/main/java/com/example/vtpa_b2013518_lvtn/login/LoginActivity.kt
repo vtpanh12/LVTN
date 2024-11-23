@@ -36,11 +36,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var etPass: EditText
     lateinit var iVLIPW : ImageView
     private lateinit var btnSignIn: Button
-
-
-    // create Firebase authentication object
     private lateinit var auth: FirebaseAuth
-    // Access a Cloud Firestore instance from your Activity
     val db = Firebase.firestore
 
     private lateinit var binding: ActivityLoginBinding
@@ -49,8 +45,6 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        // View Bindings
         etEmail = findViewById(R.id.eTLIEmail)
         etPass = findViewById(R.id.eTLIMatKhau)
         btnSignIn = findViewById(R.id.btnLIDangNhap)
@@ -66,7 +60,6 @@ class LoginActivity : AppCompatActivity() {
                 etPass.inputType = InputType.TYPE_CLASS_TEXT
                 iVLIPW.setImageResource(R.drawable.show_pw) // Đổi icon về "hiện"
             }
-
             // Di chuyển con trỏ về cuối đoạn văn bản
             etPass.setSelection(etPass.text.length)
 
@@ -74,16 +67,13 @@ class LoginActivity : AppCompatActivity() {
             isPasswordVisible = !isPasswordVisible
         }
 
-        // Initialize Firebase Auth
         auth = Firebase.auth
         binding.tVLIQuenMatKhau.setOnClickListener {
             startActivity(Intent(this, FPassWordActivity::class.java))
         }
-
         binding.btnLIDangNhap.setOnClickListener {
             login()
         }
-
         binding.tVLIDangky.setOnClickListener {
             startActivity(Intent(this, SignupActivity::class.java))
             finish()

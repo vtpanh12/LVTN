@@ -124,5 +124,42 @@
         android:background="@drawable/btn_custom"
         android:text="Cập nhật lịch làm việc"
         app:backgroundTint="@null" />
+    <Button
+        android:id="@+id/btnUpdateDentistSalary"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_margin="20dp"
+        android:layout_marginRight="20dp"
+        android:textSize="20sp"
+        android:background="@drawable/btn_custom"
+        android:text="Cập nhật lương"
+        app:backgroundTint="@null" />
+
+   <LinearLayout
+       android:visibility="gone"
+       android:orientation="vertical"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <TextView
+           android:id="@+id/textView19"
+           android:layout_width="wrap_content"
+           android:layout_height="38dp"
+           android:paddingLeft="20dp"
+           android:text="Nhập số ca trực của nha sĩ:"
+           android:textSize="18sp"
+           android:textStyle="normal"/>
+       <EditText
+           android:textSize="16sp"
+           android:id="@+id/eTAdminSalary"
+           android:layout_width="match_parent"
+           android:layout_height="40dp"
+           android:layout_marginLeft="20dp"
+           android:layout_marginRight="20dp"
+           android:background="@drawable/edittext_user_bg"
+           android:ems="10"
+           android:inputType="text"
+           android:text=""/>
+   </LinearLayout>
+
 
 </LinearLayout>

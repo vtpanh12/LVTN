@@ -12,8 +12,10 @@ import com.example.vtpa_b2013518_lvtn.admin.AdminCancelAppointmentActivity
 import com.example.vtpa_b2013518_lvtn.admin.AdminConfAppointmentActivity
 import com.example.vtpa_b2013518_lvtn.admin.AdminDentistAssignmentEditActivity
 import com.example.vtpa_b2013518_lvtn.appointment.AppointmentEditActivity
+import com.google.firebase.firestore.FirebaseFirestore
 
-class AppointmentAdapter(private val appointments: List<Appointment>) :
+class AppointmentAdapter(private val appointments: List<Appointment>
+) :
     RecyclerView.Adapter<AppointmentAdapter.AppointmentViewHolder>() {
 
     class AppointmentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -27,9 +29,10 @@ class AppointmentAdapter(private val appointments: List<Appointment>) :
         val note: TextView = view.findViewById(R.id.tVIFNote)
         val status: TextView = view.findViewById(R.id.tVIFStatus)
         val iVIFEdit: ImageView = itemView.findViewById(R.id.iVIFEdit)
+//        val tVIFDentistUsername: TextView = view.findViewById(R.id.tVIFDentistUsername)
+//        val tVIFDentistInfo: TextView = view.findViewById(R.id.tVIFDentistInfo)
 
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppointmentViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_appointment, parent, false)
@@ -38,7 +41,7 @@ class AppointmentAdapter(private val appointments: List<Appointment>) :
 
     override fun onBindViewHolder(holder: AppointmentViewHolder, position: Int) {
         val appointment = appointments[position]
-        holder.id_dentist.text = "Appointment ID: ${appointment.id_dentist}"
+        holder.id_dentist.text = "Dentist ID: ${appointment.id_dentist}"
         holder.username.text = "Họ và tên: ${appointment.username}"
         holder.email.text = "Email: ${appointment.email}"
         holder.service.text = "Dịch vụ: ${appointment.service}"
@@ -59,7 +62,7 @@ class AppointmentAdapter(private val appointments: List<Appointment>) :
             intent.putExtra("phoneNumber", appointment.phoneNumber)
             intent.putExtra("note", appointment.note)
             intent.putExtra("status", appointment.status)
-            intent.putExtra("id_dentist", appointment.id_dentist)
+            intent.putExtra("service", appointment.service)
             context.startActivity(intent)
         }
     }

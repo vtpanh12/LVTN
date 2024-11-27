@@ -6,22 +6,21 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.transition.Visibility
 import com.example.vtpa_b2013518_lvtn.R
 import com.example.vtpa_b2013518_lvtn.activity.IndexActivity
 import com.example.vtpa_b2013518_lvtn.adapter.Appointment
 import com.example.vtpa_b2013518_lvtn.adapter.AppointmentAdapter
-import com.example.vtpa_b2013518_lvtn.adapter.User
+import com.example.vtpa_b2013518_lvtn.adapter.CombinedAppAdapter
+import com.example.vtpa_b2013518_lvtn.adapter.CombinedUser
+import com.example.vtpa_b2013518_lvtn.adapter.Dentist
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 
 class Dat_KhamActivity : AppCompatActivity() {
@@ -34,6 +33,7 @@ class Dat_KhamActivity : AppCompatActivity() {
     private lateinit var eTDKSearch: EditText
     private lateinit var iVDKSearch: ImageView
     private lateinit var tVDKSearchNoResults: TextView
+    private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +54,10 @@ class Dat_KhamActivity : AppCompatActivity() {
         appointmentList = mutableListOf()
 
         loadAppointments()
+//        fetchCombinedData { combinedDataList ->
+//            val adapter = CombinedAppAdapter(combinedDataList)
+//            recyclerView.adapter = adapter
+//        }
 
         eTDKSearch = findViewById(R.id.eTDKSearch)
         iVDKSearch = findViewById(R.id.iVDKSearch)
@@ -69,6 +73,7 @@ class Dat_KhamActivity : AppCompatActivity() {
         }
     }
     private fun loadAppointments() {
+
         val db = FirebaseFirestore.getInstance()
         db.collection("appointments")
             .whereEqualTo("id_user", userId) // Lọc theo ID của user nếu cần
@@ -129,4 +134,65 @@ class Dat_KhamActivity : AppCompatActivity() {
                 Toast.makeText(this, "Error: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
     }
+    fun fetchCombinedData(callback: (List<CombinedUser>) -> Unit) {
+        db.collection("appointments").get().addOnSuccessListener { appSnapshot ->
+            val combinedList = mutableListOf<CombinedUser>()
+            val apps = appSnapshot.toObjects(Appointment::class.java)
+
+            apps.forEach { app ->
+                val appointmentTask = app.id_app?.let { db.collection("appointments").document(it).get() }
+                val dentistTask = app.id_dentist?.let { db.collection("dentists").document(it).get() }
+
+                // Kiểm tra nếu không có dentistTask
+                if (dentistTask == null) {
+                    appointmentTask?.addOnSuccessListener { appointmentSnapshot ->
+                        val appointment = appointmentSnapshot.toObject(Appointment::class.java)
+                        if (appointment != null) {
+                            combinedList.add(CombinedUser(appointment, null))
+                        }
+                        if (combinedList.size == apps.size) {
+                            callback(combinedList)
+                        }
+                    }
+                } else {
+                    Tasks.whenAllSuccess<DocumentSnapshot>(dentistTask, appointmentTask)
+                        .addOnSuccessListener { result ->
+                            val dentist = result[0].toObject(Dentist::class.java)
+                            val appointment = result.getOrNull(1)?.toObject(Appointment::class.java)
+                            if (dentist != null && appointment != null) {
+                                combinedList.add(CombinedUser(appointment, dentist))
+                            }
+                            if (combinedList.size == apps.size) {
+                                callback(combinedList)
+                            }
+                        }
+                }
+            }
+        }
+    }
+
+//    fun fetchCombinedData(callback: (List<CombinedUser>) -> Unit) {
+//        db.collection("appointments").get().addOnSuccessListener { appSnapshot ->
+//            val combinedList = mutableListOf<CombinedUser>()
+//            val apps = appSnapshot.toObjects(MedicalRecord::class.java)
+//
+//            apps.forEach { app ->
+//                val appointmentTask = app.id_app?.let { db.collection("appointments").document(it).get() }
+//                val dentistTask = app.id_dentist?.let { db.collection("dentists").document(it).get() }
+//
+//
+//                Tasks.whenAllSuccess<DocumentSnapshot>(dentistTask, appointmentTask)
+//                    .addOnSuccessListener { result ->
+//                        val dentist = result[0].toObject(Dentist::class.java)
+//                        val appointment = result[1].toObject(Appointment::class.java)
+//                        if (dentist != null && appointment != null) {
+//                            combinedList.add(CombinedUser(appointment, dentist))
+//                        }
+//                        if (combinedList.size == apps.size) {
+//                            callback(combinedList)
+//                        }
+//                    }
+//            }
+//        }
+//    }
 }

@@ -39,8 +39,8 @@ class UsersActivity : AppCompatActivity() {
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_users)
+
         tVNgaySinh = findViewById(R.id.tVNgaySinh)
         btnUpdateUser = findViewById(R.id.btnCapNhatUser)
         eTHoTen = findViewById(R.id.eTHoVaTen)

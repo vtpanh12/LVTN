@@ -30,6 +30,10 @@ class IndexUserActivity : AppCompatActivity() {
         tVPVSS.setOnClickListener {
             startActivity(Intent(this, UpdatePasswordActivity::class.java))
         }
+        val tVFeedback = findViewById<TextView>(R.id.tVFeedBack)
+        tVFeedback.setOnClickListener {
+            startActivity(Intent(this, UserFeedBackActivity::class.java))
+        }
         val linearUser = findViewById<LinearLayout>(R.id.linearIndexUser)
         linearUser.setOnClickListener {
             startActivity(Intent(this, UsersActivity::class.java))

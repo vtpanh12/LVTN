@@ -37,7 +37,6 @@ class Dat_KhamActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_dat_kham)
         val btnDatKham= findViewById<Button>(R.id.btnDatKham)
         btnDatKham.setOnClickListener {
@@ -107,6 +106,8 @@ class Dat_KhamActivity : AppCompatActivity() {
             // Khởi tạo adapter nếu chưa có hoặc cập nhật dữ liệu
             adapter = AppointmentAdapter(appointmentList)
             recyclerView.adapter = adapter
+            // Cập nhật và sắp xếp danh sách
+            adapter.updateAppointments(appointmentList)
         }
     }
     private fun searchUserByDate(date: String) {
@@ -134,42 +135,42 @@ class Dat_KhamActivity : AppCompatActivity() {
                 Toast.makeText(this, "Error: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
     }
-    fun fetchCombinedData(callback: (List<CombinedUser>) -> Unit) {
-        db.collection("appointments").get().addOnSuccessListener { appSnapshot ->
-            val combinedList = mutableListOf<CombinedUser>()
-            val apps = appSnapshot.toObjects(Appointment::class.java)
-
-            apps.forEach { app ->
-                val appointmentTask = app.id_app?.let { db.collection("appointments").document(it).get() }
-                val dentistTask = app.id_dentist?.let { db.collection("dentists").document(it).get() }
-
-                // Kiểm tra nếu không có dentistTask
-                if (dentistTask == null) {
-                    appointmentTask?.addOnSuccessListener { appointmentSnapshot ->
-                        val appointment = appointmentSnapshot.toObject(Appointment::class.java)
-                        if (appointment != null) {
-                            combinedList.add(CombinedUser(appointment, null))
-                        }
-                        if (combinedList.size == apps.size) {
-                            callback(combinedList)
-                        }
-                    }
-                } else {
-                    Tasks.whenAllSuccess<DocumentSnapshot>(dentistTask, appointmentTask)
-                        .addOnSuccessListener { result ->
-                            val dentist = result[0].toObject(Dentist::class.java)
-                            val appointment = result.getOrNull(1)?.toObject(Appointment::class.java)
-                            if (dentist != null && appointment != null) {
-                                combinedList.add(CombinedUser(appointment, dentist))
-                            }
-                            if (combinedList.size == apps.size) {
-                                callback(combinedList)
-                            }
-                        }
-                }
-            }
-        }
-    }
+//    fun fetchCombinedData(callback: (List<CombinedUser>) -> Unit) {
+//        db.collection("appointments").get().addOnSuccessListener { appSnapshot ->
+//            val combinedList = mutableListOf<CombinedUser>()
+//            val apps = appSnapshot.toObjects(Appointment::class.java)
+//
+//            apps.forEach { app ->
+//                val appointmentTask = app.id_app?.let { db.collection("appointments").document(it).get() }
+//                val dentistTask = app.id_dentist?.let { db.collection("dentists").document(it).get() }
+//
+//                // Kiểm tra nếu không có dentistTask
+//                if (dentistTask == null) {
+//                    appointmentTask?.addOnSuccessListener { appointmentSnapshot ->
+//                        val appointment = appointmentSnapshot.toObject(Appointment::class.java)
+//                        if (appointment != null) {
+//                            combinedList.add(CombinedUser(appointment, null))
+//                        }
+//                        if (combinedList.size == apps.size) {
+//                            callback(combinedList)
+//                        }
+//                    }
+//                } else {
+//                    Tasks.whenAllSuccess<DocumentSnapshot>(dentistTask, appointmentTask)
+//                        .addOnSuccessListener { result ->
+//                            val dentist = result[0].toObject(Dentist::class.java)
+//                            val appointment = result.getOrNull(1)?.toObject(Appointment::class.java)
+//                            if (dentist != null && appointment != null) {
+//                                combinedList.add(CombinedUser(appointment, dentist))
+//                            }
+//                            if (combinedList.size == apps.size) {
+//                                callback(combinedList)
+//                            }
+//                        }
+//                }
+//            }
+//        }
+//    }
 
 //    fun fetchCombinedData(callback: (List<CombinedUser>) -> Unit) {
 //        db.collection("appointments").get().addOnSuccessListener { appSnapshot ->

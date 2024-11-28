@@ -12,9 +12,12 @@ import com.example.vtpa_b2013518_lvtn.admin.AdminCancelAppointmentActivity
 import com.example.vtpa_b2013518_lvtn.admin.AdminConfAppointmentActivity
 import com.example.vtpa_b2013518_lvtn.admin.AdminDentistAssignmentEditActivity
 import com.example.vtpa_b2013518_lvtn.appointment.AppointmentEditActivity
+import com.example.vtpa_b2013518_lvtn.appointment.AppointmentUpdateInfoActivity
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.Locale
 
-class AppointmentAdapter(private val appointments: List<Appointment>
+class AppointmentAdapter(private var appointments: List<Appointment>
 ) :
     RecyclerView.Adapter<AppointmentAdapter.AppointmentViewHolder>() {
 
@@ -63,8 +66,18 @@ class AppointmentAdapter(private val appointments: List<Appointment>
             intent.putExtra("note", appointment.note)
             intent.putExtra("status", appointment.status)
             intent.putExtra("service", appointment.service)
+            intent.putExtra("id_app",appointment.id_app)
             context.startActivity(intent)
         }
     }
     override fun getItemCount() = appointments.size
+    fun updateAppointments(appointmentList: List<Appointment>) {
+        val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        appointments = appointmentList.sortedByDescending {
+            sdf.parse(it.date)
+
+        }
+        notifyDataSetChanged()
+    }
+
 }

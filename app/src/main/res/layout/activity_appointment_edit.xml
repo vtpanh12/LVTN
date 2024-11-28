@@ -94,116 +94,114 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearAppEdit"
-        android:visibility="gone"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:paddingTop="10dp"
-        android:paddingRight="20dp"
-        android:paddingLeft="20dp"
-        android:background="@drawable/button_default1"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:background="@drawable/item_bg"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearAppEdit"-->
+<!--        android:visibility="gone"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        android:layout_marginRight="20dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:paddingTop="10dp"-->
+<!--        android:paddingRight="20dp"-->
+<!--        android:paddingLeft="20dp"-->
+<!--        android:background="@drawable/button_default1"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <LinearLayout-->
+<!--            android:background="@drawable/item_bg"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp">-->
 
-            <TextView
-                android:id="@+id/tVAEEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Email:"
-                android:paddingLeft="20dp"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-        </LinearLayout>
+<!--            <TextView-->
+<!--                android:id="@+id/tVAEEmail"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:text="Email:"-->
+<!--                android:paddingLeft="20dp"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="18sp" />-->
+<!--        </LinearLayout>-->
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:textSize="14sp"
-            android:id="@+id/tVAEUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Họ và tên:" />
-
-        <TextView
-            android:textSize="14sp"
-            android:id="@+id/tVAEService"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dịch vụ:" />
-
-        <TextView
-            android:textSize="14sp"
-            android:id="@+id/tVAEDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ngày hẹn:" />
-
-        <TextView
-            android:textSize="14sp"
-            android:id="@+id/tVAEHour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Giờ hẹn:" />
-
-        <TextView
-            android:textSize="14sp"
-            android:id="@+id/tVAEPhoneNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Số điện thoại:" />
-        <TextView
-            android:textSize="14sp"
-            android:id="@+id/tVAENote"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ghi chú:" />
-        <TextView
-            android:textSize="14sp"
-            android:id="@+id/tVAEStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Trạng thái" />
-        <TextView
-            android:textSize="14sp"
-            android:id="@+id/tVAEDentistId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ID Nha sĩ:" />
 <!--        <TextView-->
+<!--            android:layout_marginTop="10dp"-->
 <!--            android:textSize="14sp"-->
-<!--            android:id="@+id/tVAEDentistUsername"-->
+<!--            android:id="@+id/tVAEUser"-->
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content"-->
-<!--            android:text="Nha sĩ:" />-->
+<!--            android:text="Họ và tên:" />-->
+
 <!--        <TextView-->
-<!--            android:layout_marginBottom="10dp"-->
 <!--            android:textSize="14sp"-->
-<!--            android:id="@+id/tVAEDentistInfo"-->
+<!--            android:id="@+id/tVAEService"-->
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content"-->
-<!--            android:text="Thông tin liên hệ nha sĩ:" />-->
-        <Button
-            android:id="@+id/btnUpdateAppEdit"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            android:textSize="20sp"
-            android:background="@drawable/btn_custom"
-            android:text="Cập nhật lịch khám"
-            app:backgroundTint="@null" />
+<!--            android:text="Dịch vụ:" />-->
 
-    </LinearLayout>
+<!--        <TextView-->
+<!--            android:textSize="14sp"-->
+<!--            android:id="@+id/tVAEDate"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Ngày hẹn:" />-->
 
+<!--        <TextView-->
+<!--            android:textSize="14sp"-->
+<!--            android:id="@+id/tVAEHour"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Giờ hẹn:" />-->
 
+<!--        <TextView-->
+<!--            android:textSize="14sp"-->
+<!--            android:id="@+id/tVAEPhoneNumber"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Số điện thoại:" />-->
+<!--        <TextView-->
+<!--            android:textSize="14sp"-->
+<!--            android:id="@+id/tVAENote"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Ghi chú:" />-->
+<!--        <TextView-->
+<!--            android:textSize="14sp"-->
+<!--            android:id="@+id/tVAEStatus"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Trạng thái" />-->
+<!--        <TextView-->
+<!--            android:textSize="14sp"-->
+<!--            android:id="@+id/tVAEDentistId"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="ID Nha sĩ:" />-->
+<!--&lt;!&ndash;        <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;            android:textSize="14sp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/tVAEDentistUsername"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:text="Nha sĩ:" />&ndash;&gt;-->
+<!--&lt;!&ndash;        <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_marginBottom="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:textSize="14sp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/tVAEDentistInfo"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:text="Thông tin liên hệ nha sĩ:" />&ndash;&gt;-->
+<!--        <Button-->
+<!--            android:id="@+id/btnUpdateAppEdit"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="52dp"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginRight="20dp"-->
+<!--            android:textSize="20sp"-->
+<!--            android:background="@drawable/btn_custom"-->
+<!--            android:text="Cập nhật lịch khám"-->
+<!--            app:backgroundTint="@null" />-->
+
+<!--    </LinearLayout>-->
 
 </LinearLayout>

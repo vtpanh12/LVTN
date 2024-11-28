@@ -6,6 +6,8 @@ import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -52,17 +54,36 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
         iVBackCreate.setOnClickListener {
             startActivity(Intent(this, IndexActivity::class.java))
         }
-        // Tạo danh sách các dịch vụ
-        val services = arrayOf("Trám răng", "Nhổ răng", "Cạo vôi", "Phục hình", "Chữa tủy", "Tẩy răng")
+//        // Tạo danh sách các dịch vụ
+//        val services = arrayOf("Trám răng", "Nhổ răng", "Cạo vôi", "Phục hình", "Chữa tủy", "Tẩy răng")
+//
+//        // Thiết lập Adapter cho Spinner
+//
+//        val adapter = ArrayAdapter(this, R.layout.spinner_layout, services)
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//        spinnerServices.adapter = adapter
+//        spinnerServices.setSelection(1)
+//        val selectedService = spinnerServices.selectedItem.toString()
+//        //Toast.makeText(this, "Dịch vụ đã chọn: $selectedService", Toast.LENGTH_SHORT).show()
 
         // Thiết lập Adapter cho Spinner
-
+        val services = arrayOf("Trám răng", "Nhổ răng", "Cạo vôi", "Phục hình", "Chữa tủy", "Tẩy răng")
         val adapter = ArrayAdapter(this, R.layout.spinner_layout, services)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerServices.adapter = adapter
-        spinnerServices.setSelection(1)
-        val selectedService = spinnerServices.selectedItem.toString()
-        //Toast.makeText(this, "Dịch vụ đã chọn: $selectedService", Toast.LENGTH_SHORT).show()
+
+        // Lắng nghe sự kiện chọn từ Spinner
+        var selectedService: String = ""
+        spinnerServices.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                selectedService = services[position]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Không làm gì nếu không có mục nào được chọn
+            }
+        }
+
 
         tVDate.setOnClickListener {
             val calendar = Calendar.getInstance()
@@ -94,7 +115,142 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
 
             timePickerDialog.show()
         }
-        //val userId = FirebaseAuth.getInstance().currentUser?.uid
+
+        btnCreateApp.setOnClickListener {
+            val service = selectedService
+            val date = tVDate.text.toString()
+            val hour = tVHour.text.toString()
+            val note = eTNote.text.toString()
+            createAppointment(service, date, hour, note)
+        }
+    }
+
+    private fun createAppointment(service: String, date: String, hour: String, note: String) {
+        if (userId != null) {
+            db.collection("users").document(userId)
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document != null && document.exists()) {
+                        val username = document.getString("username")
+                        val phoneNumber = document.getString("phoneNumber")
+
+                        if (!service.isNullOrEmpty() && !date.isNullOrEmpty() && !hour.isNullOrEmpty() && !username.isNullOrEmpty() && !phoneNumber.isNullOrEmpty()) {
+                            showConfirmDialog(service, date, hour, note, username!!, phoneNumber!!)
+                        } else {
+                            Toast.makeText(this, "Hãy cập nhật đầy đủ thông tin trong hồ sơ cá nhân của bạn!", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(this, "Không tìm thấy người dùng", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Lỗi khi lấy thông tin người dùng: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+        } else {
+            Toast.makeText(this, "Chưa đăng nhập", Toast.LENGTH_SHORT).show()
+        }
+    }
+    private fun showConfirmDialog(service: String, date: String, hour: String, note: String, username: String, phoneNumber: String) {
+        val dialogView = layoutInflater.inflate(R.layout.appointment_dialog, null)
+        val dialogBuilder = AlertDialog.Builder(this).setView(dialogView)
+
+        // Gán dữ liệu vào các TextView trong dialog
+        dialogView.findViewById<TextView>(R.id.tVCUser).text = "Họ và tên: $username"
+        dialogView.findViewById<TextView>(R.id.tVCService).text = "Dịch vụ: $service"
+        dialogView.findViewById<TextView>(R.id.tVCDate).text = "Ngày hẹn: $date"
+        dialogView.findViewById<TextView>(R.id.tVCHour).text = "Giờ hẹn: $hour"
+        dialogView.findViewById<TextView>(R.id.tVCPhoneNumber).text = "Số điện thoại: $phoneNumber"
+
+        val alertDialog = dialogBuilder.create()
+        alertDialog.show()
+
+        // Xử lý khi nhấn xác nhận
+        dialogView.findViewById<Button>(R.id.btnConf).setOnClickListener {
+            alertDialog.dismiss()
+            saveAppointment(service, date, hour, note, username, phoneNumber)
+        }
+
+        // Xử lý khi nhấn hủy
+        dialogView.findViewById<Button>(R.id.btnCancel).setOnClickListener {
+            alertDialog.dismiss()
+        }
+    }
+    private fun getEmail(): String? {
+        val user = FirebaseAuth.getInstance().currentUser
+        // Kiểm tra xem người dùng có tồn tại không và trả về email
+        return user?.email
+    }
+    private fun saveAppointment(service: String, date: String, hour: String, note: String,
+                                username: String, phoneNumber: String) {
+        val email = getEmail()
+        val appointment = Appointment(
+            id_app = "",
+            id_user = userId,
+            email = email,
+            username = username,
+            service = service,
+            date = date,
+            hour = hour,
+            note = note,
+            phoneNumber = phoneNumber,
+            status = "Chờ xác nhận"
+        )
+
+        db.collection("appointments")
+            .add(appointment)
+            .addOnSuccessListener { documentReference ->
+                val appointmentId = documentReference.id
+                updateAppointmentId(appointmentId)
+
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Lỗi: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+    private fun updateAppointmentId(appointmentId: String) {
+        db.collection("appointments").document(appointmentId)
+            .update("id_app", appointmentId)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Lịch hẹn đã được tạo với ID: $appointmentId", Toast.LENGTH_SHORT).show()
+                db.collection("appointments").document(appointmentId)
+                    .get()
+                    .addOnSuccessListener { document ->
+                        if (document != null && document.exists()) {
+                            showAppointmentInfoDialog(document)
+                        } else {
+                            Toast.makeText(this, "Lỗi: Không thể tìm thấy lịch hẹn", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+            }
+    }
+    private fun showAppointmentInfoDialog(document: DocumentSnapshot) {
+        val dialogView = layoutInflater.inflate(R.layout.appointment_info_dialog, null)
+        val dialogBuilder = AlertDialog.Builder(this).setView(dialogView)
+
+        // Lấy dữ liệu từ Firestore và gán vào TextView
+//        dialogView.findViewById<TextView>(R.id.tVIUserId).text = "User ID: ${document.getString("id_user")}"
+//        dialogView.findViewById<TextView>(R.id.tVIAppId).text = "Appointment ID: ${document.getString("id_app")}"
+        dialogView.findViewById<TextView>(R.id.tVIUser).text = "Họ và tên: ${document.getString("username")}"
+        dialogView.findViewById<TextView>(R.id.tVIService).text = "Dịch vụ: ${document.getString("service")}"
+        dialogView.findViewById<TextView>(R.id.tVIDate).text = "Ngày hẹn: ${document.getString("date")}"
+        dialogView.findViewById<TextView>(R.id.tVIHour).text = "Giờ hẹn: ${document.getString("hour")}"
+        dialogView.findViewById<TextView>(R.id.tVIPhoneNumber).text = "Số điện thoại: ${document.getString("phoneNumber")}"
+        dialogView.findViewById<TextView>(R.id.tVINote).text = "Ghi chú: ${document.getString("note")}"
+        dialogView.findViewById<TextView>(R.id.tVIStatus).text = "Trạng thái: ${document.getString("status")}"
+
+        val alertDialog = dialogBuilder.create()
+        alertDialog.show()
+        // Xử lý khi người dùng nhấn "Đóng"
+        dialogView.findViewById<Button>(R.id.btnClose).setOnClickListener {
+            alertDialog.dismiss()
+            val intent = Intent(this, Dat_KhamActivity::class.java)
+            startActivity(intent)
+        }
+
+    }
+
+}
+//val userId = FirebaseAuth.getInstance().currentUser?.uid
 
 //        btnCreateApp.setOnClickListener {
 //            val service = selectedService
@@ -233,137 +389,3 @@ class Tao_Lich_KhamActivity : AppCompatActivity() {
 //                Toast.makeText(this, "Chưa đăng nhập", Toast.LENGTH_SHORT).show()
 //            }
 //        }
-        btnCreateApp.setOnClickListener {
-            val service = selectedService
-            val date = tVDate.text.toString()
-            val hour = tVHour.text.toString()
-            val note = eTNote.text.toString()
-            createAppointment(service, date, hour, note)
-        }
-    }
-
-    private fun createAppointment(service: String, date: String, hour: String, note: String) {
-        if (userId != null) {
-            db.collection("users").document(userId)
-                .get()
-                .addOnSuccessListener { document ->
-                    if (document != null && document.exists()) {
-                        val username = document.getString("username")
-                        val phoneNumber = document.getString("phoneNumber")
-
-                        if (!service.isNullOrEmpty() && !date.isNullOrEmpty() && !hour.isNullOrEmpty() && !username.isNullOrEmpty() && !phoneNumber.isNullOrEmpty()) {
-                            showConfirmDialog(service, date, hour, note, username!!, phoneNumber!!)
-                        } else {
-                            Toast.makeText(this, "Hãy cập nhật đầy đủ thông tin trong hồ sơ cá nhân của bạn!", Toast.LENGTH_SHORT).show()
-                        }
-                    } else {
-                        Toast.makeText(this, "Không tìm thấy người dùng", Toast.LENGTH_SHORT).show()
-                    }
-                }
-                .addOnFailureListener { e ->
-                    Toast.makeText(this, "Lỗi khi lấy thông tin người dùng: ${e.message}", Toast.LENGTH_SHORT).show()
-                }
-        } else {
-            Toast.makeText(this, "Chưa đăng nhập", Toast.LENGTH_SHORT).show()
-        }
-    }
-    private fun showConfirmDialog(service: String, date: String, hour: String, note: String, username: String, phoneNumber: String) {
-        val dialogView = layoutInflater.inflate(R.layout.appointment_dialog, null)
-        val dialogBuilder = AlertDialog.Builder(this).setView(dialogView)
-
-        // Gán dữ liệu vào các TextView trong dialog
-        dialogView.findViewById<TextView>(R.id.tVCUser).text = "Họ và tên: $username"
-        dialogView.findViewById<TextView>(R.id.tVCService).text = "Dịch vụ: $service"
-        dialogView.findViewById<TextView>(R.id.tVCDate).text = "Ngày hẹn: $date"
-        dialogView.findViewById<TextView>(R.id.tVCHour).text = "Giờ hẹn: $hour"
-        dialogView.findViewById<TextView>(R.id.tVCPhoneNumber).text = "Số điện thoại: $phoneNumber"
-
-        val alertDialog = dialogBuilder.create()
-        alertDialog.show()
-
-        // Xử lý khi nhấn xác nhận
-        dialogView.findViewById<Button>(R.id.btnConf).setOnClickListener {
-            alertDialog.dismiss()
-            saveAppointment(service, date, hour, note, username, phoneNumber)
-        }
-
-        // Xử lý khi nhấn hủy
-        dialogView.findViewById<Button>(R.id.btnCancel).setOnClickListener {
-            alertDialog.dismiss()
-        }
-    }
-    private fun getEmail(): String? {
-        val user = FirebaseAuth.getInstance().currentUser
-        // Kiểm tra xem người dùng có tồn tại không và trả về email
-        return user?.email
-    }
-    private fun saveAppointment(service: String, date: String, hour: String, note: String,
-                                username: String, phoneNumber: String) {
-        val email = getEmail()
-        val appointment = Appointment(
-            id_app = "",
-            id_user = userId,
-            email = email,
-            username = username,
-            service = service,
-            date = date,
-            hour = hour,
-            note = note,
-            phoneNumber = phoneNumber,
-            status = "Chờ xác nhận"
-        )
-
-        db.collection("appointments")
-            .add(appointment)
-            .addOnSuccessListener { documentReference ->
-                val appointmentId = documentReference.id
-                updateAppointmentId(appointmentId)
-
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Lỗi: ${e.message}", Toast.LENGTH_SHORT).show()
-            }
-    }
-    private fun updateAppointmentId(appointmentId: String) {
-        db.collection("appointments").document(appointmentId)
-            .update("id_app", appointmentId)
-            .addOnSuccessListener {
-                Toast.makeText(this, "Lịch hẹn đã được tạo với ID: $appointmentId", Toast.LENGTH_SHORT).show()
-                db.collection("appointments").document(appointmentId)
-                    .get()
-                    .addOnSuccessListener { document ->
-                        if (document != null && document.exists()) {
-                            showAppointmentInfoDialog(document)
-                        } else {
-                            Toast.makeText(this, "Lỗi: Không thể tìm thấy lịch hẹn", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-            }
-    }
-    private fun showAppointmentInfoDialog(document: DocumentSnapshot) {
-        val dialogView = layoutInflater.inflate(R.layout.appointment_info_dialog, null)
-        val dialogBuilder = AlertDialog.Builder(this).setView(dialogView)
-
-        // Lấy dữ liệu từ Firestore và gán vào TextView
-//        dialogView.findViewById<TextView>(R.id.tVIUserId).text = "User ID: ${document.getString("id_user")}"
-//        dialogView.findViewById<TextView>(R.id.tVIAppId).text = "Appointment ID: ${document.getString("id_app")}"
-        dialogView.findViewById<TextView>(R.id.tVIUser).text = "Họ và tên: ${document.getString("username")}"
-        dialogView.findViewById<TextView>(R.id.tVIService).text = "Dịch vụ: ${document.getString("service")}"
-        dialogView.findViewById<TextView>(R.id.tVIDate).text = "Ngày hẹn: ${document.getString("date")}"
-        dialogView.findViewById<TextView>(R.id.tVIHour).text = "Giờ hẹn: ${document.getString("hour")}"
-        dialogView.findViewById<TextView>(R.id.tVIPhoneNumber).text = "Số điện thoại: ${document.getString("phoneNumber")}"
-        dialogView.findViewById<TextView>(R.id.tVINote).text = "Ghi chú: ${document.getString("note")}"
-        dialogView.findViewById<TextView>(R.id.tVIStatus).text = "Trạng thái: ${document.getString("status")}"
-
-        val alertDialog = dialogBuilder.create()
-        alertDialog.show()
-        // Xử lý khi người dùng nhấn "Đóng"
-        dialogView.findViewById<Button>(R.id.btnClose).setOnClickListener {
-            alertDialog.dismiss()
-            val intent = Intent(this, Dat_KhamActivity::class.java)
-            startActivity(intent)
-        }
-
-    }
-
-}

@@ -151,7 +151,7 @@ class UsersActivity : AppCompatActivity() {
                     role = "user")
 
                 // Lưu vào Firestore, ví dụ sử dụng UID người dùng làm khóa
-                val userId = FirebaseAuth.getInstance().currentUser?.uid // Bạn sẽ thay bằng user ID thực từ Firebase Auth
+                val userId = FirebaseAuth.getInstance().currentUser?.uid
                 if (userId != null){
                     db.collection("users").document(userId)
                         .set(user)

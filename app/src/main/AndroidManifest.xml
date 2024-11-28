@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Vtpa_b2013518_lvtn"
         tools:targetApi="31">
         <activity
+            android:name=".appointment.AppointmentUpdateInfoActivity"
+            android:exported="false" />
+        <activity
             android:name=".appointment.AppointmentEditActivity"
             android:exported="false" />
         <activity

@@ -2,8 +2,11 @@ package com.example.vtpa_b2013518_lvtn.admin
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -11,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.vtpa_b2013518_lvtn.R
+import com.example.vtpa_b2013518_lvtn.adapter.Salary
 import com.example.vtpa_b2013518_lvtn.adapter.Shift
 import com.example.vtpa_b2013518_lvtn.adapter.Slot
 import com.google.firebase.Firebase
@@ -22,6 +26,8 @@ import java.util.Locale
 
 class AdminDentistAssignmentEditActivity : AppCompatActivity() {
     private lateinit var btnUpdateDentistAss: Button
+    private lateinit var btnUpdateDentistSalary: Button
+    private lateinit var eTAdminSalary: EditText
     private val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,10 +62,45 @@ class AdminDentistAssignmentEditActivity : AppCompatActivity() {
         tVAddress.text = "Địa chỉ: ${address}"
         tVRole.text = "Chức vụ: ${role}"
         tVSpecialty.text = "Chuyên khoa: ${specialty}"
-
+        val linearAdminSalary = findViewById<LinearLayout>(R.id.linearAdminSalary)
         val iVBackAdminDentistEditAss = findViewById<ImageView>(R.id.iVBackAdminDentistEditAss)
         iVBackAdminDentistEditAss.setOnClickListener {
             finish()
+        }
+        btnUpdateDentistSalary = findViewById(R.id.btnUpdateDentistSalary)
+        eTAdminSalary = findViewById(R.id.eTAdminSalary)
+        if (dentistId != null) {
+            getSalary(dentistId)
+        }
+        btnUpdateDentistSalary.setOnClickListener {
+
+            val numberSalary = eTAdminSalary.text.toString().trim() // Loại bỏ khoảng trắng
+
+            // Kiểm tra nếu numberSalary rỗng
+            if (numberSalary.isEmpty()) {
+                Toast.makeText(this, "Hãy nhập số ca trực!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (dentistId.isNullOrEmpty()) {
+                Toast.makeText(this, "Không thể tìm thấy ID nha sĩ!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val salary = Salary(
+                id_dentist = dentistId,
+                numberShift = numberSalary
+            )
+
+            db.collection("salary").document(dentistId)
+                .set(salary)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Cập nhật số ca trực thành công!", Toast.LENGTH_SHORT).show()
+                    //getSalary(dentistId)
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Lỗi: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
         }
 
         btnUpdateDentistAss = findViewById(R.id.btnUpdateDentistAss)
@@ -153,4 +194,20 @@ class AdminDentistAssignmentEditActivity : AppCompatActivity() {
                 }
             }
     }
+    private fun getSalary(dentistId: String) {
+        db.collection("salary").document(dentistId)
+            .get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    val numberShift = document.getString("numberShift")
+                    eTAdminSalary.setText(numberShift) // Cập nhật giá trị vào EditText
+                } else {
+                    eTAdminSalary.setText("") // Trường hợp không có dữ liệu
+                }
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Không thể tải số ca trực: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
 }

@@ -104,7 +104,8 @@ class DentistMedicalRecordActivity : AppCompatActivity() {
                                     val id_app = app.getString("id_app")
                                     val id_dentist = app.getString("id_dentist")
                                     val id_user = app.getString("id_user")
-                                    if (id_dentist != null && id_app != null && id_user != null) {
+                                    if (id_dentist != null && id_app != null && id_user != null && diagnosis !=null
+                                        && treatment != null && date != null) {
                                         saveMedicalRecord(id_app, id_user, id_dentist, diagnosis, date, notes, prescription, treatment, nextAppointment)
                                     }
                                 }

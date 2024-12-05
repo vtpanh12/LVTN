@@ -34,6 +34,7 @@ Chức năng:
   + Tạo lịch khám cho dentist
   + Truy cập vào hồ sơ bệnh án của khách hàng 
   + Cập nhật giá tiền cho hồ sơ bệnh án
+  + Xem ý kiến và phản hồi của khách hàng về nha khoa
 - Dentist:
   + Cập nhật thông tin người dùng
   + Đổi mật khẩu

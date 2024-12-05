@@ -85,5 +85,17 @@ class AdminIndexActivity : AppCompatActivity() {
         tVlinearAdminStatistics.setOnClickListener {
             startActivity(Intent(this, AdminStatisticsActivity::class.java))
         }
+        val linearFBack= findViewById<LinearLayout>(R.id.linearAdminFBack)
+        linearFBack.setOnClickListener {
+            startActivity(Intent(this, AdminFeedBackActivity::class.java))
+        }
+        val iVFBack = findViewById<ImageView>(R.id.iVAdminFBack)
+        iVFBack.setOnClickListener {
+            startActivity(Intent(this, AdminFeedBackActivity::class.java))
+        }
+        val tVFBack = findViewById<TextView>(R.id.tVAdminFBack)
+        tVMedicalRecord.setOnClickListener {
+            startActivity(Intent(this, AdminFeedBackActivity::class.java))
+        }
     }
 }

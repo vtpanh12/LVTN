@@ -81,7 +81,7 @@ class AppointmentUpdateInfoActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 // Cập nhật giá trị `selectedService` mỗi khi mục được chọn thay đổi
                 selectedService = services[position]
-                Toast.makeText(this@AppointmentUpdateInfoActivity, "$selectedService", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@AppointmentUpdateInfoActivity, "$selectedService", Toast.LENGTH_SHORT).show()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {

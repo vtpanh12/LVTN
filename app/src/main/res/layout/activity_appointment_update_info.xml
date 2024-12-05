@@ -131,7 +131,7 @@
             android:layout_margin="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/btn_custom"
-            android:text="Tạo lịch khám"
+            android:text="Cập nhật lịch khám"
             app:backgroundTint="@null" />
 
     </LinearLayout>

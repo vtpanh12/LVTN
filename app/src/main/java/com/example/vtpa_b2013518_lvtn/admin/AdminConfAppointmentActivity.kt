@@ -61,6 +61,15 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
 
         if (dentistName != null && dentistEmail != null) {
             tVDentist.text = "Nha sĩ: $dentistName ($dentistEmail)"
+            val sharedPref = getSharedPreferences("SelectedDentist", MODE_PRIVATE)
+            val editor = sharedPref.edit()
+            editor.remove("dentistName")
+            editor.remove("dentistId")
+            editor.apply()
+
+        }
+        else {
+            tVDentist.text = "Nha sĩ: "
         }
 
         btnConfApp.setOnClickListener {
@@ -199,8 +208,8 @@ class AdminConfAppointmentActivity : AppCompatActivity() {
                                 findViewById<TextView>(R.id.tVAConfAppDentist).text =
                                     "Nha sĩ: ${selectedDentist.username} (${selectedDentist.email}) "
                                 // Cách clear
-//                                val sharedPrefs = getSharedPreferences("SelectedDentist", MODE_PRIVATE)
-//                                sharedPrefs.edit().clear().apply()
+                                //val sharedPrefs = getSharedPreferences("SelectedDentist", MODE_PRIVATE)
+                                //sharedPrefs.edit().clear().apply()
 
                                 if (appointmentId != null && selectedDentist.id_dentist != null) {
                                     updateAppointment(appointmentId, selectedDentist.id_dentist!!)

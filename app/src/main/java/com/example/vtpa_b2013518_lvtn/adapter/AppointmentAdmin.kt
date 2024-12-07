@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vtpa_b2013518_lvtn.R
 import com.example.vtpa_b2013518_lvtn.admin.AdminCancelAppointmentActivity
 import com.example.vtpa_b2013518_lvtn.admin.AdminConfAppointmentActivity
+import java.text.SimpleDateFormat
+import java.util.Locale
 
-class AppointmentAdmin (private val appointments: List<Appointment>):
+class AppointmentAdmin (private var appointments: List<Appointment>):
 RecyclerView.Adapter<AppointmentAdmin.AppointmentAdminViewHolder>(){
 
     class AppointmentAdminViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -81,4 +83,12 @@ RecyclerView.Adapter<AppointmentAdmin.AppointmentAdminViewHolder>(){
     }
 
     override fun getItemCount() = appointments.size
+    fun updateAppointments(appointmentList: List<Appointment>) {
+        val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        appointments = appointmentList.sortedByDescending {
+            sdf.parse(it.date)
+
+        }
+        notifyDataSetChanged()
+    }
 }

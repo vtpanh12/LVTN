@@ -11,7 +11,8 @@ import com.example.vtpa_b2013518_lvtn.R
 import com.example.vtpa_b2013518_lvtn.admin.AdminUserEditActivity
 import com.example.vtpa_b2013518_lvtn.dentist.DentistAppointmentDetailActivity
 
-class SlotAdapter(private var slotList: List<Pair<String, Slot>>) : RecyclerView.Adapter<SlotAdapter.SlotViewHolder>() {
+class SlotAdapter(private var slotList: List<Pair<String, Slot>>)
+    : RecyclerView.Adapter<SlotAdapter.SlotViewHolder>() {
 
     class SlotViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvSlotTime: TextView = itemView.findViewById(R.id.tvSlotTime)
@@ -51,6 +52,10 @@ class SlotAdapter(private var slotList: List<Pair<String, Slot>>) : RecyclerView
 
     fun updateData(newSlotList: List<Pair<String, Slot>>) {
         slotList = newSlotList
+//        val sortedSlots = slotList.sortedBy { slot ->
+//            Slot.time // Chuỗi "HH:mm" được so sánh tự nhiên
+//        }
+
         notifyDataSetChanged()  // Thông báo RecyclerView cập nhật lại dữ liệu
     }
 

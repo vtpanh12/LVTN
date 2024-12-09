@@ -17,6 +17,8 @@ import com.example.vtpa_b2013518_lvtn.adapter.SlotAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class DentistAppointmentActivity : AppCompatActivity() {
     private lateinit var recyclerViewMorning: RecyclerView
@@ -64,7 +66,8 @@ class DentistAppointmentActivity : AppCompatActivity() {
 
     }
 
-    private fun loadDentistSlots(dentistId: String, date: String, shiftId: String, adapter: SlotAdapter) {
+    private fun loadDentistSlots(
+        dentistId: String, date: String, shiftId: String, adapter: SlotAdapter) {
         val shiftRef = db.collection("dentists")
             .document(dentistId)
             .collection("shifts")
@@ -76,8 +79,16 @@ class DentistAppointmentActivity : AppCompatActivity() {
                 // Có dữ liệu
                 tvNoAppointmentsMorn.visibility = View.GONE
                 tvNoAppointmentsAfter.visibility = View.GONE
-                val slotList = shift.slots.entries.map { (time, slot) -> time to slot }
-                adapter.updateData(slotList)
+//                val slotList = shift.slots.entries.map { (time, slot) -> time to slot }
+//                adapter.updateData(slotList)
+                val sortedSlotList = shift.slots.entries
+                    .map { (time, slot) -> time to slot }
+                    .sortedBy { entry ->
+                        // Sử dụng SimpleDateFormat để parse thời gian
+                        SimpleDateFormat("HH:mm", Locale.getDefault()).parse(entry.first)
+                    }
+                // Cập nhật adapter với danh sách đã sắp xếp
+                adapter.updateData(sortedSlotList)
             } else {
                 // Không có dữ liệu
                 tvNoAppointmentsMorn.visibility = View.VISIBLE

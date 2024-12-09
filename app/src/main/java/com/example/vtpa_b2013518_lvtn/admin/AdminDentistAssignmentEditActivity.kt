@@ -108,7 +108,7 @@ class AdminDentistAssignmentEditActivity : AppCompatActivity() {
             val calendar = Calendar.getInstance()
             val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
 
-            for (i in 0 .. 7) {
+            for (i in 0 .. 14) {
                 val date = dateFormat.format(calendar.time)
                 // Kiểm tra nếu có dentistId và selectedDate đã được chọn
                 if (dentistId != null) {

@@ -75,7 +75,7 @@ class AppointmentEditActivity : AppCompatActivity() {
     }
     private fun cancelAppointment(appointmentId: String, userCurrentId: String) {
         db.collection("appointments").document(appointmentId)
-            .update("status", "Hủy lịch khám")
+            .update("status", "Yêu cầu hủy lịch khám")
             .addOnSuccessListener {
                 Toast.makeText(this, "Lịch khám đã bị hủy thành công!: $appointmentId", Toast.LENGTH_SHORT).show()
             }

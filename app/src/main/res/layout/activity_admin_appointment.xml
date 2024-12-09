@@ -47,12 +47,7 @@
                     android:textColor="@color/white"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
+                     />
 
             </LinearLayout>
             <LinearLayout
@@ -86,6 +81,39 @@
 
 
             </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:text="Sắp xếp:"
+                    android:textSize="14sp"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.15"
+                    android:layout_height="wrap_content"/>
+                <Spinner
+                    android:layout_gravity="center"
+                    android:id="@+id/spinnerStatus"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.6"
+                    android:layout_height="40dp"
+                    android:spinnerMode="dropdown" />
+                <TextView
+                    android:layout_marginRight="2dp"
+                    android:id="@+id/tVSearchStatus"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/btn_custom"
+                    android:text="Tìm kiếm"
+                    android:layout_weight="0.2"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"/>
+            </LinearLayout>
+
+
             <TextView
                 android:id="@+id/tVAASearchNoResults"
                 android:layout_width="match_parent"
@@ -95,7 +123,7 @@
                 android:text="Không có lịch khám"
                 android:textSize="16sp"
                 android:textColor="@android:color/darker_gray"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="10dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerAdminAppointment"

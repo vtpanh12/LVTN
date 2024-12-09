@@ -2,8 +2,11 @@ package com.example.vtpa_b2013518_lvtn.admin
 
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -25,6 +28,8 @@ class AdminAppointmentActivity : AppCompatActivity() {
     private lateinit var eTAASearch: EditText
     private lateinit var iVAASearch: ImageView
     private lateinit var tVAASearchNoResults: TextView
+    private lateinit var spinner: Spinner
+    private lateinit var tVSearchStatus: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_appointment)
@@ -32,6 +37,30 @@ class AdminAppointmentActivity : AppCompatActivity() {
         iVBackAdminApp.setOnClickListener {
             finish()
         }
+        tVSearchStatus = findViewById(R.id.tVSearchStatus)
+        spinner = findViewById(R.id.spinnerStatus)
+        // Thiết lập Adapter cho Spinner
+        val services = arrayOf("Chờ xác nhận","Đặt lịch thành công", "Hủy", "Yêu cầu hủy lịch khám")
+        val adapter = ArrayAdapter(this, R.layout.spinner_layout, services)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+
+        // Lắng nghe sự kiện chọn từ Spinner
+        var selectedService: String = ""
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                selectedService = services[position]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Không làm gì nếu không có mục nào được chọn
+            }
+        }
+        tVSearchStatus.setOnClickListener {
+            searchUserByStatus(selectedService)
+        }
+
+
         recyclerView = findViewById(R.id.recyclerAdminAppointment)
         recyclerView.layoutManager = LinearLayoutManager(this)
         appointmentList = mutableListOf()
@@ -95,6 +124,31 @@ class AdminAppointmentActivity : AppCompatActivity() {
         val db = FirebaseFirestore.getInstance()
         db.collection("appointments")
             .whereEqualTo("email", email)
+            .get()
+            .addOnSuccessListener { documents ->
+                appointmentList.clear() // Xóa danh sách cũ
+                if (!documents.isEmpty) {
+                    // Có kết quả
+                    for (document in documents) {
+                        val app = document.toObject(Appointment::class.java)
+                        appointmentList.add(app)
+                    }
+                    tVAASearchNoResults.visibility = View.GONE // Ẩn TextView
+                } else {
+                    // Không có kết quả
+                    tVAASearchNoResults.visibility = View.VISIBLE
+                }
+                updateRecyclerView() // Sử dụng lại phương thức này để cập nhật RecyclerView
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Error: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun searchUserByStatus(status: String) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("appointments")
+            .whereEqualTo("status", status)
             .get()
             .addOnSuccessListener { documents ->
                 appointmentList.clear() // Xóa danh sách cũ

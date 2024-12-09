@@ -23,6 +23,10 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -83,6 +87,8 @@ class AdminStatisticsActivity : AppCompatActivity() {
         }
 
     }
+
+
     private fun countMedicalRecordsByDate()     {
             if (adminCurrentId != null) {
                 db.collection("medicalrecords")
@@ -105,7 +111,7 @@ class AdminStatisticsActivity : AppCompatActivity() {
                         val dataSet = BarDataSet(entries, "Số lượt đã khám theo ngày")
                         dataSet.color = Color.BLUE // Màu cột
                         dataSet.valueTextColor = Color.BLACK // Màu chữ hiển thị trên cột
-                        dataSet.valueTextSize = 12f // Kích thước chữ hiển thị
+                        dataSet.valueTextSize = 10f // Kích thước chữ hiển thị
 
                          //Định dạng giá trị dưới dạng số nguyên
                         dataSet.valueFormatter = object : ValueFormatter() {

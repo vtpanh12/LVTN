@@ -59,7 +59,7 @@
             android:textStyle="bold"
             />
         <TextView
-            android:id="@+id/textViewr6"
+            android:id="@+id/tVNumberShift"
             android:layout_width="0dp"
             android:layout_height="75dp"
             android:layout_gravity="center"
@@ -93,7 +93,7 @@
             android:textStyle="bold"
             />
         <TextView
-            android:id="@+id/textViewrk6"
+            android:id="@+id/tVSalaryDentist"
             android:layout_width="0dp"
             android:layout_height="75dp"
             android:layout_gravity="center"

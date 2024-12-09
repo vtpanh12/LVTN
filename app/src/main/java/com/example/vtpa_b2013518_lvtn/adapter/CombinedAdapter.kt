@@ -22,7 +22,7 @@ class CombinedAdapter(private val combines: List<Combined>):
         val treatment: TextView = view.findViewById(R.id.tVMRTreatment)
         val dates: TextView = view.findViewById(R.id.tVMRDates)
         val notes: TextView = view.findViewById(R.id.tVMRNotes)
-        val iVMREdit: ImageView = itemView.findViewById(R.id.iVMREdit)
+        //val iVMREdit: ImageView = itemView.findViewById(R.id.iVMREdit)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CombinedAdapterViewHolder {
@@ -46,19 +46,19 @@ class CombinedAdapter(private val combines: List<Combined>):
         holder.notes.text="Ghi chú (đơn thuốc, ghi chú, lịch hẹn): \n " +
                 "${combined.medicalRecordPrescription} | ${combined.medicalRecordNotes} | " +
                 "${combined.medicalRecordNextAppointment}"
-        holder.iVMREdit.setOnClickListener {
-            val context = holder.itemView.context
-            val intent = Intent(context, DentistMedicalRecordEditActivity::class.java)
-            intent.putExtra("email", combined.appointmentEmail) // Truyền
-            intent.putExtra("username", combined.appointmentUsername)
-            intent.putExtra("time", combined.appointmentDate)
-            intent.putExtra("phoneNumber", combined.appointmentPhoneNumber)
-            intent.putExtra("diagnosis", combined.medicalRecordDiagnosis)
-            intent.putExtra("treatment", combined.medicalRecordTreatment)
-            intent.putExtra("dates", combined.medicalRecordDates)
-            intent.putExtra("notes",combined.medicalRecordPrescription
-                    + combined.medicalRecordNotes +combined.medicalRecordNextAppointment )
-            context.startActivity(intent)
-        }
+//        holder.iVMREdit.setOnClickListener {
+//            val context = holder.itemView.context
+//            val intent = Intent(context, DentistMedicalRecordEditActivity::class.java)
+//            intent.putExtra("email", combined.appointmentEmail) // Truyền
+//            intent.putExtra("username", combined.appointmentUsername)
+//            intent.putExtra("time", combined.appointmentDate)
+//            intent.putExtra("phoneNumber", combined.appointmentPhoneNumber)
+//            intent.putExtra("diagnosis", combined.medicalRecordDiagnosis)
+//            intent.putExtra("treatment", combined.medicalRecordTreatment)
+//            intent.putExtra("dates", combined.medicalRecordDates)
+//            intent.putExtra("notes",combined.medicalRecordPrescription
+//                    + combined.medicalRecordNotes +combined.medicalRecordNextAppointment )
+//            context.startActivity(intent)
+//        }
     }
 }

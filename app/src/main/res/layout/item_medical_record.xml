@@ -31,7 +31,7 @@
             android:layout_height="31dp"
             android:layout_marginTop="10dp"
             android:layout_weight="0.1"
-            app:srcCompat="@drawable/edit" />
+             />
 
     </LinearLayout>
 

@@ -137,7 +137,7 @@
         android:layout_marginRight="20dp"
         android:textSize="20sp"
         android:background="@drawable/btn_custom"
-        android:text="Chọn bác sĩ"
+        android:text="Chọn nha sĩ"
         app:backgroundTint="@null" />
 
 </LinearLayout>

@@ -52,10 +52,6 @@ class SlotAdapter(private var slotList: List<Pair<String, Slot>>)
 
     fun updateData(newSlotList: List<Pair<String, Slot>>) {
         slotList = newSlotList
-//        val sortedSlots = slotList.sortedBy { slot ->
-//            Slot.time // Chuỗi "HH:mm" được so sánh tự nhiên
-//        }
-
         notifyDataSetChanged()  // Thông báo RecyclerView cập nhật lại dữ liệu
     }
 

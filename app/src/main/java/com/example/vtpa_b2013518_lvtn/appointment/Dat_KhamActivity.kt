@@ -15,6 +15,7 @@ import com.example.vtpa_b2013518_lvtn.R
 import com.example.vtpa_b2013518_lvtn.activity.IndexActivity
 import com.example.vtpa_b2013518_lvtn.adapter.Appointment
 import com.example.vtpa_b2013518_lvtn.adapter.AppointmentAdapter
+import com.example.vtpa_b2013518_lvtn.adapter.AppointmentUserAdapter
 import com.example.vtpa_b2013518_lvtn.adapter.CombinedAppAdapter
 import com.example.vtpa_b2013518_lvtn.adapter.CombinedUser
 import com.example.vtpa_b2013518_lvtn.adapter.Dentist
@@ -26,7 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 class Dat_KhamActivity : AppCompatActivity() {
     val userId = FirebaseAuth.getInstance().currentUser?.uid
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: AppointmentAdapter
+    private lateinit var adapter: AppointmentUserAdapter
     private lateinit var appointmentList: MutableList<Appointment>
     private lateinit var iVDatKham: ImageView
     private lateinit var tVDatKham: TextView
@@ -104,7 +105,7 @@ class Dat_KhamActivity : AppCompatActivity() {
             Toast.makeText(this, "Chưa có lịch khám.", Toast.LENGTH_SHORT).show()
         } else {
             // Khởi tạo adapter nếu chưa có hoặc cập nhật dữ liệu
-            adapter = AppointmentAdapter(appointmentList)
+            adapter = AppointmentUserAdapter(appointmentList)
             recyclerView.adapter = adapter
             // Cập nhật và sắp xếp danh sách
             adapter.updateAppointments(appointmentList)

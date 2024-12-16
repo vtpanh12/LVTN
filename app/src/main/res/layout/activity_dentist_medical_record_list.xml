@@ -35,6 +35,37 @@
             android:textStyle="bold"
              />
     </LinearLayout>
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayout54"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        android:layout_marginRight="20dp"-->
+<!--        android:layout_marginBottom="5dp"-->
+<!--        android:background="@drawable/edittext_user_bg"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/eTDMRSearch"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="0.8"-->
+<!--            android:background="@null"-->
+<!--            android:hint="Hãy nhập email" />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/iVDMRSearch"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="35dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginRight="20dp"-->
+<!--            android:layout_weight="0"-->
+<!--            android:alpha="0.5"-->
+<!--            app:srcCompat="@drawable/search" />-->
+
+
+<!--    </LinearLayout>-->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ryMedialRecordList"
             android:layout_width="match_parent"

@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -33,10 +34,13 @@ class DentistMedicalRecordListActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     val dentistCurrentId = FirebaseAuth.getInstance().currentUser?.uid
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dentist_medical_record_list)
         val iVBackDentistMedicalRecord = findViewById<ImageView>(R.id.iVBackDentistMedicalRecord)
+
         iVBackDentistMedicalRecord.setOnClickListener {
             startActivity(Intent(this, DentistIndexActivity::class.java))
         }

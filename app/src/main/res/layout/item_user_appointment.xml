@@ -7,40 +7,26 @@
     android:orientation="vertical"
     android:background="@drawable/button_default1"
     android:padding="20dp">
+
     <LinearLayout
-        android:background="@drawable/item_bg"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
-
+        android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/tVIFEmail"
-            android:layout_width="231dp"
+            android:textSize="14sp"
+            android:id="@+id/tVIFUser"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="Email:"
-            android:paddingLeft="20dp"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
+            android:text="Họ và tên:" />
         <ImageView
+            android:layout_marginLeft="200dp"
             android:id="@+id/iVIFEdit"
-            android:layout_width="44dp"
-            android:layout_height="31dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="0.1"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
             app:srcCompat="@drawable/edit" />
 
     </LinearLayout>
 
-    <TextView
-        android:layout_marginTop="10dp"
-        android:textSize="14sp"
-        android:id="@+id/tVIFUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Họ và tên:" />
 
     <TextView
         android:textSize="14sp"
@@ -81,22 +67,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Trạng thái" />
-<!--    <TextView-->
-<!--        android:textSize="14sp"-->
-<!--        android:id="@+id/tVIFDentistId"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Nha sĩ ID:" />-->
-<!--    <TextView-->
-<!--        android:textSize="14sp"-->
-<!--        android:id="@+id/tVIFDentistUsername"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Nha sĩ:" />-->
-<!--    <TextView-->
-<!--        android:textSize="14sp"-->
-<!--        android:id="@+id/tVIFDentistInfo"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Thông tin liên hệ nha sĩ:" />-->
+
+
 </LinearLayout>

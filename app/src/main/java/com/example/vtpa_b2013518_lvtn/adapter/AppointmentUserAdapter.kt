@@ -17,13 +17,13 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class AppointmentAdapter(private var appointments: List<Appointment>
+class AppointmentUserAdapter(private var appointments: List<Appointment>
 ) :
-    RecyclerView.Adapter<AppointmentAdapter.AppointmentViewHolder>() {
+    RecyclerView.Adapter<AppointmentUserAdapter.AppointmentViewHolder>() {
 
     class AppointmentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         //val id_dentist: TextView = view.findViewById(R.id.tVIFDentistId)
-        val email: TextView = view.findViewById(R.id.tVIFEmail)
+        //val email: TextView = view.findViewById(R.id.tVIFEmail)
         val username: TextView = view.findViewById(R.id.tVIFUser)
         val service: TextView = view.findViewById(R.id.tVIFService)
         val date: TextView = view.findViewById(R.id.tVIFDate)
@@ -38,7 +38,7 @@ class AppointmentAdapter(private var appointments: List<Appointment>
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppointmentViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_appointment, parent, false)
+            .inflate(R.layout.item_user_appointment, parent, false)
         return AppointmentViewHolder(view)
     }
 
@@ -46,7 +46,7 @@ class AppointmentAdapter(private var appointments: List<Appointment>
         val appointment = appointments[position]
         //holder.id_dentist.text = "Dentist ID: ${appointment.id_dentist}"
         holder.username.text = "Họ và tên: ${appointment.username}"
-        holder.email.text = "Email: ${appointment.email}"
+       // holder.email.text = "Email: ${appointment.email}"
         holder.service.text = "Dịch vụ: ${appointment.service}"
         holder.date.text = "Ngày hẹn: ${appointment.date}"
         holder.hour.text = "Giờ hẹn: ${appointment.hour}"

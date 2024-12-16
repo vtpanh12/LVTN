@@ -14,7 +14,7 @@ class CombinedAppAdapter(private val data: List<CombinedUser>) :
     RecyclerView.Adapter<CombinedAppAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val id_dentist: TextView = view.findViewById(R.id.tVIFDentistId)
+        //val id_dentist: TextView = view.findViewById(R.id.tVIFDentistId)
         val email: TextView = view.findViewById(R.id.tVIFEmail)
         val username: TextView = view.findViewById(R.id.tVIFUser)
         val service: TextView = view.findViewById(R.id.tVIFService)
@@ -37,7 +37,7 @@ class CombinedAppAdapter(private val data: List<CombinedUser>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         holder.email.text = "Email: ${item.appointment.email}"
-        holder.username.text = "Họ và tên: ${item.appointment.username}"
+       // holder.username.text = "Họ và tên: ${item.appointment.username}"
         holder.email.text = "Email: ${item.appointment.email}"
         holder.service.text = "Dịch vụ: ${item.appointment.service}"
         holder.date.text = "Ngày hẹn: ${item.appointment.date}"

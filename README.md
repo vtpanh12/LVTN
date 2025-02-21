@@ -43,3 +43,17 @@ Chức năng:
   + Xem thông tin lịch khám trong ngày
   + Xem thông tin chi tiết của từng lịch khám nhận được
   + Xem hồ sơ bệnh án của khách hàng (cho phép chỉnh sửa (thêm thông tin))
+## 🎨 Thiết kế Figma  
+https://www.figma.com/design/YRp7VzSGTiAuwbSzSDoqN5/Untitled?t=1XUZf8uywSDn3qmE-1
+https://www.figma.com/design/YRp7VzSGTiAuwbSzSDoqN5/Untitled?node-id=12-148&t=1XUZf8uywSDn3qmE-1
+https://www.figma.com/design/YRp7VzSGTiAuwbSzSDoqN5/Untitled?node-id=13-36&t=1XUZf8uywSDn3qmE-1
+https://www.figma.com/design/YRp7VzSGTiAuwbSzSDoqN5/Untitled?node-id=99-28&t=1XUZf8uywSDn3qmE-1
+https://www.figma.com/design/YRp7VzSGTiAuwbSzSDoqN5/Untitled?node-id=21-13&t=1XUZf8uywSDn3qmE-1
+https://www.figma.com/design/YRp7VzSGTiAuwbSzSDoqN5/Untitled?node-id=33-47&t=1XUZf8uywSDn3qmE-1
+https://www.figma.com/design/YRp7VzSGTiAuwbSzSDoqN5/Untitled?node-id=38-116&t=1XUZf8uywSDn3qmE-1
+
+# 🚀 Dự án Mobile App  
+🔗 [Xem thiết kế Figma](https://www.figma.com/file/exa mple)  
+✅ Hoàn thành các chức năng cơ bản  
+
+

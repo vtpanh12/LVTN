@@ -52,8 +52,4 @@ https://www.figma.com/design/YRp7VzSGTiAuwbSzSDoqN5/Untitled?node-id=21-13&t=1XU
 https://www.figma.com/design/YRp7VzSGTiAuwbSzSDoqN5/Untitled?node-id=33-47&t=1XUZf8uywSDn3qmE-1
 https://www.figma.com/design/YRp7VzSGTiAuwbSzSDoqN5/Untitled?node-id=38-116&t=1XUZf8uywSDn3qmE-1
 
-# 🚀 Dự án Mobile App  
-🔗 [Xem thiết kế Figma](https://www.figma.com/file/exa mple)  
-✅ Hoàn thành các chức năng cơ bản  
-
 
